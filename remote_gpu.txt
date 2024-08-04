@@ -1,0 +1,12 @@
+sudo apt-get install sshfs
+mkdir ~/remote_gpu
+sshfs vignesh-mtech@10.110.11.24:/home/vignesh-mtech ~/remote_gpu
+ls ~/remote_gpu
+fusermount -u ~/remote_mount => to unmount
+
+
+Copy the Python script to the remote machine:
+scp /local/path/to/example.py vignesh-mtech@10.110.11.24:/home/vignesh-mtech/
+
+Run the Python script on the remote machine via SSH:
+ssh vignesh-mtech@10.110.11.24 'python3 /home/vignesh-mtech/example.py'
