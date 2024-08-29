@@ -1,0 +1,421 @@
+,Qid,Question,Hardness,Query Gold,Repeated,Query Generated
+0,534,"What are the first, middle, and last names, along with the ids, of all students who enrolled in 2 degree programs in one semester?",medium,"SELECT T1.first_name ,  T1.middle_name ,  T1.last_name ,  T1.student_id FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id GROUP BY T1.student_id HAVING count(*)  =  2",7,"SELECT s.student_id, s.first_name, s.middle_name, s.last_name FROM students s JOIN student_enrolment se ON s.student_id = se.student_id
+SELECT s.student_id, s.first_name, s.middle_name, s.last_name FROM students s JOIN student_enrolment se ON s.student_id = se.student_id
+SELECT s.student_id, s.first_name, s.middle_name, s.last_name FROM students s JOIN student_enrolment se ON s.student_id = se.student_id
+SELECT s.student_id, s.first_name, s.middle_name, s.last_name FROM students s JOIN student_enrolment se ON s.student_id = se.student_id
+SELECT s.student_id, s.first_name, s.middle_name, s.last_name FROM students s JOIN student_enrolment se ON s.student_id = se.student_id
+SELECT s.student_id, s.first_name, s.middle_name, s.last_name FROM students s JOIN student_enrolment se1 ON s.student_id = se1.student
+SELECT s.student_id, s.first_name, s.middle_name, s.last_name FROM students s JOIN student_enrolment se ON s.student_id = se.student_id"
+1,47,Find the weight of the youngest dog.,medium,SELECT weight FROM pets ORDER BY pet_age LIMIT 1,7,"SELECT weight FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE pettype = 'dog' ORDER BY age ASC LIMIT 1
+SELECT weight FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE pettype = 'dog' ORDER BY age ASC LIMIT 1
+SELECT weight FROM pets WHERE petid = (     SELECT petid     FROM has_pet     WHERE stuid = (         SELECT stuid         FROM student         WHERE age = (             SELECT MIN(age)             FROM student             WHERE stuid IN (                 SELECT stuid                 FROM has_pet                 WHERE petid IN (                     SELECT petid                     FROM pets                     WHERE pettype = 'dog'                 )             )         )     ) )
+SELECT weight FROM pets WHERE petid = (     SELECT petid     FROM has_pet     WHERE stuid = (         SELECT stuid         FROM student         WHERE age = (             SELECT MIN(age)             FROM student             WHERE stuid IN (                 SELECT stuid                 FROM has_pet                 WHERE petid IN (                     SELECT petid                     FROM pets                     WHERE pettype = 'dog'                 )             )         )     ) )
+SELECT weight FROM pets WHERE petid = (     SELECT petid     FROM has_pet     WHERE stuid = (         SELECT stuid         FROM student         WHERE age = (             SELECT MIN(age)             FROM student             WHERE stuid IN (                 SELECT stuid                 FROM has_pet                 WHERE petid IN (                     SELECT petid                     FROM pets                     WHERE pettype = 'dog'                 )             )         )     ) )
+SELECT weight FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE pettype = 'dog' ORDER BY age ASC LIMIT 1
+SELECT weight FROM pets WHERE petid = (     SELECT petid     FROM has_pet     WHERE stuid = (         SELECT stuid         FROM student         WHERE age = (             SELECT MIN(age)             FROM student             WHERE stuid IN (SELECT stuid FROM has_pet WHERE petid IN (SELECT petid FROM pets WHERE pettype = 'dog'))         )     ) )"
+2,35,List singer names and number of concerts for each singer.,medium,"SELECT T2.name ,  count(*) FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id GROUP BY T2.singer_id",7,"SELECT singer.name, COUNT(singer_in_concert.concert_id) AS concert_count FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id GROUP BY singer.name
+SELECT singer.name, COUNT(singer_in_concert.concert_id) AS concert_count FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id GROUP BY singer.name
+SELECT singer.name, COUNT(singer_in_concert.concert_id) AS concert_count FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id GROUP BY singer.name
+SELECT singer.name, COUNT(singer_in_concert.concert_id) AS concert_count FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id GROUP BY singer.name
+SELECT singer.name, COUNT(singer_in_concert.concert_id) AS concert_count FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id GROUP BY singer.name
+SELECT singer.name, COUNT(singer_in_concert.concert_id) AS concert_count FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id GROUP BY singer.name
+SELECT singer.name, COUNT(singer_in_concert.concert_id) AS concert_count FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id GROUP BY singer.name"
+3,490,How many players are there for each hand type?,medium,"SELECT count(*) ,  hand FROM players GROUP BY hand",7,"SELECT hand, COUNT(player_id) AS player_count FROM players GROUP BY hand
+SELECT hand, COUNT(player_id) AS player_count FROM players GROUP BY hand
+SELECT hand, COUNT(player_id) AS player_count FROM players GROUP BY hand
+SELECT hand, COUNT(player_id) AS player_count FROM players GROUP BY hand
+SELECT hand, COUNT(player_id) AS player_count FROM players GROUP BY hand
+SELECT hand, COUNT(player_id) AS player_count FROM players GROUP BY hand
+SELECT hand, COUNT(player_id) AS player_count FROM players GROUP BY hand"
+4,676,Give the nationality that is most common across all people.,hard,SELECT Nationality FROM people GROUP BY Nationality ORDER BY COUNT(*) DESC LIMIT 1,7,"SELECT nationality, COUNT(*) as count FROM poker_player JOIN people ON poker_player.people_id = people.people_id GROUP BY nationality ORDER BY count DESC LIMIT 1
+SELECT nationality, COUNT(*) as count FROM poker_player JOIN people ON poker_player.people_id = people.people_id GROUP BY nationality ORDER BY count DESC LIMIT 1
+SELECT nationality, COUNT(*) as count FROM poker_player JOIN people ON poker_player.people_id = people.people_id GROUP BY nationality ORDER BY count DESC LIMIT 1
+SELECT nationality, COUNT(*) as count FROM poker_player JOIN people ON poker_player.people_id = people.people_id GROUP BY nationality ORDER BY count DESC LIMIT 1
+SELECT nationality, COUNT(*) as count FROM poker_player JOIN people ON poker_player.people_id = people.people_id GROUP BY nationality ORDER BY count DESC LIMIT 1
+SELECT nationality, COUNT(*) as count FROM poker_player JOIN people ON poker_player.people_id = people.people_id GROUP BY nationality ORDER BY count DESC LIMIT 1
+SELECT nationality, COUNT(*) as count FROM poker_player JOIN people ON poker_player.people_id = people.people_id GROUP BY nationality ORDER BY count DESC LIMIT 1"
+5,72,What is the average and maximum age for each pet type?,medium,"SELECT avg(pet_age) ,  max(pet_age) ,  pettype FROM pets GROUP BY pettype",7,"SELECT pettype, AVG(pet_age) AS average_age, MAX(pet_age) AS maximum_age FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid GROUP BY pettype
+SELECT pettype, AVG(pet_age) AS average_age, MAX(pet_age) AS maximum_age FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid GROUP BY pettype
+SELECT pettype, AVG(pet_age) AS average_age, MAX(pet_age) AS maximum_age FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid GROUP BY pettype
+SELECT pettype, AVG(pet_age) AS average_age, MAX(pet_age) AS maximum_age FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid GROUP BY pettype
+SELECT pettype, AVG(pet_age) AS average_age, MAX(pet_age) AS maximum_age FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid GROUP BY pettype
+SELECT pettype, AVG(pet_age) AS average_age, MAX(pet_age) AS maximum_age FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid GROUP BY pettype
+SELECT pettype, AVG(pet_age) AS average_age, MAX(pet_age) AS maximum_age FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid GROUP BY pettype"
+6,924,Which dogs have not cost their owner more than 1000 for treatment ? List the dog names .,hard,select name from dogs where dog_id not in ( select dog_id from treatments group by dog_id having sum(cost_of_treatment)  >  1000 ),7,"SELECT d.name, b.breed_name FROM dogs d JOIN breeds b ON d.breed_code = b.breed_code JOIN treatments t ON d.dog_id = t.dog_id GROUP BY d.dog_id, d.name, b.breed_name HAVING SUM(t.cost_of_treatment) <= 1000
+SELECT dogs.name, breeds.breed_name FROM dogs JOIN breeds ON dogs.breed_code = breeds.breed_code JOIN treatments ON dogs.dog_id = treatments.dog_id GROUP BY dogs.dog_id HAVING SUM(treatments.cost_of_treatment) <= 1000
+SELECT d.name FROM dogs d JOIN treatments t ON d.dog_id = t.dog_id GROUP BY d.dog_id HAVING SUM(t.cost_of_treatment) <= 1000
+SELECT d.name, b.breed_name FROM dogs d JOIN breeds b ON d.breed_code = b.breed_code JOIN treatments t ON d.dog_id = t.dog_id GROUP BY d.dog_id, d.name, b.breed_name HAVING SUM(t.cost_of_treatment) <= 1000
+SELECT d.name, b.breed_name FROM dogs d JOIN breeds b ON d.breed_code = b.breed_code JOIN treatments t ON d.dog_id = t.dog_id GROUP BY d.dog_id, d.name, b.breed_name HAVING SUM(t.cost_of_treatment) <= 1000
+SELECT d.name, b.breed_name FROM dogs d JOIN breeds b ON d.breed_code = b.breed_code JOIN treatments t ON d.dog_id = t.dog_id GROUP BY d.dog_id, d.name, b.breed_name HAVING SUM(t.cost_of_treatment) <= 1000
+SELECT dogs.name, breeds.breed_name FROM dogs JOIN breeds ON dogs.breed_code = breeds.breed_code JOIN treatments ON dogs.dog_id = treatments.dog_id GROUP BY dogs.dog_id HAVING SUM(treatments.cost_of_treatment) <= 1000"
+7,783,Return the codes of countries that do not speak English and do not have Republics for governments.,hard,"SELECT Code FROM country WHERE GovernmentForm != ""Republic"" EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  ""English""",7,"SELECT code FROM country WHERE code NOT IN (     SELECT countrycode     FROM countrylanguage     WHERE language = 'English' ) AND governmentform != 'Republic'
+SELECT code FROM country WHERE code NOT IN (     SELECT countrycode     FROM countrylanguage     WHERE language = 'English' ) AND governmentform != 'Republic'
+SELECT code FROM country WHERE code NOT IN (     SELECT countrycode     FROM countrylanguage     WHERE language = 'English' ) AND governmentform != 'Republic'
+SELECT code FROM country WHERE code NOT IN (     SELECT countrycode     FROM countrylanguage     WHERE language = 'English' ) AND governmentform != 'Republic'
+SELECT code FROM country WHERE code NOT IN (     SELECT countrycode     FROM countrylanguage     WHERE language = 'English' ) AND governmentform != 'Republic'
+SELECT code FROM country WHERE code NOT IN (     SELECT countrycode     FROM countrylanguage     WHERE language = 'English' ) AND governmentform != 'Republic'
+SELECT code FROM country WHERE code NOT IN (     SELECT countrycode     FROM countrylanguage     WHERE language = 'English' ) AND governmentform != 'Republic'"
+8,437,Find the average rank of winners in all matches.,easy,SELECT avg(winner_rank) FROM matches,7,"SELECT AVG(winner_rank) FROM matches WHERE winner_id IN (SELECT player_id FROM players) AND loser_id IN (SELECT player_id FROM players)
+SELECT AVG(winner_rank) FROM matches
+SELECT AVG(winner_rank) FROM matches WHERE winner_id IN (SELECT player_id FROM players) AND loser_id IN (SELECT player_id FROM players)
+SELECT AVG(winner_rank) FROM matches WHERE winner_id IN (SELECT player_id FROM players) AND loser_id IN (SELECT player_id FROM players)
+SELECT AVG(winner_rank) FROM matches WHERE winner_id IN (SELECT player_id FROM players) AND loser_id IN (SELECT player_id FROM players)
+SELECT AVG(winner_rank) FROM matches WHERE winner_id IN (SELECT player_id FROM players) AND loser_id IN (SELECT player_id FROM players)
+SELECT AVG(winner_rank) FROM matches WHERE winner_id IN (SELECT player_id FROM players) AND loser_id IN (SELECT player_id FROM players)"
+9,645,find the package option of the tv channel that do not have any cartoon directed by Ben Jones.,hard,SELECT package_option FROM TV_Channel WHERE id NOT IN (SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones'),7,"SELECT tv_channel.package_option FROM tv_channel LEFT JOIN tv_series ON tv_channel.id = tv_series.channel LEFT JOIN cartoon ON tv_series.id = cartoon.channel WHERE cartoon.directed_by <> 'Ben Jones' OR cartoon.directed_by IS NULL
+SELECT tv_channel.package_option FROM tv_channel LEFT JOIN tv_series ON tv_channel.id = tv_series.channel LEFT JOIN cartoon ON tv_series.id = cartoon.channel WHERE cartoon.directed_by <> 'Ben Jones' OR cartoon.directed_by IS NULL
+SELECT tv_channel.package_option FROM tv_channel LEFT JOIN tv_series ON tv_channel.id = tv_series.channel LEFT JOIN cartoon ON tv_series.id = cartoon.channel WHERE cartoon.directed_by <> 'Ben Jones' OR cartoon.directed_by IS NULL
+SELECT tv_channel.package_option FROM tv_channel LEFT JOIN tv_series ON tv_channel.id = tv_series.channel LEFT JOIN cartoon ON tv_series.id = cartoon.channel WHERE cartoon.directed_by <> 'Ben Jones' OR cartoon.directed_by IS NULL
+SELECT tv_channel.package_option FROM tv_channel LEFT JOIN tv_series ON tv_channel.id = tv_series.channel LEFT JOIN cartoon ON tv_series.id = cartoon.channel WHERE cartoon.directed_by <> 'Ben Jones' OR cartoon.directed_by IS NULL
+SELECT tv_channel.package_option FROM tv_channel LEFT JOIN tv_series ON tv_channel.id = tv_series.channel LEFT JOIN cartoon ON tv_series.id = cartoon.channel WHERE cartoon.directed_by <> 'Ben Jones' OR cartoon.directed_by IS NULL
+SELECT tv_channel.package_option FROM tv_channel LEFT JOIN tv_series ON tv_channel.id = tv_series.channel LEFT JOIN cartoon ON tv_series.id = cartoon.channel WHERE cartoon.directed_by <> 'Ben Jones' OR cartoon.directed_by IS NULL"
+10,796,Find the government form name and total population for each government form whose average life expectancy is longer than 72.,medium,"SELECT sum(Population) ,  GovernmentForm FROM country GROUP BY GovernmentForm HAVING avg(LifeExpectancy)  >  72",7,"SELECT c.governmentform, SUM(c.population) AS total_population FROM country c WHERE c.lifeexpectancy > 72 GROUP BY c.governmentform
+SELECT c.governmentform, SUM(c.population) as total_population FROM country c WHERE c.lifeexpectancy > 72 GROUP BY c.governmentform
+SELECT c.governmentform, SUM(c.population) AS total_population FROM country c WHERE c.lifeexpectancy > 72 GROUP BY c.governmentform
+SELECT c.governmentform, SUM(c.population) as total_population FROM country c WHERE c.lifeexpectancy > 72 GROUP BY c.governmentform
+SELECT c.governmentform, SUM(c.population) AS total_population FROM country c WHERE c.lifeexpectancy > 72 GROUP BY c.governmentform
+SELECT c.governmentform, SUM(c.population) as total_population FROM country c WHERE c.lifeexpectancy > 72 GROUP BY c.governmentform
+SELECT c.governmentform, SUM(c.population) AS total_population FROM country AS c GROUP BY c.governmentform HAVING AVG(c.lifeexpectancy) > 72"
+11,891,Return the names of friends of the high school student Kyle.,hard,"SELECT T3.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id JOIN Highschooler AS T3 ON T1.friend_id  =  T3.id WHERE T2.name  =  ""Kyle""",7,"SELECT h2.name FROM highschooler AS h1 JOIN friend AS f ON h1.id = f.student_id JOIN highschooler AS h2 ON f.friend_id = h2.id WHERE h1.name = 'Kyle'
+SELECT h2.name FROM highschooler h1 JOIN friend f ON h1.id = f.student_id JOIN highschooler h2 ON f.friend_id = h2.id WHERE h1.name = 'Kyle'
+SELECT h2.name FROM highschooler h1 JOIN friend f ON h1.id = f.student_id JOIN highschooler h2 ON f.friend_id = h2.id WHERE h1.name = 'Kyle'
+SELECT h2.name FROM highschooler h1 JOIN friend f ON h1.id = f.student_id JOIN highschooler h2 ON f.friend_id = h2.id WHERE h1.name = 'Kyle'
+SELECT h2.name FROM highschooler h1 JOIN friend f ON h1.id = f.student_id JOIN highschooler h2 ON f.friend_id = h2.id WHERE h1.name = 'Kyle'
+SELECT h2.name FROM highschooler h1 JOIN friend f ON h1.id = f.student_id JOIN highschooler h2 ON f.friend_id = h2.id WHERE h1.name = 'Kyle'
+SELECT h2.name FROM highschooler h1 JOIN friend f ON h1.id = f.student_id JOIN highschooler h2 ON f.friend_id = h2.id WHERE h1.name = 'Kyle'"
+12,32,What are the names of all stadiums that did not have a concert in 2014?,hard,SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014,7,"SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )"
+13,583,Find the first name of the students who permanently live in the country Haiti or have the cell phone number 09700166582 .,hard,select t1.first_name from students as t1 join addresses as t2 on t1.permanent_address_id  =  t2.address_id where t2.country  =  'haiti' or t1.cell_mobile_number  =  '09700166582',7,"SELECT first_name FROM students WHERE permanent_address_id IN (SELECT address_id FROM addresses WHERE country = 'Haiti') OR cell_mobile_number = '097001
+SELECT first_name FROM students WHERE permanent_address_id IN (SELECT address_id FROM addresses WHERE country = 'Haiti') OR cell_mobile_number = '097001
+SELECT first_name FROM students WHERE permanent_address_id IN (SELECT address_id FROM addresses WHERE country = 'Haiti') OR cell_mobile_number = '097001
+SELECT first_name FROM students WHERE permanent_address_id IN (SELECT address_id FROM addresses WHERE country = 'Haiti') OR cell_mobile_number = '097001
+SELECT first_name FROM students WHERE permanent_address_id IN (SELECT address_id FROM addresses WHERE country = 'Haiti') OR cell_mobile_number = '097001
+SELECT first_name FROM students WHERE permanent_address_id IN (SELECT address_id FROM addresses WHERE country = 'Haiti') OR cell_mobile_number = '097001
+SELECT first_name FROM students WHERE permanent_address_id IN (SELECT address_id FROM addresses WHERE country = 'Haiti') OR cell_mobile_number = '097001"
+14,596,What is the country with the most number of TV Channels and how many does it have?,hard,"SELECT Country ,  count(*) FROM TV_Channel GROUP BY Country ORDER BY count(*) DESC LIMIT 1;",7,"SELECT country, COUNT(*) as num_channels FROM tv_channel GROUP BY country ORDER BY num_channels DESC LIMIT 1
+SELECT country, COUNT(*) as num_channels FROM tv_channel GROUP BY country ORDER BY num_channels DESC LIMIT 1
+SELECT country, COUNT(*) as num_channels FROM tv_channel GROUP BY country ORDER BY num_channels DESC LIMIT 1
+SELECT country, COUNT(*) as num_channels FROM tv_channel GROUP BY country ORDER BY num_channels DESC LIMIT 1
+SELECT country, COUNT(*) as num_channels FROM tv_channel GROUP BY country ORDER BY num_channels DESC LIMIT 1
+SELECT country, COUNT(*) as num_channels FROM tv_channel GROUP BY country ORDER BY num_channels DESC LIMIT 1
+SELECT country, COUNT(*) as num_channels FROM tv_channel GROUP BY country ORDER BY num_channels DESC LIMIT 1"
+15,126,What is the number of cars with a horsepower greater than 150?,easy,SELECT count(*) FROM CARS_DATA WHERE horsepower  >  150;,7,"SELECT COUNT(*) FROM cars_data WHERE horsepower > 150
+SELECT COUNT(*) FROM cars_data WHERE horsepower > 150
+SELECT COUNT(*) FROM cars_data WHERE horsepower > 150
+SELECT COUNT(*) FROM cars_data WHERE horsepower > 150
+SELECT COUNT(*) FROM cars_data WHERE horsepower > 150
+SELECT COUNT(*) FROM cars_data WHERE horsepower > 150
+SELECT COUNT(*) FROM cars_data WHERE horsepower > 150"
+16,614,What are all of the episodes ordered by ratings?,easy,SELECT Episode FROM TV_series ORDER BY rating,7,"SELECT tv_series.episode FROM tv_series ORDER BY tv_series.rating
+SELECT tv_series.episode FROM tv_series ORDER BY tv_series.rating
+SELECT tv_series.episode FROM tv_series ORDER BY tv_series.rating
+SELECT tv_series.episode FROM tv_series ORDER BY tv_series.rating
+SELECT tv_series.episode FROM tv_series ORDER BY tv_series.rating
+SELECT tv_series.episode FROM tv_series ORDER BY tv_series.rating
+SELECT tv_series.episode FROM tv_series ORDER BY tv_series.rating"
+17,707,How much surface area do the countires in the Carribean cover together?,easy,"SELECT sum(SurfaceArea) FROM country WHERE Region  =  ""Caribbean""",7,"SELECT SUM(surfacearea) FROM country WHERE region = 'Caribbean'
+SELECT SUM(surfacearea) FROM country WHERE region = 'Caribbean'
+SELECT SUM(surfacearea) FROM country WHERE region = 'Caribbean'
+SELECT SUM(surfacearea) FROM country WHERE region = 'Caribbean'
+SELECT SUM(surfacearea) FROM country WHERE region = 'Caribbean'
+SELECT SUM(surfacearea) FROM country WHERE region = 'Caribbean'
+SELECT SUM(surfacearea) FROM country WHERE region = 'Caribbean'"
+18,37,List all singer names in concerts in year 2014.,hard,SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014,7,"SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014"
+19,643,find the id of tv channels that do not play any cartoon directed by Ben Jones.,hard,SELECT id FROM TV_Channel EXCEPT SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones',7,"SELECT tc.id FROM tv_channel tc LEFT JOIN tv_series ts ON tc.id = ts.channel LEFT JOIN cartoon c ON ts.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN tv_series ts ON tc.id = ts.channel LEFT JOIN cartoon c ON ts.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN tv_series ts ON tc.id = ts.channel LEFT JOIN cartoon c ON ts.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel AS tc LEFT JOIN tv_series AS ts ON tc.id = ts.channel LEFT JOIN cartoon AS c ON ts.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel AS tc LEFT JOIN tv_series AS ts ON tc.id = ts.channel LEFT JOIN cartoon AS c ON ts.id = c.channel WHERE c.directed_by <> 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN tv_series ts ON tc.id = ts.channel LEFT JOIN cartoon c ON ts.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN tv_series ts ON tc.id = ts.channel LEFT JOIN cartoon c ON ts.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL"
+20,892,How many friends does the high school student Kyle have?,medium,"SELECT count(*) FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id WHERE T2.name  =  ""Kyle""",7,"SELECT COUNT(*) FROM friend WHERE student_id = (SELECT id FROM highschooler WHERE name = 'Kyle')
+SELECT COUNT(*) FROM friend WHERE student_id = (SELECT id FROM highschooler WHERE name = 'Kyle')
+SELECT COUNT(*) FROM friend WHERE student_id = (SELECT id FROM highschooler WHERE name = 'Kyle')
+SELECT COUNT(*) FROM friend WHERE student_id = (SELECT id FROM highschooler WHERE name = 'Kyle')
+SELECT COUNT(*) FROM friend WHERE student_id = (SELECT id FROM highschooler WHERE name = 'Kyle')
+SELECT COUNT(*) FROM friend WHERE student_id = (SELECT id FROM highschooler WHERE name = 'Kyle')
+SELECT COUNT(*) FROM friend WHERE student_id = (SELECT id FROM highschooler WHERE name = 'Kyle')"
+21,494,What is maximum and minimum death toll caused each time?,medium,"SELECT max(killed) ,  min(killed) FROM death",7,"SELECT MAX(death.killed) AS max_death_toll, MIN(death.killed) AS min_death_toll FROM battle JOIN ship ON battle.id = ship.lost_in_battle JOIN death ON ship.id = death.caused_by_ship_id
+SELECT MAX(death.killed) AS max_death_toll, MIN(death.killed) AS min_death_toll FROM battle JOIN ship ON battle.id = ship.lost_in_battle JOIN death ON ship.id = death.caused_by_ship_id
+SELECT MAX(death.killed) AS max_death_toll, MIN(death.killed) AS min_death_toll FROM battle JOIN ship ON battle.id = ship.lost_in_battle JOIN death ON ship.id = death.caused_by_ship_id
+SELECT MAX(death.killed) AS max_death_toll, MIN(death.killed) AS min_death_toll FROM battle JOIN ship ON battle.id = ship.lost_in_battle JOIN death ON ship.id = death.caused_by_ship_id
+SELECT MAX(death.killed) AS max_death_toll, MIN(death.killed) AS min_death_toll FROM battle JOIN ship ON battle.id = ship.lost_in_battle JOIN death ON ship.id = death.caused_by_ship_id
+SELECT MAX(death.killed) AS max_death_toll, MIN(death.killed) AS min_death_toll FROM battle JOIN ship ON battle.id = ship.lost_in_battle JOIN death ON ship.id = death.caused_by_ship_id
+SELECT MAX(death.killed) AS max_death_toll, MIN(death.killed) AS min_death_toll FROM battle JOIN ship ON battle.id = ship.lost_in_battle JOIN death ON ship.id = death.caused_by_ship_id"
+22,921,Find the average age of the dogs who went through treatments.,hard,SELECT avg(age) FROM Dogs WHERE dog_id IN ( SELECT dog_id FROM Treatments ),7,"SELECT AVG(dogs.age) FROM dogs JOIN treatments ON dogs.dog_id = treatments.dog_id
+SELECT AVG(dogs.age) FROM dogs JOIN treatments ON dogs.dog_id = treatments.dog_id
+SELECT AVG(dogs.age) FROM dogs JOIN treatments ON dogs.dog_id = treatments.dog_id
+SELECT AVG(dogs.age) FROM dogs JOIN treatments ON dogs.dog_id = treatments.dog_id
+SELECT AVG(dogs.age) FROM dogs JOIN treatments ON dogs.dog_id = treatments.dog_id
+SELECT AVG(dogs.age) FROM dogs JOIN treatments ON dogs.dog_id = treatments.dog_id
+SELECT AVG(dogs.age) FROM dogs JOIN treatments ON dogs.dog_id = treatments.dog_id"
+23,446,What are the names of tournaments that have more than 10 matches?,easy,SELECT tourney_name FROM matches GROUP BY tourney_name HAVING count(*)  >  10,7,"SELECT tourney_name FROM matches GROUP BY tourney_id, tourney_name HAVING COUNT(*) > 10
+SELECT tourney_name FROM matches GROUP BY tourney_id, tourney_name HAVING COUNT(*) > 10
+SELECT tourney_name FROM matches GROUP BY tourney_id, tourney_name HAVING COUNT(*) > 10
+SELECT tourney_name FROM matches GROUP BY tourney_id, tourney_name HAVING COUNT(*) > 10
+SELECT tourney_name FROM matches GROUP BY tourney_id, tourney_name HAVING COUNT(*) > 10
+SELECT tourney_name FROM matches GROUP BY tourney_id, tourney_name HAVING COUNT(*) > 10
+SELECT tourney_name FROM matches GROUP BY tourney_id, tourney_name HAVING COUNT(*) > 10"
+24,763,"What are the name, population, and life expectancy of the largest Asian country by land?",hard,"SELECT Name ,  Population ,  LifeExpectancy FROM country WHERE Continent  =  ""Asia"" ORDER BY SurfaceArea DESC LIMIT 1",7,"SELECT name, population, lifeexpectancy FROM country WHERE continent = 'Asia' ORDER BY surfacearea DESC LIMIT 1
+SELECT name, population, lifeexpectancy FROM country WHERE continent = 'Asia' ORDER BY surfacearea DESC LIMIT 1
+SELECT name, population, lifeexpectancy FROM country WHERE continent = 'Asia' ORDER BY surfacearea DESC LIMIT 1
+SELECT name, population, lifeexpectancy FROM country WHERE continent = 'Asia' ORDER BY surfacearea DESC LIMIT 1
+SELECT name, population, lifeexpectancy FROM country WHERE continent = 'Asia' ORDER BY surfacearea DESC LIMIT 1
+SELECT name, population, lifeexpectancy FROM country WHERE continent = 'Asia' ORDER BY surfacearea DESC LIMIT 1
+SELECT name, population, lifeexpectancy FROM country WHERE continent = 'Asia' ORDER BY surfacearea DESC LIMIT 1"
+25,925,What are the names of the dogs for which the owner has not spend more than 1000 for treatment ?,hard,select name from dogs where dog_id not in ( select dog_id from treatments group by dog_id having sum(cost_of_treatment)  >  1000 ),7,"SELECT dogs.name FROM dogs LEFT JOIN treatments ON dogs.dog_id = treatments.dog_id LEFT JOIN charges ON treatments.treatment_id = charges.charge_id WHERE charges.charge_type = 'treatment' GROUP BY dogs.dog_id HAVING SUM(charges.charge_amount) <= 1000
+SELECT dogs.name FROM dogs LEFT JOIN treatments ON dogs.dog_id = treatments.dog_id LEFT JOIN charges ON treatments.treatment_id = charges.charge_id WHERE charges.charge_type = 'treatment' GROUP BY dogs.dog_id HAVING SUM(charges.charge_amount) <= 1000
+SELECT dogs.name FROM dogs LEFT JOIN treatments ON dogs.dog_id = treatments.dog_id LEFT JOIN charges ON treatments.treatment_id = charges.charge_id WHERE charges.charge_type = 'treatment' GROUP BY dogs.dog_id HAVING SUM(charges.charge_amount) <= 1000
+SELECT dogs.name FROM dogs LEFT JOIN treatments ON dogs.dog_id = treatments.dog_id LEFT JOIN charges ON treatments.treatment_id = charges.charge_id GROUP BY dogs.dog_id HAVING SUM(charges.charge_amount) <= 1000
+SELECT dogs.name FROM dogs LEFT JOIN treatments ON dogs.dog_id = treatments.dog_id LEFT JOIN charges ON treatments.treatment_id = charges.charge_id WHERE charges.charge_type = 'treatment' GROUP BY dogs.dog_id HAVING SUM(charges.charge_amount) <= 1000
+SELECT dogs.name FROM dogs LEFT JOIN treatments ON dogs.dog_id = treatments.dog_id LEFT JOIN charges ON treatments.treatment_id = charges.charge_id WHERE charges.charge_amount <= 1000 OR charges.charge_amount IS NULL
+SELECT dogs.name FROM dogs LEFT JOIN treatments ON dogs.dog_id = treatments.dog_id LEFT JOIN charges ON treatments.treatment_id = charges.charge_id WHERE charges.charge_type = 'treatment' GROUP BY dogs.dog_id HAVING SUM(charges.charge_amount) <= 1000"
+26,811,Give the total population and average surface area corresponding to countries in North America that have a surface area greater than 3000 .,hard,"select sum(population) ,  avg(surfacearea) from country where continent  =  ""north america"" and surfacearea  >  3000",7,"SELECT SUM(population), AVG(surfacearea) FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population), AVG(surfacearea) FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population), AVG(surfacearea) FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population), AVG(surfacearea) FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population), AVG(surfacearea) FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population), AVG(surfacearea) FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population), AVG(surfacearea) FROM country WHERE continent = 'North America' AND surfacearea > 3000"
+27,908,Show the names of students who have at least 2 likes.,medium,SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id HAVING count(*)  >=  2,7,"SELECT s.name FROM highschooler s JOIN likes l ON s.id = l.student_id GROUP BY s.id HAVING COUNT(l.liked_id) >= 2
+SELECT name FROM highschooler WHERE id IN (     SELECT student_id     FROM likes     GROUP BY student_id     HAVING COUNT(liked_id) >= 2 )
+SELECT name FROM highschooler WHERE id IN (     SELECT student_id     FROM likes     GROUP BY student_id     HAVING COUNT(liked_id) >= 2 )
+SELECT name FROM highschooler WHERE id IN (     SELECT student_id     FROM likes     GROUP BY student_id     HAVING COUNT(liked_id) >= 2 )
+SELECT name FROM highschooler WHERE id IN (     SELECT student_id     FROM likes     GROUP BY student_id     HAVING COUNT(liked_id) >= 2 )
+SELECT s.name FROM highschooler s JOIN likes l ON s.id = l.student_id GROUP BY s.id HAVING COUNT(l.liked_id) >= 2
+SELECT s.name FROM highschooler s JOIN likes l ON s.id = l.student_id GROUP BY s.id HAVING COUNT(l.liked_id) >= 2"
+28,689,"List the vote ids, phone numbers and states of all votes.",medium,"SELECT vote_id ,  phone_number ,  state FROM votes",7,"SELECT vote_id, phone_number, state FROM votes
+SELECT vote_id, phone_number, state FROM votes
+SELECT vote_id, phone_number, state FROM votes
+SELECT vote_id, phone_number, state FROM votes
+SELECT vote_id, phone_number, state FROM votes
+SELECT vote_id, phone_number, state FROM votes
+SELECT vote_id, phone_number, state FROM votes"
+29,882,Show the student IDs and numbers of friends corresponding to each.,medium,"SELECT student_id ,  count(*) FROM Friend GROUP BY student_id",7,"SELECT s.id, COUNT(f.friend_id) AS num_friends FROM highschooler s JOIN friend f ON s.id = f.student_id GROUP BY s.id
+SELECT s.id, COUNT(f.friend_id) AS num_friends FROM highschooler AS s JOIN friend AS f ON s.id = f.student_id GROUP BY s.id
+SELECT h.id, COUNT(f.friend_id) AS num_friends FROM highschooler h LEFT JOIN friend f ON h.id = f.student_id GROUP BY h.id
+SELECT h.id, COUNT(f.friend_id) AS num_friends FROM highschooler AS h LEFT JOIN friend AS f ON h.id = f.student_id GROUP BY h.id
+SELECT s.id, COUNT(f.friend_id) AS num_friends FROM highschooler AS s JOIN friend AS f ON s.id = f.student_id GROUP BY s.id
+SELECT s.id, COUNT(f.friend_id) AS num_friends FROM highschooler AS s JOIN friend AS f ON s.id = f.student_id GROUP BY s.id
+SELECT h.id, COUNT(f.friend_id) AS num_friends FROM highschooler AS h LEFT JOIN friend AS f ON h.id = f.student_id GROUP BY h.id"
+30,279,Find the name of the employee who got the highest one time bonus.,hard,SELECT t1.name FROM employee AS t1 JOIN evaluation AS t2 ON t1.Employee_ID  =  t2.Employee_ID ORDER BY t2.bonus DESC LIMIT 1,7,"SELECT e.name FROM employee e JOIN evaluation ev ON e.employee_id = ev.employee_id WHERE ev.bonus = (SELECT MAX(bonus) FROM evaluation) LIMIT 1
+SELECT e.name FROM employee e JOIN evaluation ev ON e.employee_id = ev.employee_id WHERE ev.bonus = (SELECT MAX(bonus) FROM evaluation) LIMIT 1
+SELECT e.name FROM employee e JOIN evaluation ev ON e.employee_id = ev.employee_id WHERE ev.bonus = (SELECT MAX(bonus) FROM evaluation) LIMIT 1
+SELECT e.name FROM employee e JOIN evaluation ev ON e.employee_id = ev.employee_id WHERE ev.bonus = (SELECT MAX(bonus) FROM evaluation) LIMIT 1
+SELECT e.name FROM employee e JOIN evaluation ev ON e.employee_id = ev.employee_id WHERE ev.bonus = (SELECT MAX(bonus) FROM evaluation) LIMIT 1
+SELECT e.name FROM employee e JOIN evaluation ev ON e.employee_id = ev.employee_id WHERE ev.bonus = (SELECT MAX(bonus) FROM evaluation) LIMIT 1
+SELECT e.name FROM employee e JOIN evaluation ev ON e.employee_id = ev.employee_id WHERE ev.bonus = (SELECT MAX(bonus) FROM evaluation) LIMIT 1"
+31,246,Which flight numbers correspond to United Airlines flights?,medium,"SELECT T1.FlightNo FROM FLIGHTS AS T1 JOIN AIRLINES AS T2 ON T2.uid  =  T1.Airline WHERE T2.Airline  =  ""United Airlines""",7,"SELECT flightno FROM flights WHERE airline = 'United Airlines'
+SELECT flightno FROM flights WHERE airline = 'United Airlines'
+SELECT flightno FROM flights WHERE airline = 'United Airlines'
+SELECT flightno FROM flights WHERE airline = 'United Airlines'
+SELECT flightno FROM flights WHERE airline = 'United Airlines'
+SELECT flightno FROM flights WHERE airline = 'United Airlines'
+SELECT flightno FROM flights WHERE airline = 'United Airlines'"
+32,78,What is the id of the pet owned by the student whose last name is 'Smith'?,medium,SELECT T2.petid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid WHERE T1.Lname  =  'Smith',7,"SELECT pets.petid FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE students.lname = 'Smith'
+SELECT pets.petid FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE students.lname = 'Smith'
+SELECT pets.petid FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE students.lname = 'Smith'
+SELECT pets.petid FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE students.lname = 'Smith'
+SELECT pets.petid FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE students.lname = 'Smith'
+SELECT pets.petid FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE students.lname = 'Smith'
+SELECT pets.petid FROM students JOIN has_pet ON students.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE students.lname = 'Smith'"
+33,476,What is the code of the country with the most players?,hard,SELECT country_code FROM players GROUP BY country_code ORDER BY count(*) DESC LIMIT 1,7,"SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1"
+34,475,find the code of the country where has the greatest number of players.,hard,SELECT country_code FROM players GROUP BY country_code ORDER BY count(*) DESC LIMIT 1,7,"SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1
+SELECT country_code FROM players GROUP BY country_code ORDER BY COUNT(player_id) DESC LIMIT 1"
+35,992,How much does the most expensive charge type costs?,easy,SELECT max(charge_amount) FROM Charges,7,"SELECT MAX(charge_amount) AS most_expensive_charge_amount FROM charges
+SELECT MAX(charge_amount) AS most_expensive_charge_amount FROM charges
+SELECT MAX(charge_amount) AS most_expensive_charge_amount FROM charges
+SELECT MAX(charge_amount) AS most_expensive_charge_amount FROM charges
+SELECT MAX(charge_amount) AS most_expensive_charge_amount FROM charges
+SELECT MAX(charge_amount) AS most_expensive_charge_amount FROM charges
+SELECT MAX(charge_amount) AS most_expensive_charge_amount FROM charges"
+36,786,Which unique cities are in Asian countries where Chinese is the official language ?,hard,"select distinct t3.name from country as t1 join countrylanguage as t2 on t1.code  =  t2.countrycode join city as t3 on t1.code  =  t3.countrycode where t2.isofficial  =  't' and t2.language  =  'chinese' and t1.continent  =  ""asia""",7,"SELECT DISTINCT city.name FROM city JOIN countrylanguage ON city.countrycode = countrylanguage.countrycode JOIN country ON city.countrycode = country.code WHERE country.continent = 'Asia' AND countrylanguage.language = 'Chinese' AND countrylanguage.isofficial = 1
+SELECT DISTINCT city.name FROM city JOIN countrylanguage ON city.countrycode = countrylanguage.countrycode JOIN country ON country.code = countrylanguage.countrycode WHERE country.continent = 'Asia' AND countrylanguage.language = 'Chinese' AND countrylanguage.isofficial = 1
+SELECT DISTINCT city.name FROM city JOIN countrylanguage ON city.countrycode = countrylanguage.countrycode JOIN country ON city.countrycode = country.code WHERE country.continent = 'Asia' AND countrylanguage.language = 'Chinese' AND countrylanguage.isofficial = 1
+SELECT DISTINCT city.name FROM city JOIN countrylanguage ON city.countrycode = countrylanguage.countrycode JOIN country ON countrylanguage.countrycode = country.code WHERE country.continent = 'Asia' AND countrylanguage.language = 'Chinese' AND countrylanguage.isofficial = 1
+SELECT DISTINCT city.name FROM city JOIN countrylanguage ON city.countrycode = countrylanguage.countrycode JOIN country ON city.countrycode = country.code WHERE country.continent = 'Asia' AND countrylanguage.language = 'Chinese' AND countrylanguage.isofficial = 1
+SELECT DISTINCT city.name FROM city JOIN countrylanguage ON city.countrycode = countrylanguage.countrycode JOIN country ON city.countrycode = country.code WHERE country.continent = 'Asia' AND countrylanguage.language = 'Chinese' AND countrylanguage.isofficial = 1
+SELECT DISTINCT city.name FROM city JOIN countrylanguage ON city.countrycode = countrylanguage.countrycode JOIN country ON countrylanguage.countrycode = country.code WHERE country.continent = 'Asia' AND countrylanguage.language = 'Chinese' AND countrylanguage.isofficial = 1"
+37,895,What are the ids of high school students who do not have friends?,hard,SELECT id FROM Highschooler EXCEPT SELECT student_id FROM Friend,7,"SELECT h.id FROM highschooler h LEFT JOIN friend f ON h.id = f.student_id WHERE h.grade = 'high school' AND f.student_id IS NULL
+SELECT h.id FROM highschooler h LEFT JOIN friend f ON h.id = f.student_id WHERE h.grade = 'high school' AND f.student_id IS NULL
+SELECT h.id FROM highschooler h LEFT JOIN friend f ON h.id = f.student_id WHERE h.grade = 'high school' AND f.student_id IS NULL
+SELECT h.id FROM highschooler h LEFT JOIN friend f ON h.id = f.student_id WHERE h.grade = 'high school' AND f.student_id IS NULL
+SELECT h.id FROM highschooler h LEFT JOIN friend f ON h.id = f.student_id WHERE h.grade = 'high school' AND f.student_id IS NULL
+SELECT h.id FROM highschooler h LEFT JOIN friend f ON h.id = f.student_id WHERE h.grade = 'high school' AND f.student_id IS NULL
+SELECT h.id FROM highschooler h LEFT JOIN friend f ON h.id = f.student_id WHERE h.grade = 'high school' AND f.student_id IS NULL"
+38,269,Find the manager name and district of the shop whose number of products is the largest.,medium,"SELECT manager_name ,  district FROM shop ORDER BY number_products DESC LIMIT 1",7,"SELECT manager_name, district FROM shop ORDER BY number_products DESC LIMIT 1
+SELECT manager_name, district FROM shop ORDER BY number_products DESC LIMIT 1
+SELECT manager_name, district FROM shop ORDER BY number_products DESC LIMIT 1
+SELECT manager_name, district FROM shop WHERE number_products = (SELECT MAX(number_products) FROM shop)
+SELECT manager_name, district FROM shop ORDER BY number_products DESC LIMIT 1
+SELECT manager_name, district FROM shop ORDER BY number_products DESC LIMIT 1
+SELECT manager_name, district FROM shop WHERE number_products = (SELECT MAX(number_products) FROM shop)"
+39,678,Return the nationalities for which there are two or more people.,easy,SELECT Nationality FROM people GROUP BY Nationality HAVING COUNT(*)  >=  2,7,"SELECT nationality FROM people WHERE people_id IN (     SELECT people_id     FROM poker_player     GROUP BY people_id     HAVING COUNT(people_id) >= 2 )
+SELECT nationality FROM people JOIN poker_player ON people.people_id = poker_player.people_id GROUP BY nationality HAVING COUNT(poker_player.people_id) >= 2
+SELECT nationality FROM people WHERE people_id IN (     SELECT people_id     FROM poker_player     GROUP BY people_id     HAVING COUNT(people_id) >= 2 )
+SELECT nationality FROM people WHERE people_id IN (     SELECT people_id     FROM poker_player     GROUP BY people_id     HAVING COUNT(people_id) >= 2 )
+SELECT nationality FROM people JOIN poker_player ON people.people_id = poker_player.people_id GROUP BY nationality HAVING COUNT(poker_player.people_id) >= 2
+SELECT nationality FROM people WHERE people_id IN (     SELECT people_id     FROM poker_player     GROUP BY people_id     HAVING COUNT(people_id) >= 2 )
+SELECT nationality FROM people WHERE people_id IN (     SELECT people_id     FROM poker_player     GROUP BY people_id     HAVING COUNT(people_id) >= 2 )"
+40,159,How many cars have a larger accelerate than the car with the largest horsepower?,hard,SELECT COUNT(*) FROM CARS_DATA WHERE Accelerate  >  ( SELECT Accelerate FROM CARS_DATA ORDER BY Horsepower DESC LIMIT 1 );,7,"SELECT COUNT(*) FROM cars_data WHERE accelerate > (     SELECT accelerate     FROM cars_data     ORDER BY horsepower DESC     LIMIT 1 )
+SELECT COUNT(*) FROM cars_data WHERE accelerate > (     SELECT accelerate     FROM cars_data     ORDER BY horsepower DESC     LIMIT 1 )
+SELECT COUNT(*) FROM cars_data WHERE accelerate > (     SELECT accelerate     FROM cars_data     ORDER BY horsepower DESC     LIMIT 1 )
+SELECT COUNT(*) FROM cars_data WHERE accelerate > (     SELECT accelerate     FROM cars_data     ORDER BY horsepower DESC     LIMIT 1 )
+SELECT COUNT(*) FROM cars_data WHERE accelerate > (     SELECT accelerate     FROM cars_data     ORDER BY horsepower DESC     LIMIT 1 )
+SELECT COUNT(*) FROM cars_data WHERE accelerate > (     SELECT accelerate     FROM cars_data     ORDER BY horsepower DESC     LIMIT 1 )
+SELECT COUNT(*) FROM cars_data WHERE accelerate > (     SELECT accelerate     FROM cars_data     ORDER BY horsepower DESC     LIMIT 1 )"
+41,593,"List the title of all cartoon directed by ""Ben Jones"" or ""Brandon Vietti"".",medium,"SELECT Title FROM Cartoon WHERE Directed_by = ""Ben Jones"" OR Directed_by = ""Brandon Vietti"";",7,"SELECT title FROM cartoon WHERE directed_by = ""Ben Jones"" OR directed_by = ""Brandon Vietti""
+SELECT title FROM cartoon WHERE directed_by = ""Ben Jones"" OR directed_by = ""Brandon Vietti""
+SELECT title FROM cartoon WHERE directed_by = ""Ben Jones"" OR directed_by = ""Brandon Vietti""
+SELECT title FROM cartoon WHERE directed_by = ""Ben Jones"" OR directed_by = ""Brandon Vietti""
+SELECT title FROM cartoon WHERE directed_by = ""Ben Jones"" OR directed_by = ""Brandon Vietti""
+SELECT title FROM cartoon WHERE directed_by = ""Ben Jones"" OR directed_by = ""Brandon Vietti""
+SELECT title FROM cartoon WHERE directed_by = ""Ben Jones"" OR directed_by = ""Brandon Vietti"""
+42,499,What are the ids and names of the battles that led to more than 10 people killed in total.,hard,"SELECT T1.id ,  T1.name FROM battle AS T1 JOIN ship AS T2 ON T1.id  =  T2.lost_in_battle JOIN death AS T3 ON T2.id  =  T3.caused_by_ship_id GROUP BY T1.id HAVING sum(T3.killed)  >  10",7,"SELECT b.id, b.name FROM battle AS b JOIN death AS d ON b.id = d.caused_by_ship_id GROUP BY b.id, b.name HAVING SUM(d.killed) > 10
+SELECT b.id, b.name FROM battle AS b JOIN death AS d ON b.id = d.caused_by_ship_id GROUP BY b.id, b.name HAVING SUM(d.killed) > 10
+SELECT b.id, b.name FROM battle AS b JOIN death AS d ON b.id = d.caused_by_ship_id GROUP BY b.id, b.name HAVING SUM(d.killed) > 10
+SELECT b.id, b.name FROM battle AS b JOIN death AS d ON b.id = d.caused_by_ship_id GROUP BY b.id, b.name HAVING SUM(d.killed) > 10
+SELECT b.id, b.name FROM battle AS b JOIN death AS d ON b.id = d.caused_by_ship_id GROUP BY b.id, b.name HAVING SUM(d.killed) > 10
+SELECT b.id, b.name FROM battle AS b JOIN death AS d ON b.id = d.caused_by_ship_id GROUP BY b.id, b.name HAVING SUM(d.killed) > 10
+SELECT battle.id, battle.name FROM battle JOIN death ON battle.id = death.caused_by_ship_id GROUP BY battle.id, battle.name HAVING SUM(death.killed) > 10"
+43,448,What are the names of players who won in both 2013 and 2016?,hard,SELECT winner_name FROM matches WHERE YEAR  =  2013 INTERSECT SELECT winner_name FROM matches WHERE YEAR  =  2016,7,"SELECT p.first_name, p.last_name FROM players p JOIN matches m1 ON p.player_id = m1.winner_id JOIN matches m2 ON p.player_id = m2.winner_id WHERE m1.year = 2013 AND m2.year = 2016
+SELECT p.first_name, p.last_name FROM players p WHERE EXISTS (     SELECT 1     FROM matches m     WHERE m.winner_id = p.player_id AND m.year = 2013 ) AND EXISTS (     SELECT 1     FROM matches m     WHERE m.winner_id = p.player_id AND m.year = 2016 )
+SELECT p.first_name, p.last_name FROM players p JOIN matches m1 ON p.player_id = m1.winner_id JOIN matches m2 ON p.player_id = m2.winner_id WHERE m1.year = 2013 AND m2.year = 2016
+SELECT p.first_name, p.last_name FROM players p WHERE EXISTS (     SELECT 1     FROM matches m     WHERE m.winner_id = p.player_id AND m.year = 2013 ) AND EXISTS (     SELECT 1     FROM matches m     WHERE m.winner_id = p.player_id AND m.year = 2016 )
+SELECT p.first_name, p.last_name FROM players p WHERE EXISTS (     SELECT 1     FROM matches m     WHERE m.winner_id = p.player_id AND m.year = 2013 ) AND EXISTS (     SELECT 1     FROM matches m     WHERE m.winner_id = p.player_id AND m.year = 2016 )
+SELECT p.first_name, p.last_name FROM players p WHERE EXISTS (     SELECT 1     FROM matches m     WHERE m.winner_id = p.player_id AND m.year = 2013 ) AND EXISTS (     SELECT 1     FROM matches m     WHERE m.winner_id = p.player_id AND m.year = 2016 )
+SELECT p.first_name, p.last_name FROM players p JOIN matches m1 ON p.player_id = m1.winner_id JOIN matches m2 ON p.player_id = m2.winner_id WHERE m1.year = 2013 AND m2.year = 2016"
+44,974,How many dogs have an age below the average?,hard,SELECT count(*) FROM Dogs WHERE age  <  ( SELECT avg(age) FROM Dogs ),7,"SELECT COUNT(*) FROM dogs WHERE age < (SELECT AVG(age) FROM dogs)
+SELECT COUNT(*) FROM dogs WHERE age < (SELECT AVG(age) FROM dogs)
+SELECT COUNT(*) FROM dogs WHERE age < (SELECT AVG(age) FROM dogs)
+SELECT COUNT(*) FROM dogs WHERE age < (SELECT AVG(age) FROM dogs)
+SELECT COUNT(*) FROM dogs WHERE age < (SELECT AVG(age) FROM dogs)
+SELECT COUNT(*) FROM dogs WHERE age < (SELECT AVG(age) FROM dogs)
+SELECT COUNT(*) FROM dogs WHERE age < (SELECT AVG(age) FROM dogs)"
+45,889,What are the names of high schoolers who have 3 or more friends?,medium,SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id GROUP BY T1.student_id HAVING count(*)  >=  3,7,"SELECT h.name FROM highschooler h JOIN friend f ON h.id = f.student_id GROUP BY h.id, h.name HAVING COUNT(f.friend_id) >= 3
+SELECT h.name FROM highschooler h JOIN friend f ON h.id = f.student_id GROUP BY h.id, h.name HAVING COUNT(f.friend_id) >= 3
+SELECT h.name FROM highschooler h JOIN friend f ON h.id = f.student_id GROUP BY h.id, h.name HAVING COUNT(DISTINCT f.friend_id) >= 3
+SELECT h.name FROM highschooler h JOIN friend f ON h.id = f.student_id GROUP BY h.id, h.name HAVING COUNT(DISTINCT f.friend_id) >= 3
+SELECT h.name FROM highschooler h JOIN friend f1 ON h.id = f1.student_id JOIN friend f2 ON h.id = f2.student_id GROUP BY h.id HAVING COUNT(DISTINCT f1.friend_id) + COUNT(DISTINCT f2.friend_id) >= 3
+SELECT h.name FROM highschooler h JOIN friend f ON h.id = f.student_id GROUP BY h.id, h.name HAVING COUNT(DISTINCT f.friend_id) >= 3
+SELECT h.name FROM highschooler h JOIN friend f ON h.id = f.student_id GROUP BY h.id, h.name HAVING COUNT(f.friend_id) >= 3"
+46,772,What are the countries that have greater surface area than any country in Europe?,hard,"SELECT Name FROM country WHERE SurfaceArea  >  (SELECT min(SurfaceArea) FROM country WHERE Continent  =  ""Europe"")",7,"SELECT c1.name FROM country c1 WHERE c1.surfacearea > (     SELECT MAX(c2.surfacearea)     FROM country c2     WHERE c2.continent = 'Europe' )
+SELECT c.name FROM country c WHERE c.surfacearea > (     SELECT MAX(surfacearea)     FROM country     WHERE continent = 'Europe' )
+SELECT c.name FROM country c WHERE c.surfacearea > (     SELECT MAX(surfacearea)     FROM country     WHERE continent = 'Europe' )
+SELECT c.name FROM country c WHERE c.surfacearea > (     SELECT MAX(surfacearea)     FROM country     WHERE continent = 'Europe' )
+SELECT c1.name FROM country c1 WHERE c1.surfacearea > (     SELECT MAX(c2.surfacearea)     FROM country c2     WHERE c2.continent = 'Europe' )
+SELECT c.name FROM country c WHERE c.surfacearea > (     SELECT MAX(surfacearea)     FROM country     WHERE continent = 'Europe' )
+SELECT c.name FROM country c WHERE c.surfacearea > (     SELECT MAX(surfacearea)     FROM country     WHERE continent = 'Europe' )"
+47,206,Count the number of flights into ATO.,easy,"SELECT count(*) FROM FLIGHTS WHERE DestAirport  =  ""ATO""",7,"SELECT COUNT(*) FROM flights WHERE destairport IN (     SELECT airportcode     FROM airports     WHERE airportname = 'ATO' )
+SELECT COUNT(*) FROM flights WHERE destairport IN (     SELECT airportcode     FROM airports     WHERE airportname = 'ATO' )
+SELECT COUNT(*) FROM flights WHERE destairport IN (SELECT airportcode FROM airports WHERE city = 'ATO')
+SELECT COUNT(*) FROM flights WHERE destairport IN (     SELECT airportcode     FROM airports     WHERE airportname = 'ATO' )
+SELECT COUNT(*) FROM flights WHERE destairport IN (     SELECT airportcode     FROM airports     WHERE airportname = 'ATO' )
+SELECT COUNT(*) FROM flights WHERE destairport IN (     SELECT airportcode     FROM airports     WHERE airportname = 'ATO' )
+SELECT COUNT(*) FROM flights WHERE destairport IN (     SELECT airportcode     FROM airports     WHERE airportname = 'ATO' )"
+48,53,Find the number of dog pets that are raised by female students (with sex F).,hard,SELECT count(*) FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T2.petid  =  T3.petid WHERE T1.sex  =  'F' AND T3.pettype  =  'dog',7,"SELECT COUNT(*) FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE student.sex = 'F' AND pets.pettype = 'dog'
+SELECT COUNT(*) FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE student.sex = 'F' AND pets.pettype = 'dog'
+SELECT COUNT(*) FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE student.sex = 'F' AND pets.pettype = 'dog'
+SELECT COUNT(*) FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE student.sex = 'F' AND pets.pettype = 'dog'
+SELECT COUNT(*) FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE student.sex = 'F' AND pets.pettype = 'dog'
+SELECT COUNT(*) FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE student.sex = 'F' AND pets.pettype = 'dog'
+SELECT COUNT(*) FROM student JOIN has_pet ON student.stuid = has_pet.stuid JOIN pets ON has_pet.petid = pets.petid WHERE student.sex = 'F' AND pets.pettype = 'dog'"
+49,487,"Find the first name, country code and birth date of the winner who has the highest rank points in all matches.",hard,"SELECT T1.first_name ,  T1.country_code ,  T1.birth_date FROM players AS T1 JOIN matches AS T2 ON T1.player_id  =  T2.winner_id ORDER BY T2.winner_rank_points DESC LIMIT 1",7,"SELECT p.first_name, p.country_code, p.birth_date FROM players p JOIN matches m ON p.player_id = m.winner_id JOIN rankings r ON p.player_id = r.player_id WHERE m.winner_rank_points = (SELECT MAX(winner_rank_points) FROM matches) LIMIT 1
+SELECT p.first_name, p.country_code, p.birth_date FROM players p JOIN matches m ON p.player_id = m.winner_id JOIN rankings r ON p.player_id = r.player_id WHERE m.winner_rank_points = (SELECT MAX(winner_rank_points) FROM matches) LIMIT 1
+SELECT p.first_name, p.country_code, p.birth_date FROM players p JOIN matches m ON p.player_id = m.winner_id JOIN rankings r ON p.player_id = r.player_id WHERE m.winner_rank_points = (SELECT MAX(winner_rank_points) FROM matches) LIMIT 1
+SELECT p.first_name, p.country_code, p.birth_date FROM players p JOIN matches m ON p.player_id = m.winner_id JOIN rankings r ON p.player_id = r.player_id WHERE m.winner_rank_points = (SELECT MAX(winner_rank_points) FROM matches) LIMIT 1
+SELECT p.first_name, p.country_code, p.birth_date FROM players p JOIN matches m ON p.player_id = m.winner_id JOIN rankings r ON p.player_id = r.player_id WHERE m.winner_rank_points = (SELECT MAX(winner_rank_points) FROM matches) LIMIT 1
+SELECT p.first_name, p.country_code, p.birth_date FROM players p JOIN matches m ON p.player_id = m.winner_id JOIN rankings r ON p.player_id = r.player_id WHERE m.winner_rank_points = (SELECT MAX(winner_rank_points) FROM matches) LIMIT 1
+SELECT p.first_name, p.country_code, p.birth_date FROM players p JOIN matches m ON p.player_id = m.winner_id JOIN rankings r ON p.player_id = r.player_id WHERE m.winner_rank_points = (SELECT MAX(winner_rank_points) FROM matches) LIMIT 1"
+50,156,What is the horsepower of the car with the greatest accelerate?,medium,SELECT T1.horsepower FROM CARS_DATA AS T1 ORDER BY T1.accelerate DESC LIMIT 1;,7,"SELECT horsepower FROM cars_data WHERE accelerate = (SELECT MAX(accelerate) FROM cars_data)
+SELECT horsepower FROM cars_data WHERE accelerate = (SELECT MAX(accelerate) FROM cars_data)
+SELECT horsepower FROM cars_data WHERE accelerate = (SELECT MAX(accelerate) FROM cars_data)
+SELECT horsepower FROM cars_data WHERE accelerate = (SELECT MAX(accelerate) FROM cars_data)
+SELECT horsepower FROM cars_data WHERE accelerate = (SELECT MAX(accelerate) FROM cars_data)
+SELECT horsepower FROM cars_data WHERE accelerate = (SELECT MAX(accelerate) FROM cars_data)
+SELECT horsepower FROM cars_data WHERE accelerate = (SELECT MAX(accelerate) FROM cars_data)"
+51,1028,Show the citizenship shared by singers with birth year before 1945 and after 1955.,hard,SELECT Citizenship FROM singer WHERE Birth_Year  <  1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year  >  1955,7,"SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955"
+52,1029,What are the citizenships that are shared by singers with a birth year before 1945 and after 1955?,hard,SELECT Citizenship FROM singer WHERE Birth_Year  <  1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year  >  1955,7,"SELECT citizenship FROM singer WHERE singer_id IN (     SELECT singer_id     FROM song     WHERE singer_id IN (         SELECT singer_id         FROM singer         WHERE birth_year < 1945 AND birth_year > 1955     ) )
+SELECT citizenship FROM singer WHERE singer_id IN (     SELECT singer_id     FROM song     WHERE singer_id IN (         SELECT singer_id         FROM singer         WHERE birth_year < 1945 AND birth_year > 1955     ) )
+SELECT citizenship FROM singer WHERE singer_id IN (     SELECT singer_id     FROM song     WHERE singer_id IN (         SELECT singer_id         FROM singer         WHERE birth_year < 1945 AND birth_year > 1955     ) )
+SELECT citizenship FROM singer WHERE singer_id IN (     SELECT singer_id     FROM song     WHERE singer_id IN (         SELECT singer_id         FROM singer         WHERE birth_year < 1945 AND birth_year > 1955     ) )
+SELECT citizenship FROM singer WHERE singer_id IN (     SELECT singer_id     FROM song     WHERE singer_id IN (         SELECT singer_id         FROM singer         WHERE birth_year < 1945 AND birth_year > 1955     ) )
+SELECT citizenship FROM singer WHERE singer_id IN (     SELECT singer_id     FROM song     WHERE singer_id IN (         SELECT singer_id         FROM singer         WHERE birth_year < 1945 AND birth_year > 1955     ) )
+SELECT citizenship FROM singer WHERE singer_id IN (     SELECT singer_id     FROM song     WHERE singer_id IN (         SELECT singer_id         FROM singer         WHERE birth_year < 1945 AND birth_year > 1955     ) )"
+53,368,"Return the different document ids along with the number of paragraphs corresponding to each, ordered by id.",medium,"SELECT document_id ,  count(*) FROM Paragraphs GROUP BY document_id ORDER BY document_id",7,"SELECT documents.document_id, COUNT(paragraphs.paragraph_id) AS num_paragraphs FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY documents.document_id ORDER BY documents.document_id
+SELECT documents.document_id, COUNT(paragraphs.paragraph_id) AS num_paragraphs FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY documents.document_id ORDER BY documents.document_id
+SELECT documents.document_id, COUNT(paragraphs.paragraph_id) AS num_paragraphs FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY documents.document_id ORDER BY documents.document_id
+SELECT documents.document_id, COUNT(paragraphs.paragraph_id) AS num_paragraphs FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY documents.document_id ORDER BY documents.document_id
+SELECT documents.document_id, COUNT(paragraphs.paragraph_id) AS paragraph_count FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY documents.document_id ORDER BY documents.document_id
+SELECT documents.document_id, COUNT(paragraphs.paragraph_id) AS num_paragraphs FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY documents.document_id ORDER BY documents.document_id
+SELECT documents.document_id, COUNT(paragraphs.paragraph_id) AS num_paragraphs FROM documents LEFT JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY documents.document_id ORDER BY documents.document_id"
+54,337,"What is the template type code of the template used by document with the name ""Data base""?",medium,"SELECT T1.template_type_code FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T2.document_name  =  ""Data base""",7,"SELECT rt.template_type_code FROM ref_template_types rt JOIN templates t ON rt.template_type_code = t.template_type_code JOIN documents d ON t.template_id = d.template_id WHERE d.document_name = ""Data base""
+SELECT ref_template_types.template_type_code FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN ref_template_types ON templates.template_type_code = ref_template_types.template_type_code WHERE documents.document_name = ""Data base""
+SELECT rt.template_type_code FROM ref_template_types rt JOIN templates t ON rt.template_type_code = t.template_type_code JOIN documents d ON t.template_id = d.template_id WHERE d.document_name = ""Data base""
+SELECT rt.template_type_code FROM ref_template_types rt JOIN templates t ON rt.template_type_code = t.template_type_code JOIN documents d ON t.template_id = d.template_id WHERE d.document_name = ""Data base""
+SELECT ref_template_types.template_type_code FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN ref_template_types ON templates.template_type_code = ref_template_types.template_type_code WHERE documents.document_name = ""Data base""
+SELECT rt.template_type_code FROM ref_template_types rt JOIN templates t ON rt.template_type_code = t.template_type_code JOIN documents d ON t.template_id = d.template_id WHERE d.document_name = ""Data base""
+SELECT rt.template_type_code FROM ref_template_types rt JOIN templates t ON rt.template_type_code = t.template_type_code JOIN documents d ON t.template_id = d.template_id WHERE d.document_name = ""Data base"""
+55,644,What are the ids of the TV channels that do not have any cartoons directed by Ben Jones?,hard,SELECT id FROM TV_Channel EXCEPT SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones',7,"SELECT tc.id FROM tv_channel tc LEFT JOIN cartoon c ON tc.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN cartoon c ON tc.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN cartoon c ON tc.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN cartoon c ON tc.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN cartoon c ON tc.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN cartoon c ON tc.id = c.channel WHERE c.directed_by <> 'Ben Jones' OR c.directed_by IS NULL
+SELECT tc.id FROM tv_channel tc LEFT JOIN cartoon c ON tc.id = c.channel WHERE c.directed_by != 'Ben Jones' OR c.directed_by IS NULL"
+56,780,What are the country codes of countries where people use languages other than English?,easy,"SELECT DISTINCT CountryCode FROM countrylanguage WHERE LANGUAGE != ""English""",7,"SELECT countrycode FROM countrylanguage WHERE language <> 'English' AND countrycode IN (SELECT code FROM country)
+SELECT countrycode FROM countrylanguage WHERE language <> 'English' AND countrycode IN (SELECT code FROM country)
+SELECT countrycode FROM countrylanguage WHERE language <> 'English' AND countrycode IN (SELECT code FROM country)
+SELECT countrycode FROM countrylanguage WHERE language <> 'English' AND countrycode IN (SELECT code FROM country)
+SELECT countrycode FROM countrylanguage WHERE language <> 'English' AND countrycode IN (SELECT code FROM country)
+SELECT countrycode FROM countrylanguage WHERE language <> 'English' AND countrycode IN (SELECT code FROM country)
+SELECT countrycode FROM countrylanguage WHERE language <> 'English' AND countrycode IN (SELECT code FROM country)"
+57,855,What are the orchestras that do not have any performances?,hard,SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance),7,"SELECT orchestra FROM orchestra LEFT JOIN performance ON orchestra.orchestra_id = performance.orchestra_id WHERE performance.orchestra_id IS NULL
+SELECT orchestra FROM orchestra WHERE orchestra_id NOT IN (     SELECT orchestra_id     FROM performance )
+SELECT orchestra FROM orchestra WHERE orchestra_id NOT IN (     SELECT orchestra_id     FROM performance )
+SELECT orchestra FROM orchestra LEFT JOIN performance ON orchestra.orchestra_id = performance.orchestra_id WHERE performance.orchestra_id IS NULL
+SELECT orchestra FROM orchestra LEFT JOIN performance ON orchestra.orchestra_id = performance.orchestra_id WHERE performance.orchestra_id IS NULL
+SELECT orchestra FROM orchestra LEFT JOIN performance ON orchestra.orchestra_id = performance.orchestra_id WHERE performance.orchestra_id IS NULL
+SELECT orchestra FROM orchestra WHERE orchestra_id NOT IN (     SELECT orchestra_id     FROM performance )"
+58,442,How many distinct countries do players come from?,easy,SELECT count(DISTINCT country_code) FROM players,7,"SELECT COUNT(DISTINCT country_code) FROM players
+SELECT COUNT(DISTINCT country_code) FROM players
+SELECT COUNT(DISTINCT country_code) FROM players
+SELECT COUNT(DISTINCT country_code) FROM players
+SELECT COUNT(DISTINCT country_code) FROM players
+SELECT COUNT(DISTINCT country_code) FROM players
+SELECT COUNT(DISTINCT country_code) FROM players"
+59,302,Return the names and template ids for documents that contain the letter w in their description.,medium,"SELECT document_name ,  template_id FROM Documents WHERE Document_Description LIKE ""%w%""",7,"SELECT documents.document_name, documents.template_id FROM documents WHERE documents.document_description LIKE '%w%'
+SELECT documents.document_name, documents.template_id FROM documents WHERE documents.document_description LIKE '%w%'
+SELECT documents.document_name, documents.template_id FROM documents WHERE documents.document_description LIKE '%w%'
+SELECT documents.document_name, documents.template_id FROM documents WHERE documents.document_description LIKE '%w%'
+SELECT documents.document_name, documents.template_id FROM documents WHERE documents.document_description LIKE '%w%'
+SELECT documents.document_name, documents.template_id FROM documents WHERE documents.document_description LIKE '%w%'
+SELECT documents.document_name, documents.template_id FROM documents WHERE documents.document_description LIKE '%w%'"

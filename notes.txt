@@ -1,0 +1,8 @@
+    # CHEKING FOR CONSISTENCY IN ANSWERS  
+    #
+    #   1  |  2         
+    #   3  |  4         
+    # 1 - Queries are inconsistent and != GOLD query    2 - Queries are inconsistent but == GOLD query
+    # 3 - Queries are consistent but != GOLD query.     4 - Queries are consistent and == GOLD query
+    # consistent query : more than half the time returns the SAME query
+    # == GOLD query - 3 types of equality : Exact match, Execution accuracy, Partial Matching

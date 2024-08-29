@@ -1,0 +1,51 @@
+,Qid,Question,Db_Id,Difficulty,Query Gold,Repeated,Query Generated,Most Frequent Query
+0,29,What are the names of the stadiums without any concerts?,concert_singer,challenging,SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert),5,"SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)",SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert)
+1,673,What are different nationalities of people and the corresponding number of people from each nation?,poker_player,moderate,"SELECT Nationality ,  COUNT(*) FROM people GROUP BY Nationality",5,"SELECT nationality, COUNT(*) FROM people GROUP BY nationality
+SELECT nationality, COUNT(*) FROM people GROUP BY nationality
+SELECT nationality, COUNT(*) FROM people GROUP BY nationality
+SELECT nationality, COUNT(*) FROM people GROUP BY nationality
+SELECT nationality, COUNT(*) FROM people GROUP BY nationality","SELECT nationality, COUNT(*) FROM people GROUP BY nationality"
+2,37,List all singer names in concerts in year 2014.,concert_singer,challenging,SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014,5,"SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014",SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+3,665,What is the birth date of the poker player with the lowest earnings?,poker_player,challenging,SELECT T1.Birth_Date FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID  =  T2.People_ID ORDER BY T2.Earnings ASC LIMIT 1,5,"SELECT birth_date FROM people WHERE people_id = (SELECT people_id FROM poker_player WHERE earnings = (SELECT MIN(earnings) FROM poker_player))
+SELECT birth_date FROM people WHERE people_id = (SELECT people_id FROM poker_player WHERE earnings = (SELECT MIN(earnings) FROM poker_player))
+SELECT people.birth_date FROM people INNER JOIN poker_player ON people.people_id = poker_player.people_id ORDER BY poker_player.earnings ASC LIMIT 1
+SELECT people.birth_date FROM people JOIN poker_player ON people.people_id = poker_player.people_id ORDER BY poker_player.earnings ASC LIMIT 1
+SELECT people.birth_date FROM people INNER JOIN poker_player ON people.people_id = poker_player.people_id WHERE poker_player.earnings = (SELECT MIN(earnings) FROM poker_player)",SELECT birth_date FROM people WHERE people_id = (SELECT people_id FROM poker_player WHERE earnings = (SELECT MIN(earnings) FROM poker_player))
+4,444,How many different loser names are there?,wta_1,simple,SELECT count(DISTINCT loser_name) FROM matches,5,"SELECT COUNT(DISTINCT loser_name) FROM matches
+SELECT COUNT(DISTINCT loser_name) FROM matches
+SELECT COUNT(DISTINCT loser_name) FROM matches
+SELECT COUNT(DISTINCT loser_name) FROM matches
+SELECT COUNT(DISTINCT loser_name) FROM matches",SELECT COUNT(DISTINCT loser_name) FROM matches
+5,759,What languages are only used by a single country with a republic government?,world_1,challenging,"SELECT T2.Language FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T1.GovernmentForm  =  ""Republic"" GROUP BY T2.Language HAVING COUNT(*)  =  1",5,"SELECT country.name FROM country WHERE country.code IN (     SELECT countrycode     FROM countrylanguage     GROUP BY countrycode     HAVING COUNT(*) = 1 ) AND country.governmentform = 'Republic' AND country.code IN (     SELECT countrycode     FROM city     GROUP BY countrycode     HAVING COUNT(*) = 1 )
+SELECT DISTINCT country.name FROM country JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE country.governmentform = 'Republic' AND country.code NOT IN (     SELECT countrycode     FROM countrylanguage     GROUP BY countrycode     HAVING COUNT(*) > 1 )
+SELECT DISTINCT country.name FROM country JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE country.governmentform = 'Republic' AND country.code NOT IN (     SELECT countrycode     FROM countrylanguage     GROUP BY countrycode     HAVING COUNT(*) > 1 )
+SELECT DISTINCT country.name FROM country JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE country.governmentform = 'Republic' AND country.code NOT IN (     SELECT countrycode     FROM countrylanguage     GROUP BY countrycode     HAVING COUNT(*) > 1 )
+SELECT DISTINCT country.name FROM country JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE country.governmentform = 'Republic' AND country.code NOT IN (   SELECT countrycode   FROM countrylanguage   GROUP BY countrycode   HAVING COUNT(*) > 1 )",SELECT DISTINCT country.name FROM country JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE country.governmentform = 'Republic' AND country.code NOT IN (     SELECT countrycode     FROM countrylanguage     GROUP BY countrycode     HAVING COUNT(*) > 1 )
+6,472,"What are the first names of all players, and their total ranking points?",wta_1,moderate,"SELECT sum(ranking_points) ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id GROUP BY T1.first_name",5,"SELECT first_name, SUM(ranking_points) FROM players JOIN rankings ON players.player_id = rankings.player_id GROUP BY first_name
+SELECT first_name, SUM(ranking_points) FROM players JOIN rankings ON players.player_id = rankings.player_id GROUP BY first_name
+SELECT first_name, SUM(ranking_points) FROM players JOIN rankings ON players.player_id = rankings.player_id GROUP BY first_name
+SELECT first_name, SUM(ranking_points) FROM players JOIN rankings ON players.player_id = rankings.player_id GROUP BY first_name
+SELECT first_name, SUM(ranking_points) FROM players JOIN rankings ON players.player_id = rankings.player_id GROUP BY first_name","SELECT first_name, SUM(ranking_points) FROM players JOIN rankings ON players.player_id = rankings.player_id GROUP BY first_name"
+7,531,What is the description of the department whose name has the substring the computer?,student_transcripts_tracking,moderate,SELECT department_description FROM Departments WHERE department_name LIKE '%computer%',5,"SELECT department_description FROM departments WHERE department_name LIKE '%computer%'
+SELECT department_description FROM departments WHERE department_name LIKE '%computer%'
+SELECT department_description FROM departments WHERE department_name LIKE '%computer%'
+SELECT department_description FROM departments WHERE department_name LIKE '%computer%'
+SELECT department_description FROM departments WHERE department_name LIKE '%computer%'",SELECT department_description FROM departments WHERE department_name LIKE '%computer%'
+8,827,"Return the names of conductors that do not have the nationality ""USA"".",orchestra,simple,SELECT Name FROM conductor WHERE Nationality != 'USA',5,"SELECT conductor.name FROM conductor WHERE conductor.nationality != ""USA""
+SELECT name FROM conductor WHERE nationality != 'USA'
+SELECT conductor.name FROM conductor WHERE conductor.nationality != 'USA'
+SELECT conductor.name FROM conductor WHERE conductor.nationality != 'USA'
+SELECT conductor.name FROM conductor WHERE conductor.nationality != 'USA'",SELECT conductor.name FROM conductor WHERE conductor.nationality != 'USA'
+9,31,Show names for all stadiums except for stadiums having a concert in year 2014.,concert_singer,challenging,SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014,5,"SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)",SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)

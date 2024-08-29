@@ -1,0 +1,421 @@
+,Qid,Question,Hardness,Query Gold,Repeated,Query Generated
+0,854,List the names of orchestras that have no performance.,hard,SELECT Orchestra FROM orchestra WHERE Orchestra_ID NOT IN (SELECT Orchestra_ID FROM performance),7,"SELECT name FROM orchestra WHERE conductor_id IS NULL
+SELECT name FROM orchestra WHERE conductor_id IS NULL
+SELECT name FROM orchestra WHERE conductor_id IS NULL
+SELECT name FROM orchestra WHERE conductor_id IS NULL
+SELECT name FROM orchestra WHERE conductor_id IS NULL
+SELECT name FROM orchestra WHERE conductor_id IS NULL
+SELECT name FROM orchestra WHERE conductor_id IS NULL"
+1,852,List the record company shared by the most number of orchestras.,hard,SELECT Record_Company FROM orchestra GROUP BY Record_Company ORDER BY COUNT(*) DESC LIMIT 1,7,"SELECT * FROM orchestra WHERE record_company = 'shared by the most number of orchestras.conductor' 
+SELECT * FROM orchestra WHERE record_company = 'shared by the most number of orchestras.conductor' 
+SELECT * FROM orchestra WHERE record_company = 'shared by the most number of orchestras.conductor' 
+SELECT * FROM orchestra WHERE record_company = 'shared by the most number of orchestras.conductor' 
+SELECT * FROM orchestra WHERE record_company = 'shared by the most number of orchestras.conductor' 
+SELECT * FROM orchestra WHERE record_company = 'your_record_company'
+SELECT * FROM orchestra WHERE record_company = 'shared by the most number of orchestras.conductor' "
+2,927,Find the first names that are used for professionals or owners but are not used as dog names.,hard,SELECT first_name FROM Professionals UNION SELECT first_name FROM Owners EXCEPT SELECT name FROM Dogs,7,"SELECT first_name FROM owners WHERE first_name NOT IN (SELECT name FROM dogs) AND first_name NOT IN (SELECT first_name FROM professionals)
+SELECT first_name FROM owners WHERE first_name NOT IN (SELECT name FROM dogs) AND first_name NOT IN (SELECT first_name FROM professionals)
+SELECT first_name FROM owners WHERE first_name NOT IN (SELECT name FROM dogs) AND first_name NOT IN (SELECT first_name FROM professionals) 
+SELECT first_name FROM owners WHERE first_name NOT IN (SELECT name FROM dogs) AND first_name NOT IN (SELECT first_name FROM professionals)
+SELECT first_name FROM owners WHERE first_name NOT IN (SELECT name FROM dogs) AND first_name NOT IN (SELECT first_name FROM professionals)
+SELECT first_name FROM owners WHERE first_name NOT IN (SELECT name FROM dogs) AND first_name NOT IN (SELECT first_name FROM professionals)
+SELECT first_name FROM owners WHERE first_name NOT IN (SELECT name FROM dogs) AND first_name NOT IN (SELECT first_name FROM professionals) "
+3,655,What is the money rank of the poker player with the highest earnings?,medium,SELECT Money_Rank FROM poker_player ORDER BY Earnings DESC LIMIT 1,7,"SELECT * FROM poker_player WHERE money_rank = (SELECT MAX(money_rank) FROM poker_player)
+SELECT money_rank FROM poker_player WHERE earnings = (SELECT MAX(earnings) FROM poker_player)
+SELECT * FROM poker_player WHERE people_id = (SELECT people_id FROM people WHERE nationality = 'USA')
+SELECT * FROM poker_player WHERE money_rank = (SELECT MAX(money_rank) FROM poker_player)
+SELECT * FROM poker_player WHERE earnings = (SELECT MAX(earnings) FROM poker_player)
+SELECT * FROM poker_player WHERE money_rank = (SELECT MAX(money_rank) FROM poker_player)
+SELECT * FROM poker_player WHERE money_rank = (SELECT MAX(money_rank) FROM poker_player)"
+4,95,Which model of the car has the minimum horsepower?,hard,SELECT T1.Model FROM CAR_NAMES AS T1 JOIN CARS_DATA AS T2 ON T1.MakeId  =  T2.Id ORDER BY T2.horsepower ASC LIMIT 1;,7,"SELECT * FROM cars_data WHERE horsepower = (SELECT MIN(horsepower) FROM cars_data)
+SELECT * FROM cars_data WHERE horsepower = (SELECT MIN(horsepower) FROM cars_data)
+SELECT modelid, maker, model FROM model_list WHERE horsepower = (SELECT MIN(horsepower) FROM cars_data)
+SELECT modelid, maker, model FROM model_list WHERE horsepower = (SELECT MIN(horsepower) FROM cars_data)
+SELECT * FROM cars_data WHERE horsepower = (SELECT MIN(horsepower) FROM cars_data)
+SELECT modelid, maker, model FROM model_list WHERE horsepower = (SELECT MIN(horsepower) FROM cars_data)
+SELECT modelid, maker, model FROM model_list WHERE horsepower = (SELECT MIN(horsepower) FROM cars_data)"
+5,210,Return the number of flights arriving in Aberdeen.,medium,"SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode WHERE T2.City  =  ""Aberdeen""",7,"SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'"
+6,111,What is the accelerate of the car make amc hornet sportabout (sw)?,medium,SELECT T1.Accelerate FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T2.Make  =  'amc hornet sportabout (sw)';,7,"SELECT accelerate FROM cars_data WHERE makeid = 'sw' 
+SELECT accelerate FROM cars_data WHERE make = 'AMC Hornet Sportabout (SW)' 
+SELECT accelerate FROM cars_data WHERE makeid = 'sw' AND model = 'sportabout' 
+SELECT accelerate FROM cars_data WHERE makeid = 'sw' 
+SELECT accelerate FROM cars_data WHERE make = 'amc hornet sportabout (sw)' 
+SELECT accelerate FROM cars_data WHERE makeid = 'sw' 
+SELECT accelerate FROM cars_data WHERE make = 'amc hornet sportabout (sw)' "
+7,582,What is the description for the section named h?,easy,SELECT section_description FROM Sections WHERE section_name  =  'h',7,"SELECT * FROM addresses WHERE name = 'h'
+SELECT * FROM <table_name> WHERE <column_name> = <value> 
+SELECT * FROM addresses
+SELECT * FROM addresses WHERE name = 'h?addresses'
+NULL
+SELECT * FROM addresses WHERE section_name = 'h?addresses' 
+SELECT * FROM addresses WHERE name = 'h?addresses'"
+8,282,What are the names of the employees who never received any evaluation?,hard,SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation),7,"SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM hiring WHERE is_full_time = 1) 
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM hiring WHERE is_full_time = 1)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM hiring WHERE is_full_time = 1)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM hiring WHERE is_full_time = 1)"
+9,63,Find the id of students who do not have a cat pet.,hard,SELECT stuid FROM student EXCEPT SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat',7,"SELECT stuid FROM student WHERE NOT EXISTS (SELECT 1 FROM has_pet WHERE stuid = student.stuid) 
+SELECT stuid FROM student WHERE stuid NOT IN (SELECT stuid FROM has_pet WHERE petid IN (SELECT petid FROM pets WHERE pettype = 'cat'))
+SELECT stuid FROM student WHERE NOT EXISTS (SELECT * FROM has_pet WHERE stuid = student.stuid) 
+SELECT stuid FROM student WHERE NOT EXISTS (SELECT 1 FROM has_pet WHERE stuid = student.stuid) 
+SELECT stuid FROM student WHERE stuid NOT IN (SELECT stuid FROM has_pet WHERE petid IN (SELECT petid FROM pets WHERE pettype = 'cat'))
+SELECT stuid FROM student WHERE NOT EXISTS (SELECT * FROM has_pet WHERE stuid = student.stuid) 
+SELECT stuid FROM student WHERE NOT EXISTS (SELECT * FROM has_pet WHERE stuid = student.stuid) "
+10,971,"Find the role, street, city and state of the professionals living in a city that contains the substring 'West'.",medium,"SELECT role_code ,  street ,  city ,  state FROM professionals WHERE city LIKE '%West%'",7,"SELECT role, street, city, state FROM professionals WHERE city LIKE '%West'
+SELECT * FROM professionals WHERE city LIKE '%West%'
+SELECT role, street, city, state FROM professionals WHERE city LIKE '%West'
+SELECT * FROM professionals WHERE city LIKE '%West%'
+SELECT role, street, city, state FROM professionals WHERE city LIKE '%West'
+SELECT role, street, city, state FROM professionals WHERE city LIKE '%West'
+SELECT * FROM professionals WHERE city LIKE '%West%'"
+11,752,What are the regions that use English or Dutch?,hard,"SELECT DISTINCT T1.Region FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  ""English"" OR T2.Language  =  ""Dutch""",7,"SELECT * FROM country WHERE region IN ('English', 'Dutch')
+SELECT * FROM country WHERE region IN ('English', 'Dutch')
+SELECT * FROM country WHERE region IN ('English', 'Dutch')
+SELECT * FROM country WHERE region IN ('English', 'Dutch')
+SELECT * FROM country WHERE region IN ('English', 'Dutch')
+SELECT * FROM country WHERE region IN ('English', 'Dutch')
+SELECT * FROM country WHERE region IN ('English', 'Dutch')"
+12,445,Find the name of tourney that has more than 10 matches.,easy,SELECT tourney_name FROM matches GROUP BY tourney_name HAVING count(*)  >  10,7,"SELECT name FROM tourney WHERE matches > 10
+SELECT name FROM tourney WHERE matches > 10
+SELECT name FROM tourney WHERE matches > 10
+SELECT name FROM tourney WHERE matches > 10
+SELECT name FROM tourney WHERE matches > 10
+SELECT name FROM tourney WHERE matches > 10
+SELECT name FROM tourney WHERE matches > 10"
+13,786,Which unique cities are in Asian countries where Chinese is the official language ?,hard,"select distinct t3.name from country as t1 join countrylanguage as t2 on t1.code  =  t2.countrycode join city as t3 on t1.code  =  t3.countrycode where t2.isofficial  =  't' and t2.language  =  'chinese' and t1.continent  =  ""asia""",7,"SELECT DISTINCT city.name FROM city JOIN country ON city.countrycode = country.code JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE countrylanguage.language = 'Chinese' AND country.continent = 'Asia'
+SELECT DISTINCT city.name FROM city JOIN country ON city.countrycode = country.code JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE countrylanguage.language = 'Chinese' AND country.continent = 'Asia' 
+SELECT DISTINCT city.name FROM city JOIN country ON city.countrycode = country.code JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE countrylanguage.language = 'Chinese' AND country.continent = 'Asia'
+SELECT DISTINCT city.name FROM city JOIN country ON city.countrycode = country.code JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE countrylanguage.language = 'Chinese' AND country.continent = 'Asia' 
+SELECT DISTINCT city.name FROM city JOIN country ON city.countrycode = country.code JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE countrylanguage.language = 'Chinese' AND country.continent = 'Asia' 
+SELECT DISTINCT city.name FROM city JOIN country ON city.countrycode = country.code JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE countrylanguage.language = 'Chinese' AND country.continent = 'Asia' 
+SELECT DISTINCT city.name FROM city JOIN country ON city.countrycode = country.code JOIN countrylanguage ON country.code = countrylanguage.countrycode WHERE countrylanguage.language = 'Chinese' AND country.continent = 'Asia' "
+14,332,Return the type code of the template type that the most templates belong to.,hard,SELECT template_type_code FROM Templates GROUP BY template_type_code ORDER BY count(*) DESC LIMIT 1,7,"SELECT template_type_code FROM ref_template_types WHERE template_type_code IN (     SELECT template_type_code     FROM templates     GROUP BY template_type_code     ORDER BY COUNT(*) DESC     LIMIT 1 )
+SELECT template_type_code FROM ref_template_types WHERE template_type_code IN (     SELECT template_type_code     FROM templates     GROUP BY template_type_code     ORDER BY COUNT(*) DESC     LIMIT 1 )
+SELECT template_type_code FROM ref_template_types WHERE template_type_code IN (     SELECT template_type_code     FROM templates     GROUP BY template_type_code     HAVING COUNT(*) > 1 ) 
+SELECT template_type_code FROM ref_template_types WHERE template_type_code IN (     SELECT template_type_code     FROM templates     GROUP BY template_type_code     ORDER BY COUNT(*) DESC     LIMIT 1 )
+SELECT template_type_code FROM ref_template_types WHERE template_type_code IN (     SELECT template_type_code     FROM templates     GROUP BY template_type_code     ORDER BY COUNT(*) DESC     LIMIT 1 )
+SELECT template_type_code FROM templates GROUP BY template_type_code ORDER BY COUNT(*) DESC LIMIT 1
+SELECT template_type_code FROM templates GROUP BY template_type_code ORDER BY COUNT(*) DESC LIMIT 1"
+15,261,Sort employee names by their age in ascending order.,easy,SELECT name FROM employee ORDER BY age,7,"SELECT * FROM employee ORDER BY age ASC
+SELECT * FROM employee ORDER BY age ASC
+SELECT * FROM employee ORDER BY age ASC
+SELECT * FROM employee ORDER BY age ASC
+SELECT * FROM employee ORDER BY age ASC
+SELECT * FROM employee ORDER BY age ASC
+SELECT * FROM employee ORDER BY age ASC"
+16,375,What is the document id with least number of paragraphs?,hard,SELECT document_id FROM Paragraphs GROUP BY document_id ORDER BY count(*) ASC LIMIT 1,7,"SELECT document_id FROM documents WHERE paragraphs < (SELECT MIN(paragraphs) FROM documents)
+SELECT document_id FROM documents WHERE paragraphs < (SELECT MIN(paragraphs)                       FROM documents)
+SELECT document_id FROM documents WHERE paragraphs.length(document_id) = (SELECT MIN(length(document_id))                                              FROM documents)
+SELECT document_id FROM documents WHERE paragraphs.length(document_id) = (SELECT MIN(length(document_id))                                              FROM documents)
+SELECT document_id FROM documents WHERE paragraphs.length(document_id) = (SELECT MIN(length(document_id))                                              FROM documents)
+SELECT document_id FROM documents WHERE paragraphs.length(document_id) = (SELECT MIN(length(document_id))                                              FROM documents)
+SELECT document_id FROM documents WHERE paragraphs.length(document_id) = (SELECT MIN(length(document_id)) FROM documents) "
+17,911,What are the names of high schoolers who have a grade of over 5 and have 2 or more friends?,hard,SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id WHERE T2.grade  >  5 GROUP BY T1.student_id HAVING count(*)  >=  2,7,"SELECT name FROM highschooler WHERE grade > 5 AND id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id = id))
+SELECT name FROM highschooler WHERE grade > 5 AND id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id = id))
+SELECT name FROM highschooler WHERE grade > 5 AND id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id = id))
+SELECT name FROM highschooler WHERE grade > 5 AND id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id = id))
+SELECT name FROM highschooler WHERE grade > 5 AND id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT id FROM highschooler WHERE grade > 5)))
+SELECT name FROM highschooler WHERE grade > 5 AND id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id = id))
+SELECT name FROM highschooler WHERE grade > 5 AND id IN (SELECT friend_id FROM friend WHERE student_id = id) GROUP BY name HAVING COUNT(*) > 1"
+18,901,What are the names of high schoolers who both have friends and are liked?,hard,SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id INTERSECT SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.liked_id  =  T2.id,7,"SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT student_id FROM highschooler WHERE grade = 10))) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT student_id FROM highschooler WHERE grade = '10'))) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT id FROM highschooler WHERE grade = 12))) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes))"
+19,281,Find the names of employees who never won any award in the evaluation.,hard,SELECT name FROM employee WHERE Employee_ID NOT IN (SELECT Employee_ID FROM evaluation),7,"SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)
+SELECT name FROM employee WHERE employee_id NOT IN (SELECT employee_id FROM evaluation)"
+20,897,What are the names of students who have no friends?,hard,SELECT name FROM Highschooler EXCEPT SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id,7,"SELECT name FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend UNION SELECT student_id FROM likes)
+SELECT name FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend) AND id NOT IN (SELECT student_id FROM likes)
+SELECT name FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend) AND id NOT IN (SELECT student_id FROM likes)
+SELECT name FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend UNION SELECT student_id FROM likes)
+SELECT name FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend)
+SELECT name FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend UNION SELECT student_id FROM likes) 
+SELECT name FROM highschooler WHERE id NOT IN (SELECT student_id FROM friend UNION SELECT student_id FROM likes)"
+21,173,What are the name of the countries where there is not a single car maker?,hard,SELECT CountryName FROM countries EXCEPT SELECT T1.CountryName FROM countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.countryId  =  T2.Country;,7,"SELECT countryname FROM countries WHERE NOT EXISTS (SELECT * FROM car_makers WHERE country = countryname)
+SELECT countryname FROM countries WHERE NOT EXISTS (SELECT * FROM car_makers WHERE country = countryname)
+SELECT countryname FROM countries WHERE NOT EXISTS (SELECT * FROM car_makers WHERE country = countryname)
+SELECT countryname FROM countries WHERE NOT EXISTS (SELECT 1 FROM car_makers WHERE country = countryname)
+SELECT countryname FROM countries WHERE NOT EXISTS (SELECT 1 FROM car_makers WHERE country = countryname)
+SELECT countryname FROM countries WHERE NOT EXISTS (SELECT * FROM car_makers WHERE country = countryname) 
+SELECT countryname FROM countries WHERE NOT EXISTS (SELECT 1 FROM car_makers WHERE country = countryname)"
+22,810,What is the total population and average area of countries in the continent of North America whose area is bigger than 3000 ?,hard,"select sum(population) ,  avg(surfacearea) from country where continent  =  ""north america"" and surfacearea  >  3000",7,"SELECT SUM(population) AS total_population, AVG(surfacearea) AS average_area FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population) AS total_population, AVG(surfacearea) AS average_area FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population) AS total_population, AVG(surfacearea) AS average_area FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population), AVG(surfacearea) FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population) AS total_population, AVG(surfacearea) AS average_area FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population) AS total_population, AVG(surfacearea) AS average_area FROM country WHERE continent = 'North America' AND surfacearea > 3000
+SELECT SUM(population) AS total_population, AVG(surfacearea) AS average_area FROM country WHERE continent = 'North America' AND surfacearea > 3000"
+23,341,Show all template type codes and the number of documents using each type.,medium,"SELECT T1.template_type_code ,  count(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id GROUP BY T1.template_type_code",7,"SELECT template_type_code, COUNT(*) FROM templates GROUP BY template_type_code 
+SELECT template_type_code, COUNT(*) FROM templates GROUP BY template_type_code 
+SELECT template_type_code, COUNT(template_type_code) FROM templates GROUP BY template_type_code 
+SELECT template_type_code, COUNT(template_id) FROM templates GROUP BY template_type_code 
+SELECT template_type_code, COUNT(template_id) FROM templates GROUP BY template_type_code 
+SELECT * FROM templates
+SELECT template_type_code, COUNT(*) FROM templates GROUP BY template_type_code "
+24,798,Find the average life expectancy and total population for each continent where the average life expectancy is shorter than 72?,medium,"SELECT sum(Population) ,  avg(LifeExpectancy) ,  Continent FROM country GROUP BY Continent HAVING avg(LifeExpectancy)  <  72",7,"SELECT country.continent, AVG(country.lifeexpectancy), SUM(country.population) FROM country WHERE country.lifeexpectancy < 72 GROUP BY country.continent 
+SELECT country.continent, AVG(country.lifeexpectancy), SUM(country.population) FROM country WHERE country.lifeexpectancy < 72 GROUP BY country.continent 
+SELECT country.continent, AVG(country.lifeexpectancy), SUM(country.population) FROM country WHERE country.lifeexpectancy < 72 GROUP BY country.continent 
+SELECT country.continent, AVG(country.lifeexpectancy), SUM(country.population) FROM country WHERE country.lifeexpectancy < 72 GROUP BY country.continent 
+SELECT country.continent, AVG(country.lifeexpectancy), SUM(country.population) FROM country WHERE country.lifeexpectancy < 72 GROUP BY country.continent 
+SELECT country.continent, AVG(country.lifeexpectancy), SUM(country.population) FROM country WHERE country.lifeexpectancy < 72 GROUP BY country.continent 
+SELECT country.continent, AVG(country.lifeexpectancy), SUM(country.population) FROM country WHERE country.lifeexpectancy < 72 GROUP BY country.continent "
+25,362,What are the details for the paragraph that includes the text 'Korea ' ?,medium,select other_details from paragraphs where paragraph_text like 'korea',7,"SELECT * FROM paragraphs WHERE paragraph_text LIKE '%Korea%'
+SELECT * FROM paragraphs WHERE paragraph_text LIKE '%Korea%'
+SELECT * FROM paragraphs WHERE paragraph_text LIKE '%Korea%'
+SELECT * FROM paragraphs WHERE paragraph_text LIKE '%Korea%'
+SELECT * FROM paragraphs WHERE paragraph_text LIKE '%Korea%'
+SELECT * FROM paragraphs WHERE paragraph_text LIKE '%Korea%'
+SELECT * FROM paragraphs WHERE paragraph_text LIKE '%Korea%'"
+26,731,Give the mean GNP and total population of nations which are considered US territory.,medium,"SELECT avg(GNP) ,  sum(population) FROM country WHERE GovernmentForm  =  ""US Territory""",7,"SELECT mean GNP and total population of nations which are considered US territory.city FROM sqlite_sequence WHERE name = 'city' 
+SELECT mean GNP and total population of nations which are considered US territory.city FROM sqlite_sequence WHERE name = 'city' 
+SELECT mean GNP and total population of nations which are considered US territory.city FROM sqlite_sequence WHERE name = 'id' AND seq = 'name' AND population = 'countrycode' AND district = 'population' AND population = 'district' AND population = 'population' 
+SELECT mean GNP and total population of nations which are considered US territory.city FROM sqlite_sequence WHERE name = 'city' 
+SELECT mean GNP and total population of nations which are considered US territory.city FROM sqlite_sequence WHERE name = 'city' 
+SELECT mean GNP and total population of nations which are considered US territory.city FROM sqlite_sequence WHERE name = 'id' AND seq = 'name' AND population = 'countrycode' AND district = 'population' AND population = 'district' AND population = 'population' 
+SELECT mean GNP and total population of nations which are considered US territory.city FROM sqlite_sequence WHERE name = 'city' "
+27,606,What are the languages used by the least number of TV Channels and how many channels use it?,hard,"SELECT LANGUAGE ,  count(*) FROM TV_Channel GROUP BY LANGUAGE ORDER BY count(*) ASC LIMIT 1;",7,"SELECT language, COUNT(language) FROM tv_channel GROUP BY language ORDER BY COUNT(language) ASC 
+SELECT language, COUNT(language) FROM tv_channel GROUP BY language ORDER BY COUNT(language) ASC 
+SELECT language, COUNT(language) FROM tv_channel GROUP BY language ORDER BY COUNT(language) ASC 
+SELECT language, COUNT(language) FROM tv_channel GROUP BY language ORDER BY COUNT(language) ASC 
+SELECT language, COUNT(language) FROM tv_channel GROUP BY language ORDER BY COUNT(language) ASC 
+SELECT language, COUNT(language) FROM tv_channel GROUP BY language ORDER BY COUNT(language) ASC 
+SELECT language, COUNT(language) FROM tv_channel GROUP BY language ORDER BY COUNT(language) ASC "
+28,32,What are the names of all stadiums that did not have a concert in 2014?,hard,SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014,7,"SELECT name FROM stadium WHERE NOT EXISTS (SELECT * FROM concert WHERE stadium_id = stadium.stadium_id AND year = 2014)
+SELECT name FROM stadium WHERE NOT EXISTS (SELECT 1 FROM concert WHERE concert.stadium_id = stadium.stadium_id AND concert.year = 2014) 
+SELECT name FROM stadium WHERE NOT EXISTS (SELECT * FROM concert WHERE stadium_id = stadium.stadium_id AND year = 2014)
+SELECT name FROM stadium WHERE NOT EXISTS (SELECT * FROM concert WHERE concert.stadium_id = stadium.stadium_id AND concert.year = 2014) 
+SELECT name FROM stadium WHERE NOT EXISTS (SELECT * FROM concert WHERE concert.stadium_id = stadium.stadium_id AND concert.year = 2014) 
+SELECT name FROM stadium WHERE NOT EXISTS (SELECT * FROM concert WHERE concert.stadium_id = stadium.stadium_id AND concert.year = 2014) 
+SELECT name FROM stadium WHERE NOT EXISTS (SELECT * FROM concert WHERE stadium_id = stadium.stadium_id AND year = 2014) "
+29,465,Find the name of the winner who has the highest rank points and participated in the Australian Open tourney.,hard,SELECT winner_name FROM matches WHERE tourney_name  =  'Australian Open' ORDER BY winner_rank_points DESC LIMIT 1,7,"SELECT name FROM players WHERE rank_points = (SELECT MAX(rank_points) FROM players)
+SELECT name FROM players WHERE rank_points = (SELECT MAX(rank_points) FROM rankings) AND tourney_id = (SELECT tourney_id FROM matches WHERE match_num = 1)
+SELECT * FROM players WHERE player_id = (SELECT winner_id FROM matches WHERE tourney_id = 123456789 ORDER BY winner_rank_points DESC LIMIT 1)
+SELECT * FROM players WHERE player_id = (SELECT winner_id FROM matches WHERE tourney_id = 'Australian Open' AND tourney_level = 'Grand Slam' AND tourney_date = '2023-01-01' ORDER BY winner_rank_points DESC LIMIT 1)
+SELECT * FROM players WHERE player_id = (SELECT winner_id FROM matches WHERE tourney_id = 'Australian Open' AND tourney_level = 'Grand Slam' AND tourney_date = '2023-01-01' AND winner_rank_points = (SELECT MAX(winner_rank_points) FROM matches WHERE tourney_id = 'Australian Open' AND tourney_level = 'Grand Slam' AND tourney_date = '2023-01-01'))
+SELECT first_name, last_name, rank_points FROM players WHERE rank_points = (     SELECT MAX(rank_points)     FROM players ) AND tourney_id = (     SELECT tourney_id     FROM matches     WHERE match_num = (         SELECT match_num         FROM matches         WHERE winner_id = player_id     ) ) 
+SELECT name FROM players WHERE rank_points = (SELECT MAX(rank_points) FROM players)"
+30,1003,What are the names of singers ordered by ascending net worth?,easy,SELECT Name FROM singer ORDER BY Net_Worth_Millions ASC,7,"SELECT name FROM singer ORDER BY net_worth_millions ASC
+SELECT name FROM singer ORDER BY net_worth_millions ASC
+SELECT name FROM singer ORDER BY net_worth_millions ASC
+SELECT name FROM singer ORDER BY net_worth_millions ASC
+SELECT name FROM singer ORDER BY net_worth_millions ASC
+SELECT name FROM singer ORDER BY net_worth_millions ASC
+SELECT name FROM singer ORDER BY net_worth_millions ASC"
+31,154,What are the different years in which there were cars produced that weighed less than 4000 and also cars that weighted more than 3000 ?,easy,select distinct year from cars_data where weight between 3000 and 4000;,7,"SELECT * FROM cars_data WHERE weight < 4000 AND weight > 3000
+SELECT * FROM cars_data WHERE weight < 4000 AND weight > 3000
+SELECT * FROM cars_data WHERE weight < 4000 AND weight > 3000
+SELECT * FROM cars_data WHERE weight < 4000 AND weight > 3000
+SELECT * FROM cars_data WHERE weight < 4000 AND weight > 3000
+SELECT * FROM cars_data WHERE weight < 4000 AND weight > 3000
+SELECT * FROM cars_data WHERE weight < 4000 AND weight > 3000"
+32,535,"Who is enrolled in a Bachelor degree program? List the first name, middle name, last name.",hard,"SELECT DISTINCT T1.first_name ,  T1.middle_name ,  T1.last_name FROM Students AS T1 JOIN Student_Enrolment AS T2 ON T1.student_id  =  T2.student_id JOIN Degree_Programs AS T3 ON T2.degree_program_id  =  T3.degree_program_id WHERE T3.degree_summary_name  =  'Bachelor'",7,"SELECT * FROM students WHERE student_id IN (SELECT student_id FROM student_enrolment WHERE degree_program_id IN (SELECT degree_program_id FROM degree_programs WHERE degree_summary_name = 'Bachelor'))
+SELECT * FROM students WHERE student_id IN (SELECT student_id FROM student_enrolment WHERE degree_program_id IN (SELECT degree_program_id FROM degree_programs WHERE degree_summary_name = 'Bachelor'))
+SELECT * FROM students WHERE student_id IN (SELECT student_id FROM student_enrolment WHERE degree_program_id IN (SELECT degree_program_id FROM degree_programs WHERE degree_summary_name = 'Bachelor'))
+SELECT * FROM students WHERE student_id IN (SELECT student_id FROM student_enrolment WHERE degree_program_id IN (SELECT degree_program_id FROM degree_programs WHERE degree_summary_name = 'Bachelor'))
+SELECT * FROM students WHERE student_id IN (SELECT student_id FROM student_enrolment WHERE degree_program_id IN (SELECT degree_program_id FROM degree_programs WHERE degree_summary_name = 'Bachelor'))
+SELECT * FROM students WHERE student_id IN (SELECT student_id FROM student_enrolment WHERE degree_program_id IN (SELECT degree_program_id FROM degree_programs WHERE degree_summary_name = 'Bachelor'))
+SELECT * FROM students WHERE student_id IN (SELECT student_id FROM student_enrolment WHERE degree_program_id IN (SELECT degree_program_id FROM degree_programs WHERE degree_summary_name = 'Bachelor'))"
+33,669,What is the average earnings of poker players with height higher than 200?,medium,SELECT avg(T2.Earnings) FROM people AS T1 JOIN poker_player AS T2 ON T1.People_ID  =  T2.People_ID WHERE T1.Height  >  200,7,"SELECT AVG(earnings) FROM poker_player WHERE height > 200
+SELECT AVG(earnings) FROM poker_player WHERE height > 200
+SELECT AVG(earnings) FROM poker_player WHERE height > 200
+SELECT AVG(earnings) FROM poker_player WHERE height > 200
+SELECT AVG(earnings) FROM poker_player WHERE height > 200
+SELECT AVG(earnings) FROM poker_player WHERE height > 200
+SELECT AVG(earnings) FROM poker_player WHERE height > 200"
+34,258,Which airports do not have departing or arriving flights?,hard,SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights),7,"SELECT airports.airportcode FROM airports WHERE airports.airportcode NOT IN (     SELECT flights.sourceairport     FROM flights     WHERE flights.destairport = 'airports.airportcode'     UNION     SELECT flights.destairport     FROM flights     WHERE flights.sourceairport = 'airports.airportcode' ) 
+SELECT airports.airportcode FROM airports LEFT JOIN flights ON airports.airportcode = flights.sourceairport LEFT JOIN flights ON airports.airportcode = flights.destairport WHERE flights.sourceairport IS NULL AND flights.destairport IS NULL 
+SELECT airports.airportcode FROM airports LEFT JOIN flights ON airports.airportcode = flights.sourceairport LEFT JOIN flights ON airports.airportcode = flights.destairport WHERE flights.sourceairport IS NULL AND flights.destairport IS NULL
+SELECT airports.airportcode FROM airports LEFT JOIN flights ON airports.airportcode = flights.sourceairport LEFT JOIN flights ON airports.airportcode = flights.destairport WHERE flights.sourceairport IS NULL AND flights.destairport IS NULL
+SELECT airports.airportcode FROM airports LEFT JOIN flights ON airports.airportcode = flights.sourceairport LEFT JOIN flights ON airports.airportcode = flights.destairport WHERE flights.sourceairport IS NULL AND flights.destairport IS NULL
+SELECT airports.airportcode FROM airports WHERE NOT EXISTS (     SELECT *     FROM flights     WHERE flights.sourceairport = airports.airportcode     OR flights.destairport = airports.airportcode ) 
+SELECT airports.airportcode FROM airports WHERE NOT EXISTS (     SELECT *     FROM flights     WHERE flights.sourceairport = airports.airportcode     OR flights.destairport = airports.airportcode ) "
+35,219,How many United Airlines flights go to City 'Aberdeen'?,hard,"SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.DestAirport  =  T2.AirportCode JOIN AIRLINES AS T3 ON T3.uid  =  T1.Airline WHERE T2.City  =  ""Aberdeen"" AND T3.Airline  =  ""United Airlines""",7,"SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE sourceairport = 'Aberdeen' 
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'
+SELECT COUNT(*) FROM flights WHERE destairport = 'Aberdeen'"
+36,1023,What are the names of the singers that have more than one songs?,medium,SELECT T1.Name FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID GROUP BY T1.Name HAVING COUNT(*)  >  1,7,"SELECT name FROM singer WHERE singer_id IN (SELECT singer_id FROM song GROUP BY singer_id HAVING COUNT(*) > 1)
+SELECT name FROM singer WHERE sales > 1
+SELECT name FROM singer WHERE singer_id IN (SELECT singer_id FROM song GROUP BY singer_id HAVING COUNT(*) > 1)
+SELECT name FROM singer WHERE singer_id IN (SELECT singer_id FROM song GROUP BY singer_id HAVING COUNT(*) > 1)
+SELECT name FROM singer WHERE singer_id IN (SELECT singer_id FROM song GROUP BY singer_id HAVING COUNT(*) > 1)
+SELECT name FROM singer WHERE sales > 1
+SELECT name FROM singer WHERE singer_id IN (SELECT singer_id FROM song GROUP BY singer_id HAVING COUNT(*) > 1)"
+37,342,"What are the different template type codes, and how many documents use each type?",medium,"SELECT T1.template_type_code ,  count(*) FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id GROUP BY T1.template_type_code",7,"SELECT template_type_code, COUNT(*) FROM templates JOIN documents ON templates.template_id = documents.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY template_type_code 
+NULL
+SELECT template_type_code, COUNT(*) FROM templates JOIN documents ON templates.template_id = documents.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY template_type_code 
+SELECT template_type_code, COUNT(*) FROM templates JOIN documents ON templates.template_id = documents.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY template_type_code 
+SELECT template_type_code, COUNT(*) FROM templates JOIN documents ON templates.template_id = documents.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY template_type_code 
+SELECT template_type_code, COUNT(*) FROM templates JOIN documents ON templates.template_id = documents.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id GROUP BY template_type_code 
+SELECT template_type_code, COUNT(*) FROM templates JOIN documents ON templates.template_id = documents.template_id JOIN paragraphs ON documents.document_id = paragraphs.document_id WHERE templates.date_effective_from <= '2022-01-01' AND templates.date_effective_to >= '2022-01-01' AND documents.document_name LIKE '%' AND documents.document_description LIKE '%' AND paragraphs.paragraph_text LIKE '%' GROUP BY template_type_code "
+38,275,Find the names of stores whose number products is more than the average number of products.,hard,SELECT name FROM shop WHERE number_products  >  (SELECT avg(number_products) FROM shop),7,"SELECT name FROM shop WHERE number_products > (SELECT AVG(number_products) FROM shop)
+SELECT name FROM shop WHERE number_products > (SELECT AVG(number_products) FROM shop)
+SELECT name FROM shop WHERE number_products > (SELECT AVG(number_products) FROM shop)
+SELECT name FROM shop WHERE number_products > (SELECT AVG(number_products) FROM shop)
+SELECT name FROM shop WHERE number_products > (SELECT AVG(number_products) FROM shop)
+SELECT name FROM shop WHERE number_products > (SELECT AVG(number_products) FROM shop)
+SELECT name FROM shop WHERE number_products > (SELECT AVG(number_products) FROM shop)"
+39,898,Show the ids of high schoolers who have friends and are also liked by someone else.,hard,SELECT student_id FROM Friend INTERSECT SELECT liked_id FROM Likes,7,"SELECT id FROM highschooler WHERE id IN (SELECT friend_id FROM friend WHERE student_id IN (SELECT student_id FROM likes WHERE liked_id IN (SELECT id FROM highschooler WHERE grade = 'high school'))) 
+SELECT id FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT highschooler.id FROM highschooler JOIN friend ON highschooler.id = friend.student_id JOIN likes ON highschooler.id = likes.student_id 
+SELECT id FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT id FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT id FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT id FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) "
+40,643,find the id of tv channels that do not play any cartoon directed by Ben Jones.,hard,SELECT id FROM TV_Channel EXCEPT SELECT channel FROM cartoon WHERE directed_by  =  'Ben Jones',7,"SELECT id FROM tv_channel WHERE NOT EXISTS (SELECT 1 FROM cartoon WHERE cartoon.directed_by = 'Ben Jones' AND cartoon.id = tv_channel.id) 
+SELECT id FROM tv_channel WHERE NOT EXISTS (SELECT 1 FROM cartoon WHERE cartoon.directed_by = 'Ben Jones' AND cartoon.id = tv_channel.id) 
+SELECT id FROM tv_channel WHERE NOT EXISTS (SELECT 1 FROM cartoon WHERE cartoon.directed_by = 'Ben Jones' AND cartoon.id = tv_channel.id) 
+SELECT id FROM tv_channel WHERE NOT EXISTS (SELECT * FROM cartoon WHERE cartoon.id = tv_channel.id AND cartoon.directed_by = 'Ben Jones') 
+SELECT id FROM tv_channel WHERE NOT EXISTS (SELECT 1 FROM cartoon WHERE cartoon.directed_by = 'Ben Jones' AND cartoon.id = tv_channel.id) 
+SELECT id FROM tv_channel WHERE NOT EXISTS (SELECT 1 FROM cartoon WHERE cartoon.directed_by = 'Ben Jones' AND cartoon.id = tv_channel.id) 
+SELECT id FROM tv_channel WHERE NOT EXISTS (SELECT 1 FROM cartoon WHERE cartoon.directed_by = 'Ben Jones' AND cartoon.id = tv_channel.id) "
+41,875,Count the number of high schoolers in grades 9 or 10.,medium,SELECT count(*) FROM Highschooler WHERE grade  =  9 OR grade  =  10,7,"SELECT COUNT(*) FROM highschooler WHERE grade IN (9, 10)
+SELECT COUNT(*) FROM highschooler WHERE grade IN (9,10)
+SELECT COUNT(*) FROM highschooler WHERE grade IN (9, 10)
+SELECT COUNT(*) FROM highschooler WHERE grade IN (9, 10)
+SELECT COUNT(*) FROM highschooler WHERE grade IN (9,10)
+SELECT COUNT(*) FROM highschooler WHERE grade IN (9, 10)
+SELECT COUNT(*) FROM highschooler WHERE grade IN (9, 10)"
+42,119,What is the smallest weight of the car produced with 8 cylinders on 1974 ?,medium,select min(weight) from cars_data where cylinders  =  8 and year  =  1974,7,"SELECT * FROM cars_data WHERE year = 1974 AND cylinders = 8 ORDER BY weight ASC LIMIT 1
+SELECT * FROM cars_data WHERE year = 1974 AND cylinders = 8 ORDER BY weight ASC LIMIT 1
+SELECT * FROM cars_data WHERE year = 1974 AND cylinders = 8 ORDER BY weight ASC LIMIT 1
+SELECT * FROM cars_data WHERE year = 1974 AND cylinders = 8 ORDER BY weight ASC LIMIT 1
+SELECT * FROM cars_data WHERE year = 1974 AND cylinders = 8 ORDER BY weight ASC LIMIT 1
+SELECT * FROM cars_data WHERE year = 1974 AND cylinders = 8 ORDER BY weight ASC LIMIT 1
+SELECT * FROM cars_data WHERE year = 1974 AND cylinders = 8 ORDER BY weight ASC LIMIT 1"
+43,557,"Who is the earliest graduate of the school? List the first name, middle name and last name.",medium,"SELECT first_name ,  middle_name ,  last_name FROM Students ORDER BY date_left ASC LIMIT 1",7,"SELECT * FROM students WHERE student_id = (SELECT MIN(student_id) FROM students)
+SELECT * FROM students WHERE student_id = (SELECT MIN(student_id) FROM students)
+SELECT * FROM students WHERE student_id = (SELECT MIN(student_id) FROM students)
+SELECT * FROM students WHERE student_id = (SELECT MIN(student_id) FROM students)
+SELECT * FROM students WHERE student_id = (SELECT MIN(student_id) FROM students)
+SELECT * FROM students WHERE student_id = (SELECT MIN(student_id) FROM students)
+SELECT * FROM students WHERE student_id = (SELECT MIN(student_id) FROM students)"
+44,686,Count the number of different nationalities.,easy,SELECT count(DISTINCT Nationality) FROM people,7,"SELECT COUNT(DISTINCT nationality) FROM people
+SELECT COUNT(DISTINCT nationality) FROM people
+SELECT COUNT(DISTINCT nationality) FROM people
+SELECT COUNT(DISTINCT nationality) FROM people
+SELECT COUNT(DISTINCT nationality) FROM people
+SELECT COUNT(DISTINCT nationality) FROM people
+SELECT COUNT(DISTINCT nationality) FROM people"
+45,1026,List the name of singers that do not have any song.,hard,SELECT Name FROM singer WHERE Singer_ID NOT IN (SELECT Singer_ID FROM song),7,"SELECT singer.name FROM singer WHERE singer.singer_id NOT IN (SELECT song.singer_id FROM song)
+SELECT singer.name FROM singer WHERE singer.singer_id NOT IN (SELECT song.singer_id                                    FROM song)
+SELECT singer.name FROM singer WHERE singer.singer_id NOT IN (SELECT song.singer_id FROM song)
+SELECT singer.name FROM singer WHERE singer.singer_id NOT IN (SELECT song.singer_id FROM song)
+SELECT singer.name FROM singer WHERE singer.singer_id NOT IN (SELECT song.singer_id FROM song)
+SELECT singer.name FROM singer WHERE singer.singer_id NOT IN (SELECT song.singer_id FROM song)
+SELECT singer.name FROM singer WHERE singer.singer_id NOT IN (SELECT song.singer_id FROM song)"
+46,808,What are the names of the countries that are in the continent of Europe and have a population of 80000?,medium,"SELECT Name FROM country WHERE continent  =  ""Europe"" AND Population  =  ""80000""",7,"SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT country.name FROM country WHERE country.continent = 'Europe' AND country.population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000"
+47,552,What is the date and id of the transcript with at least 2 courses listed?,medium,"SELECT T2.transcript_date ,  T1.transcript_id FROM Transcript_Contents AS T1 JOIN Transcripts AS T2 ON T1.transcript_id  =  T2.transcript_id GROUP BY T1.transcript_id HAVING count(*)  >=  2",7,"SELECT * FROM transcripts WHERE transcript_date IN (SELECT transcript_date FROM transcript_contents WHERE student_course_id IN (SELECT student_course_id FROM student_enrolment_courses WHERE degree_program_id IN (SELECT degree_program_id FROM degree_program
+SELECT transcript_id, transcript_date FROM transcripts WHERE transcript_id IN (     SELECT transcript_id     FROM transcript_contents     WHERE student_course_id IN (         SELECT student_course_id         FROM student_enrol
+SELECT transcript_id, transcript_date FROM transcripts WHERE transcript_id IN (     SELECT transcript_id     FROM transcript_contents     WHERE student_course_id IN (         SELECT student_course_id         FROM student_enrolment_
+SELECT transcript_id, transcript_date FROM transcripts WHERE transcript_id IN (     SELECT transcript_id     FROM transcript_contents     WHERE student_course_id IN (         SELECT student_course_id         FROM student_enrolment_
+SELECT * FROM transcripts WHERE transcript_date IN (SELECT transcript_date FROM transcript_contents WHERE student_course_id IN (SELECT student_course_id FROM student_enrolment_courses WHERE degree_program_id IN (SELECT degree_program_id FROM student_en
+SELECT transcript_id, transcript_date FROM transcripts WHERE transcript_id IN (     SELECT transcript_id     FROM transcript_contents     WHERE student_course_id IN (         SELECT student_course_id         FROM student_enrolment_
+SELECT transcript_id, transcript_date FROM transcripts WHERE transcript_date IN (     SELECT transcript_date     FROM transcript_contents     WHERE student_course_id IN (         SELECT student_course_id         FROM student_enrolment_"
+48,144,What is the number of cars with more than 4 cylinders?,easy,SELECT count(*) FROM CARS_DATA WHERE Cylinders  >  4;,7,"SELECT COUNT(*) FROM cars_data WHERE cylinders > 4
+SELECT COUNT(*) FROM cars_data WHERE cylinders > 4
+SELECT COUNT(*) FROM cars_data WHERE cylinders > 4
+SELECT COUNT(*) FROM cars_data WHERE cylinders > 4
+SELECT COUNT(*) FROM cars_data WHERE cylinders > 4
+SELECT count(*) FROM cars_data WHERE cylinders > 4
+SELECT count(*) FROM cars_data WHERE cylinders > 4"
+49,629,Find the production code and channel of the most recently aired cartoon .,medium,"select production_code ,  channel from cartoon order by original_air_date desc limit 1",7,"SELECT * FROM cartoon WHERE production_code = (SELECT production_code FROM tv_series ORDER BY air_date DESC LIMIT 1)
+SELECT * FROM cartoon WHERE production_code = (SELECT production_code FROM tv_series WHERE channel = (SELECT channel FROM tv_channel WHERE country = 'USA' AND language = 'English' AND content = 'Cartoon' ORDER BY air_date DESC LIMIT 1))
+SELECT * FROM cartoon WHERE production_code = (SELECT production_code FROM tv_series WHERE channel = (SELECT channel FROM tv_channel WHERE country = 'USA' AND language = 'English' AND content = 'Cartoon' AND pixel_aspect_ratio_par = '16:9' AND hight_definition_tv = 'Yes' AND pay_per_view_ppv = 'No' AND package_option = 'Standard' AND series_name = '
+SELECT * FROM cartoon WHERE production_code = (SELECT production_code FROM tv_series WHERE channel = (SELECT channel FROM tv_channel WHERE country = 'USA' AND language = 'English' AND content = 'Cartoon' AND pixel_aspect_ratio_par = '16:9' AND hight_definition_tv = 'Yes' AND pay_per_view_ppv = 'No' AND package_option = 'Basic' ORDER BY air_date DESC LIMIT 1))
+SELECT * FROM cartoon WHERE production_code = (SELECT production_code FROM tv_series WHERE channel = (SELECT channel FROM tv_channel WHERE country = 'USA' AND language = 'English' AND content = 'Cartoon' AND pixel_aspect_ratio_par = '16:9' AND hight_definition_tv = 'Yes' AND pay_per_view_ppv = 'No' AND package_option = 'Basic' AND series_name = '
+SELECT * FROM cartoon WHERE production_code = (SELECT production_code FROM tv_series WHERE id = (SELECT id FROM tv_channel WHERE series_name = '
+SELECT * FROM cartoon WHERE production_code = (SELECT production_code FROM tv_series WHERE id = (SELECT id FROM tv_channel WHERE series_name = '"
+50,809,Give the names of countries that are in Europe and have a population equal to 80000.,medium,"SELECT Name FROM country WHERE continent  =  ""Europe"" AND Population  =  ""80000""",7,"SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000
+SELECT name FROM country WHERE continent = 'Europe' AND population = 800000"
+51,371,List all document ids with at least two paragraphs.,easy,SELECT document_id FROM Paragraphs GROUP BY document_id HAVING count(*)  >=  2,7,"SELECT document_id FROM documents WHERE document_id IN (SELECT document_id FROM paragraphs GROUP BY document_id HAVING COUNT(*) >= 2)
+SELECT * FROM documents WHERE paragraphs > 2
+SELECT document_id FROM documents WHERE template_id IN (SELECT template_id FROM templates WHERE template_type_code IN ('template_type_code', 'template_type_description')) AND document_id IN (SELECT document_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs WHERE paragraph_id IN (SELECT paragraph
+SELECT * FROM documents WHERE paragraphs > 2
+SELECT document_id FROM documents WHERE document_id IN (SELECT document_id FROM paragraphs GROUP BY document_id HAVING COUNT(*) >= 2)
+SELECT document_id FROM documents WHERE paragraph_id IN (SELECT paragraph_id FROM paragraphs GROUP BY paragraph_id HAVING COUNT(*) >= 2) 
+SELECT * FROM documents WHERE paragraphs > 1"
+52,727,Give the total surface area covered by countries in Asia or Europe.,medium,"SELECT sum(SurfaceArea) FROM country WHERE Continent  =  ""Asia"" OR Continent  =  ""Europe""",7,"SELECT SUM(surfacearea) FROM country WHERE continent = 'Asia' OR continent = 'Europe'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Asia' OR continent = 'Europe'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Asia' OR continent = 'Europe'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Asia' OR continent = 'Europe'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Asia' OR continent = 'Europe'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Asia' OR continent = 'Europe'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Asia' OR continent = 'Europe'"
+53,900,Show name of all students who have some friends and also are liked by someone else.,hard,SELECT T2.name FROM Friend AS T1 JOIN Highschooler AS T2 ON T1.student_id  =  T2.id INTERSECT SELECT T2.name FROM Likes AS T1 JOIN Highschooler AS T2 ON T1.liked_id  =  T2.id,7,"SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) 
+SELECT name FROM highschooler WHERE id IN (SELECT student_id FROM friend WHERE friend_id IN (SELECT liked_id FROM likes)) "
+54,294,Find the districts in which there are both shops selling less than 3000 products and shops selling more than 10000 products.,hard,SELECT district FROM shop WHERE Number_products  <  3000 INTERSECT SELECT district FROM shop WHERE Number_products  >  10000,7,"SELECT * FROM shop WHERE number_products < 3000 AND number_products > 10000
+SELECT * FROM shop WHERE number_products < 3000 AND number_products > 10000
+SELECT * FROM shop WHERE number_products < 3000 AND number_products > 10000
+SELECT * FROM shop WHERE number_products < 3000 AND number_products > 10000
+SELECT * FROM shop WHERE number_products < 3000 AND number_products > 10000
+SELECT * FROM shop WHERE number_products < 3000 AND number_products > 10000
+SELECT * FROM shop WHERE number_products < 3000 AND number_products > 10000"
+55,707,How much surface area do the countires in the Carribean cover together?,easy,"SELECT sum(SurfaceArea) FROM country WHERE Region  =  ""Caribbean""",7,"SELECT SUM(surfacearea) FROM country WHERE region = 'Carribean'
+SELECT SUM(surfacearea) FROM country WHERE region = 'Carribean'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Carribean'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Carribean'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Carribean'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Carribean'
+SELECT SUM(surfacearea) FROM country WHERE continent = 'Carribean'"
+56,1029,What are the citizenships that are shared by singers with a birth year before 1945 and after 1955?,hard,SELECT Citizenship FROM singer WHERE Birth_Year  <  1945 INTERSECT SELECT Citizenship FROM singer WHERE Birth_Year  >  1955,7,"SELECT singer.citizenship FROM singer WHERE singer.birth_year < 1945 AND singer.birth_year > 1955
+SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+SELECT singer.citizenship FROM singer WHERE singer.birth_year < 1945 AND singer.birth_year > 1955
+SELECT DISTINCT citizenship FROM singer WHERE birth_year < 1945 OR birth_year > 1955 
+SELECT singer.citizenship FROM singer WHERE singer.birth_year < 1945 AND singer.birth_year > 1955
+SELECT citizenship FROM singer WHERE birth_year < 1945 AND birth_year > 1955
+SELECT singer.citizenship FROM singer WHERE singer.birth_year < 1945 AND singer.birth_year > 1955"
+57,106,What is the name of each continent and how many car makers are there in each one?,hard,"SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;",7,"SELECT continent, COUNT(maker) FROM countries JOIN car_makers ON countries.countryid = car_makers.country GROUP BY continent 
+SELECT continent, COUNT(maker) FROM countries JOIN car_makers ON countries.countryid = car_makers.id GROUP BY continent 
+SELECT continent, COUNT(maker) FROM countries JOIN car_makers ON countries.countryid = car_makers.country GROUP BY continent 
+SELECT continent, COUNT(maker) FROM countries JOIN car_makers ON countries.countryid = car_makers.country GROUP BY continent 
+SELECT continent, COUNT(maker) FROM countries JOIN car_makers ON countries.countryid = car_makers.country GROUP BY continent 
+SELECT continent, COUNT(maker) FROM countries JOIN car_makers ON countries.countryid = car_makers.country GROUP BY continent 
+SELECT continent, COUNT(maker) FROM countries JOIN car_makers ON countries.countryid = car_makers.country GROUP BY continent "
+58,439,Find the highest rank of losers in all matches.,easy,SELECT min(loser_rank) FROM matches,7,"SELECT * FROM players JOIN matches ON players.player_id = matches.loser_id JOIN rankings ON players.player_id = rankings.player_id WHERE rankings.ranking = (SELECT MAX(ranking) FROM rankings) 
+NULL
+SELECT * FROM players JOIN matches ON players.player_id = matches.loser_id JOIN rankings ON players.player_id = rankings.player_id WHERE rankings.ranking = (SELECT MAX(ranking) FROM rankings) 
+SELECT * FROM players JOIN matches ON players.player_id = matches.loser_id JOIN rankings ON players.player_id = rankings.player_id WHERE rankings.ranking = (SELECT MAX(ranking) FROM rankings) 
+SELECT * FROM players JOIN matches ON players.player_id = matches.loser_id JOIN rankings ON players.player_id = rankings.player_id WHERE rankings.ranking = (SELECT MAX(ranking) FROM rankings) 
+SELECT * FROM players JOIN matches ON players.player_id = matches.loser_id JOIN rankings ON players.player_id = rankings.player_id WHERE rankings.ranking = (SELECT MAX(ranking) FROM rankings) 
+SELECT * FROM players JOIN matches ON players.player_id = matches.loser_id JOIN rankings ON players.player_id = rankings.player_id WHERE rankings.ranking = (SELECT MAX(ranking) FROM rankings) "
+59,340,What are the names of documents that use templates with the code BK?,medium,"SELECT T2.document_name FROM Templates AS T1 JOIN Documents AS T2 ON T1.template_id  =  T2.template_id WHERE T1.template_type_code  =  ""BK""",7,"SELECT documents.document_name FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN ref_template_types ON templates.template_type_code = ref_template_types.template_type_code WHERE templates.template_type_code = 'BK' 
+SELECT documents.document_name FROM documents INNER JOIN templates ON documents.template_id = templates.template_id INNER JOIN ref_template_types ON templates.template_type_code = ref_template_types.template_type_code WHERE templates.template_type_code = 'BK' 
+SELECT documents.document_name FROM documents INNER JOIN paragraphs ON documents.document_id = paragraphs.document_id INNER JOIN templates ON documents.template_id = templates.template_id WHERE templates.template_type_code = 'BK' AND paragraphs.paragraph_text LIKE '%ref_template_types%' 
+SELECT documents.document_name FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN ref_template_types ON templates.template_type_code = ref_template_types.template_type_code WHERE templates.template_type_code = 'BK' 
+SELECT documents.document_name FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN ref_template_types ON templates.template_type_code = ref_template_types.template_type_code WHERE templates.template_type_code = 'BK' 
+SELECT documents.document_name FROM documents JOIN paragraphs ON documents.document_id = paragraphs.document_id JOIN templates ON documents.template_id = templates.template_id WHERE templates.template_type_code = 'BK' AND templates.date_effective_from <= '2022-01-01' AND templates.date_effective_to >= '2022-01-01' 
+SELECT documents.document_name FROM documents JOIN templates ON documents.template_id = templates.template_id JOIN ref_template_types ON templates.template_type_code = ref_template_types.template_type_code WHERE templates.template_type_code = 'BK' "

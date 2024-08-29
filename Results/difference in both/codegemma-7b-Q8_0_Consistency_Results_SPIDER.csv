@@ -1,0 +1,76 @@
+,Qid,Question,Db_Id,Difficulty,Query Gold,Repeated,Query Generated,Most Frequent Query
+0,546,What are the names of all courses that have some students enrolled?,student_transcripts_tracking,simple,SELECT DISTINCT T1.course_name FROM Courses AS T1 JOIN Student_Enrolment_Courses AS T2 ON T1.course_id  =  T2.course_id,5,"SELECT course_name FROM courses WHERE course_id IN (SELECT course_id FROM student_enrolment_courses)
+SELECT course_name FROM courses WHERE course_id IN (SELECT course_id FROM student_enrolment_courses)
+SELECT course_name FROM courses WHERE course_id IN (SELECT course_id FROM student_enrolment_courses)
+SELECT course_name FROM courses WHERE course_id IN (SELECT course_id FROM student_enrolment_courses)
+SELECT course_name FROM courses WHERE course_id IN (SELECT course_id FROM student_enrolment_courses)",SELECT course_name FROM courses WHERE course_id IN (SELECT course_id FROM student_enrolment_courses)
+1,27,What is the year that had the most concerts?,concert_singer,challenging,SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1,5,"SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1","SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1"
+2,271,find the minimum and maximum number of products of all stores.,employee_hire_evaluation,moderate,"SELECT min(Number_products) ,  max(Number_products) FROM shop",5,"SELECT MIN(number_products), MAX(number_products) FROM shop
+SELECT MIN(number_products), MAX(number_products) FROM shop
+SELECT MIN(number_products), MAX(number_products) FROM shop
+SELECT MIN(number_products), MAX(number_products) FROM shop
+SELECT MIN(number_products), MAX(number_products) FROM shop","SELECT MIN(number_products), MAX(number_products) FROM shop"
+3,1014,Please show the most common citizenship of singers.,singer,challenging,SELECT Citizenship FROM singer GROUP BY Citizenship ORDER BY COUNT(*) DESC LIMIT 1,5,"SELECT citizenship, COUNT(*) AS count FROM singer GROUP BY citizenship ORDER BY count DESC LIMIT 1
+SELECT citizenship, COUNT(*) AS count FROM singer GROUP BY citizenship ORDER BY count DESC LIMIT 1
+SELECT citizenship, COUNT(*) AS count FROM singer GROUP BY citizenship ORDER BY count DESC LIMIT 1
+SELECT citizenship, COUNT(*) AS count FROM singer GROUP BY citizenship ORDER BY count DESC LIMIT 1
+SELECT citizenship, COUNT(*) AS count FROM singer GROUP BY citizenship ORDER BY count DESC LIMIT 1","SELECT citizenship, COUNT(*) AS count FROM singer GROUP BY citizenship ORDER BY count DESC LIMIT 1"
+4,962,List the emails of the professionals who live in the state of Hawaii or the state of Wisconsin.,dog_kennels,moderate,SELECT email_address FROM Professionals WHERE state  =  'Hawaii' OR state  =  'Wisconsin',5,"SELECT email_address FROM professionals WHERE state = 'HI' OR state = 'WI'
+SELECT email_address FROM professionals WHERE state = 'HI' OR state = 'WI'
+SELECT email_address FROM owners WHERE state = 'HI' OR state = 'WI'
+SELECT email_address FROM professionals WHERE state = 'HI' OR state = 'WI'
+SELECT email_address FROM professionals WHERE state = 'HI' OR state = 'WI'",SELECT email_address FROM professionals WHERE state = 'HI' OR state = 'WI'
+5,116,What is the count of the car models produced in the United States?,car_1,challenging,SELECT count(*) FROM MODEL_LIST AS T1 JOIN CAR_MAKERS AS T2 ON T1.Maker  =  T2.Id JOIN COUNTRIES AS T3 ON T2.Country  =  T3.CountryId WHERE T3.CountryName  =  'usa';,5,"SELECT COUNT(*) FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE country IN (SELECT countryid FROM countries WHERE continent IN (SELECT contid FROM continents WHERE continent = 'United States')))
+SELECT COUNT(*) FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE country IN (SELECT countryid FROM countries WHERE continent IN (SELECT contid FROM continents WHERE continent = 'United States')))
+SELECT COUNT(*) FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE country IN (SELECT countryid FROM countries WHERE continent IN (SELECT contid FROM continents WHERE continent = 'United States')))
+SELECT COUNT(*) FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE country IN (SELECT countryid FROM countries WHERE continent IN (SELECT contid FROM continents WHERE continent = 'United States')))
+SELECT COUNT(*) FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE country IN (SELECT countryid FROM countries WHERE continent IN (SELECT contid FROM continents WHERE continent = 'United States')))",SELECT COUNT(*) FROM model_list WHERE maker IN (SELECT id FROM car_makers WHERE country IN (SELECT countryid FROM countries WHERE continent IN (SELECT contid FROM continents WHERE continent = 'United States')))
+6,692,What are the names of the contestants whose names are not 'Jessie Alloway',voter_1,simple,SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway',5,"SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway'
+SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway'
+SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway'
+SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway'
+SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway'",SELECT contestant_name FROM contestants WHERE contestant_name != 'Jessie Alloway'
+7,242,Which airlines have at least 10 flights?,flight_2,moderate,SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline GROUP BY T1.Airline HAVING count(*)  >  10,5,"SELECT airline, COUNT(*) FROM flights GROUP BY airline HAVING COUNT(*) >= 10
+SELECT airline, COUNT(*) FROM flights GROUP BY airline HAVING COUNT(*) >= 10
+SELECT airline, COUNT(*) FROM flights GROUP BY airline HAVING COUNT(*) >= 10
+SELECT airline, COUNT(*) FROM flights GROUP BY airline HAVING COUNT(*) >= 10
+SELECT airline, COUNT(*) FROM flights GROUP BY airline HAVING COUNT(*) >= 10","SELECT airline, COUNT(*) FROM flights GROUP BY airline HAVING COUNT(*) >= 10"
+8,423,Find the name and age of the visitor who bought the most tickets at once.,museum_visit,challenging,"SELECT t1.name ,  t1.age FROM visitor AS t1 JOIN visit AS t2 ON t1.id  =  t2.visitor_id ORDER BY t2.num_of_ticket DESC LIMIT 1",5,"SELECT visitor.name, visitor.age FROM visitor JOIN visit ON visitor.id = visit.visitor_id GROUP BY visitor.id ORDER BY SUM(visit.num_of_ticket) DESC LIMIT 1
+SELECT visitor.name, visitor.age FROM visitor JOIN visit ON visitor.id = visit.visitor_id WHERE visit.num_of_ticket = (SELECT MAX(num_of_ticket) FROM visit)
+SELECT visitor.name, visitor.age FROM visitor JOIN visit ON visitor.id = visit.visitor_id GROUP BY visitor.id ORDER BY SUM(visit.num_of_ticket) DESC LIMIT 1
+SELECT visitor.name, visitor.age FROM visitor JOIN visit ON visitor.id = visit.visitor_id GROUP BY visitor.id ORDER BY SUM(visit.num_of_ticket) DESC LIMIT 1
+SELECT visitor.name, visitor.age FROM visitor JOIN visit ON visitor.id = visit.visitor_id GROUP BY visitor.id ORDER BY SUM(visit.num_of_ticket) DESC LIMIT 1","SELECT visitor.name, visitor.age FROM visitor JOIN visit ON visitor.id = visit.visitor_id GROUP BY visitor.id ORDER BY SUM(visit.num_of_ticket) DESC LIMIT 1"
+9,45,Find the number of pets whose weight is heavier than 10.,pets_1,simple,SELECT count(*) FROM pets WHERE weight  >  10,5,"SELECT COUNT(*) FROM pets WHERE weight > 10
+SELECT COUNT(*) FROM pets WHERE weight > 10
+SELECT COUNT(*) FROM pets WHERE weight > 10
+SELECT COUNT(*) FROM pets WHERE weight > 10
+SELECT COUNT(*) FROM pets WHERE weight > 10",SELECT COUNT(*) FROM pets WHERE weight > 10
+10,494,What is maximum and minimum death toll caused each time?,battle_death,moderate,"SELECT max(killed) ,  min(killed) FROM death",5,"SELECT MAX(death.killed), MIN(death.killed) FROM death JOIN ship ON death.caused_by_ship_id = ship.id JOIN battle ON ship.lost_in_battle = battle.id
+SELECT MAX(death.killed), MIN(death.killed) FROM death JOIN ship ON death.caused_by_ship_id = ship.id JOIN battle ON ship.lost_in_battle = battle.id
+SELECT MAX(death.killed), MIN(death.killed) FROM death
+SELECT MAX(death.killed), MIN(death.killed) FROM death JOIN ship ON death.caused_by_ship_id = ship.id JOIN battle ON ship.lost_in_battle = battle.id
+SELECT MAX(death.killed), MIN(death.killed) FROM death JOIN ship ON death.caused_by_ship_id = ship.id JOIN battle ON ship.lost_in_battle = battle.id","SELECT MAX(death.killed), MIN(death.killed) FROM death JOIN ship ON death.caused_by_ship_id = ship.id JOIN battle ON ship.lost_in_battle = battle.id"
+11,528,What are the names of the sections in reverse alphabetical order?,student_transcripts_tracking,simple,SELECT section_name FROM Sections ORDER BY section_name DESC,5,"SELECT section_name FROM sections ORDER BY section_name DESC
+SELECT section_name FROM sections ORDER BY section_name DESC
+SELECT section_name FROM sections ORDER BY section_name DESC
+SELECT section_name FROM sections ORDER BY section_name DESC
+SELECT section_name FROM sections ORDER BY section_name DESC",SELECT section_name FROM sections ORDER BY section_name DESC
+12,704,How many countries have a republic as their form of government?,world_1,simple,"SELECT count(*) FROM country WHERE GovernmentForm  =  ""Republic""",5,"SELECT COUNT(*) FROM country WHERE governmentform = 'Republic'
+SELECT COUNT(*) FROM country WHERE governmentform = 'Republic'
+SELECT COUNT(*) FROM country WHERE governmentform = 'Republic'
+SELECT COUNT(*) FROM country WHERE governmentform = 'Republic'
+SELECT COUNT(*) FROM country WHERE governmentform = 'Republic'",SELECT COUNT(*) FROM country WHERE governmentform = 'Republic'
+13,105,How many car makers are there in each continents? List the continent name and the count.,car_1,challenging,"SELECT T1.Continent ,  count(*) FROM CONTINENTS AS T1 JOIN COUNTRIES AS T2 ON T1.ContId  =  T2.continent JOIN car_makers AS T3 ON T2.CountryId  =  T3.Country GROUP BY T1.Continent;",5,"SELECT continent, COUNT(continent) FROM continents GROUP BY continent
+SELECT continent, COUNT(DISTINCT maker) AS car_makers_count FROM continents JOIN countries ON continents.contid = countries.continent JOIN car_makers ON countries.countryid = car_makers.country GROUP BY continent
+SELECT continent, COUNT(continent) FROM continents GROUP BY continent
+SELECT continent, COUNT(DISTINCT maker) AS car_makers_count FROM continents JOIN countries ON continents.contid = countries.continent JOIN car_makers ON countries.countryid = car_makers.country GROUP BY continent
+SELECT continent, COUNT(continent) FROM continents GROUP BY continent","SELECT continent, COUNT(continent) FROM continents GROUP BY continent"
+14,943,Find the id and cell phone of the professionals who operate two or more types of treatments.,dog_kennels,moderate,"SELECT T1.professional_id ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >=  2",5,"SELECT p.professional_id, p.cell_number FROM professionals p JOIN treatments t ON p.professional_id = t.professional_id GROUP BY p.professional_id HAVING COUNT(DISTINCT t.treatment_type_code) >= 2
+SELECT p.professional_id, p.cell_number FROM professionals p WHERE (SELECT COUNT(DISTINCT t.treatment_type_code)        FROM treatments t        WHERE t.professional_id = p.professional_id) >= 2
+SELECT p.professional_id, p.cell_number FROM professionals p JOIN treatments t ON p.professional_id = t.professional_id GROUP BY p.professional_id HAVING COUNT(DISTINCT t.treatment_type_code) >= 2
+SELECT professional_id, cell_number FROM professionals WHERE professional_id IN (     SELECT professional_id     FROM treatments     GROUP BY professional_id     HAVING COUNT(DISTINCT treatment_type_code) >= 2 )
+SELECT p.professional_id, p.cell_number FROM professionals p JOIN treatments t ON p.professional_id = t.professional_id GROUP BY p.professional_id HAVING COUNT(DISTINCT t.treatment_type_code) >= 2","SELECT p.professional_id, p.cell_number FROM professionals p JOIN treatments t ON p.professional_id = t.professional_id GROUP BY p.professional_id HAVING COUNT(DISTINCT t.treatment_type_code) >= 2"
