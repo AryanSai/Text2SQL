@@ -148,7 +148,10 @@ if __name__ == "__main__":
     parser.add_argument('--dataset_tag', dest='dataset_tag', type=str, required=True)
     parser.add_argument('--inputjson', dest='inputjson', type=str, required=True)
     parser.add_argument('--output', dest='output', type=str, required=True)
-
+    parser.add_argument('--exact_threshold', dest='exact_threshold', type=float, required=True)
+    parser.add_argument('--exec_threshold', dest='exec_threshold', type=float, required=True)
+    parser.add_argument('--consistency_threshold', dest='consistency_threshold', type=float, required=True)
+    
     args = parser.parse_args()
 
     model_path = args.modelpath
@@ -158,6 +161,9 @@ if __name__ == "__main__":
     dataset_tag = args.dataset_tag
     input_json = args.inputjson
     results_path = args.output
+    threshold_for_execution = args.exec_threshold
+    threshold_for_exact = args.exact_threshold
+    threshold_for_consistency = args.consistency_threshold
     
     model_name = model_path.split('/')[-1].split('.gguf')[0]
     results_path = results_path + model_name
@@ -190,9 +196,7 @@ if __name__ == "__main__":
     cm_exec = [[[0, 0, 0] for _ in range(2)] for _ in range(2)]
     cm_exact_and_exec = [[[0, 0, 0] for _ in range(2)] for _ in range(2)]
 
-    threshold_for_consistency = 0.5
-    threshold_for_exact = 0.5
-    threshold_for_execution = 0.5
+    
 
     for index, row in result.iterrows():
         map = {}

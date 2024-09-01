@@ -26,6 +26,8 @@
 
 import json, sqlite3
 from nltk import word_tokenize
+import nltk
+nltk.download('punkt_tab')
 
 CLAUSE_KEYWORDS = ('select', 'from', 'where', 'group', 'order', 'limit', 'intersect', 'union', 'except')
 JOIN_KEYWORDS = ('join', 'on', 'as')
