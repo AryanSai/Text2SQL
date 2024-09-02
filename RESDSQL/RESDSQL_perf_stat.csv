@@ -1,0 +1,16 @@
+# started on Thu Feb 22 05:57:47 2024
+
+1690019.06,msec,task-clock,1690019064716,100.00,1.013,CPUs utilized
+2280294,,context-switches,1690019064716,100.00,0.001,M/sec
+2712,,cpu-migrations,1690019064716,100.00,0.002,K/sec
+980773,,page-faults,1690019064716,100.00,0.580,K/sec
+4520302340354,,cycles,750209979158,44.38,2.675,GHz
+3673940130106,,stalled-cycles-frontend,750772527007,44.42,81.28,frontend cycles idle
+2101151372810,,instructions,938959416197,55.55,0.46,insn per cycle
+,,,,1.75,stalled cycles per insn
+407758074840,,branches,939296343862,55.57,241.274,M/sec
+5724747284,,branch-misses,939389935607,55.58,1.40,of all branches
+711525800169,,L1-dcache-loads,596251728855,35.27,421.016,M/sec
+54781038238,,L1-dcache-load-misses,501381159038,29.66,7.70,of all L1-dcache hits
+9414547035,,LLC-loads,404393129381,23.92,5.571,M/sec
+92984854,,LLC-load-misses,577135254762,34.14,0.99,of all LL-cache hits

@@ -196,8 +196,6 @@ if __name__ == "__main__":
     cm_exec = [[[0, 0, 0] for _ in range(2)] for _ in range(2)]
     cm_exact_and_exec = [[[0, 0, 0] for _ in range(2)] for _ in range(2)]
 
-    
-
     for index, row in result.iterrows():
         map = {}
         exact, exec, i, j = (0,)*4

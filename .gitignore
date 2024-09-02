@@ -2,5 +2,13 @@ Datasets/
 Models/
 spidermaster/
 rat-sql/
-RESDSQL/
+RESDSQL/models/
+RESDSQL/database/
+RESDSQL/data/
+RESDSQL/NatSQL/
+RESDSQL/tensorboard_log/
+RESDSQL/wandb/
+RESDSQL/third_party/
+RESDSQL/predictions/
+RESDSQL/__pycache__/
 astormer/
