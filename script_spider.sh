@@ -21,15 +21,15 @@ INPUT_JSON="input_list_SPIDER.json"
 DATASET_FILE="Datasets/spider/dev_with_hardness.json"
 OUTPUT="input_list_SPIDER.json"
 
-python3 input_generator_spider.py \
-    --dataset $DATASET_FILE \
-    --repeat $REPEAT\
-    --total $TOTAL \
-    --easy $EASY \
-    --medium $MEDIUM \
-    --hard $HARD \
-    --extra $EXTRA_HARD \
-    --output $OUTPUT 
+# python3 input_generator_spider.py \
+#     --dataset $DATASET_FILE \
+#     --repeat $REPEAT\
+#     --total $TOTAL \
+#     --easy $EASY \
+#     --medium $MEDIUM \
+#     --hard $HARD \
+#     --extra $EXTRA_HARD \
+#     --output $OUTPUT 
 
 # CUDA_VISIBLE_DEVICES=0 python3 consistency_spider.py \
 #     --modelpath $MODEL_PATH\
@@ -43,9 +43,9 @@ python3 input_generator_spider.py \
 #     --exec_threshold $EXEC \
 #     --consistency_threshold $CONSISTENCY 
 
-# INPUT_FILE="Results/codegemma-7b-Q8_0_Consistency_Results_SPIDER.csv"
-# ITERATIONS=20
+INPUT_FILE="Results/extrahard/codegemma-7b-Q8_0_Consistency_Results_SPIDER.csv"
+ITERATIONS=20
 
-# python3 ves.py \
-#     --input_file $INPUT_FILE \
-#     --iterations $ITERATIONS
+python3 ves_spider.py \
+    --input_file $INPUT_FILE \
+    --iterations $ITERATIONS

@@ -118,7 +118,7 @@ fi
 
 ITERATIONS=20
 
-python3 ves.py \
+python3 ves_spider.py \
     --model $MODEL \
     --input_file 'resdqsl_output_for_consistency.json' \
     --iterations $ITERATIONS
