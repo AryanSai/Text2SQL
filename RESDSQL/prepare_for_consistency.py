@@ -53,13 +53,16 @@ if __name__ == '__main__':
                 "db_id": entry["db_id"],
                 "pred": entry["pred"],
                 "gold": question_dict[input_str]["query"],
-                "query_toks": question_dict[input_str]["query_toks"],
-                "query_toks_no_value": question_dict[input_str]["query_toks_no_value"],
+                # "query_toks": question_dict[input_str]["query_toks"],
+                # "query_toks_no_value": question_dict[input_str]["query_toks_no_value"],
                 "question": question_dict[input_str]["question"],
-                "question_toks": question_dict[input_str]["question_toks"],
-                "sql": question_dict[input_str]["sql"],
-                "hardness": question_dict[input_str]["hardness"]
+                # "question_toks": question_dict[input_str]["question_toks"],
+                "sql": question_dict[input_str]["sql"]
             }
+            if "hardness" in question_dict[input_str]:
+                merged_entry["hardness"] = question_dict[input_str]["hardness"]
+            else:
+                merged_entry["difficulty"] = question_dict[input_str]["difficulty"]
             merged_data.append(merged_entry)
 
     with open(output, 'w') as f:

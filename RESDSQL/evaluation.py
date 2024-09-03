@@ -815,24 +815,29 @@ def build_foreign_key_map_from_json(table):
     return tables
 
 def execute_sql(predicted_sql, ground_truth_sql, db_path):
-    conn = sqlite3.connect(db_path)
-    cursor = conn.cursor()
-    
+    # print('=============================')  
+    # print("pred= ",predicted_sql)
+    # print("gold= ",ground_truth_sql)
+    # print('=============================') 
+    # print(db_path)
     try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
         cursor.execute(predicted_sql)
         predicted_res = cursor.fetchall()
         
         cursor.execute(ground_truth_sql)
         ground_truth_res = cursor.fetchall()
-        
+        # print('=============================')  
+        # print("pred results= ",predicted_res)
+        # print("gold results= ",ground_truth_res)
+        # print('=============================')  
         res = 1 if set(predicted_res) == set(ground_truth_res) else 0
     except sqlite3.Error as e:
         print(f"An error occurred: {e}")
         res = 0  # Return 0 in case of an error
-    
     finally:
         conn.close() 
-    
     return res
 
 def main(gold, pred, db_dir, table):
@@ -850,15 +855,15 @@ def main(gold, pred, db_dir, table):
     
     db = os.path.join(db_dir, db, db + ".sqlite")
 
-    print('=============================')    
-    print('FROM EV')
-    print('=============================')
-    print('gold= ',g_str)
-    print('pred= ',pred)
-    print('-----------',db,'----------------')
-    print('=============================')
+    # print('=============================')    
+    # print('FROM EV')
+    # print('=============================')
+    # print('gold= ',g_str)
+    # print('pred= ',pred)
+    # print('-----------',db,'----------------')
+    # print('=============================')
     
-    execute = execute_sql(g_str, pred, db)
+    execute = execute_sql(pred,g_str,db)
     
     return evaluate(gold, pred, db_dir, etype, kmaps), execute
     # print(evaluate(gold, pred, db_dir, etype, kmaps), execute)

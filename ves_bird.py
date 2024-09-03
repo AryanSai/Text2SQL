@@ -24,7 +24,12 @@ def execute_sql(sql, db_path):
     return exec_time
 
 def iterated_execute_sql(predicted_sql,ground_truth,db_path,iterate_num):
+    # print('pred= ',predicted_sql)
+    # print('gold= ',ground_truth)
+    print(db_path)
     conn = sqlite3.connect(db_path)
+    if(conn):
+        print('sai')
     diff_list = []
     cursor = conn.cursor()
     cursor.execute(predicted_sql)
@@ -32,7 +37,10 @@ def iterated_execute_sql(predicted_sql,ground_truth,db_path,iterate_num):
     cursor.execute(ground_truth)
     ground_truth_res = cursor.fetchall()
     time_ratio = 0
-    # print(predicted_res,ground_truth_res)
+    print('--------------------------------------')
+    print('pred res= ',predicted_res)
+    print('gold res= ',ground_truth_res)
+    print('--------------------------------------')
     if set(predicted_res) == set(ground_truth_res):
         for i in range(iterate_num):
             predicted_time = execute_sql(predicted_sql, db_path)
@@ -65,7 +73,7 @@ def run_sqls_parallel(num_iterations, sqls, db_ids, num_cpus=1, meta_time_out=30
     pool = mp.Pool(processes=num_cpus)
     for i,sql_pair in enumerate(sqls):
         predicted_sql, ground_truth = sql_pair
-        db_path = "Datasets/spider/database/{}/{}.sqlite".format(db_ids[i],db_ids[i])
+        db_path = "Datasets/bird/databases/{}/{}.sqlite".format(db_ids[i],db_ids[i])
         pool.apply_async(execute_model, args=(predicted_sql, ground_truth, db_path , i, num_iterations, meta_time_out), callback=result_callback)
     pool.close()
     pool.join()
@@ -120,7 +128,10 @@ def plot_ves(score_lists, model_name, num_iterations):
     save_path=model_name+'_VES_Score.png'
     levels = ['simple', 'moderate', 'challenging', 'total']
     max_score = max(score_lists) if score_lists else 1  
-    normalized_scores = [score / max_score for score in score_lists]
+    if max_score == 0:  # Add this check to handle the case where max_score is zero
+        normalized_scores = [0 for score in score_lists]
+    else:
+        normalized_scores = [score / max_score for score in score_lists]
     colors = [plt.cm.Blues(score) for score in normalized_scores]
     plt.figure(figsize=(10, 6))
     bars = plt.bar(levels, score_lists, color=colors)

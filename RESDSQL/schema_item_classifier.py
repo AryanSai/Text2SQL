@@ -497,70 +497,70 @@ if __name__ == "__main__":
             
             if len(truncated_table_ids) > 0:
                 truncated_data_info.append([data_id, truncated_table_ids])
-
-        # additionally, we need to consider and predict discarded tables and columns
-        while len(truncated_data_info) != 0:
-            truncated_dataset = []
-            for truncated_data_id, truncated_table_ids in truncated_data_info:
-                print(dataset[truncated_data_id]["question"])
-                truncated_data = deepcopy(dataset[truncated_data_id])
-                truncated_data["db_schema"] = [truncated_data["db_schema"][table_id] for table_id in truncated_table_ids]
-                truncated_data["table_labels"] = [truncated_data["table_labels"][table_id] for table_id in truncated_table_ids]
-                truncated_data["column_labels"] = [truncated_data["column_labels"][table_id] for table_id in truncated_table_ids]
-                truncated_data["table_pred_probs"] = [truncated_data["table_pred_probs"][table_id] for table_id in truncated_table_ids]
-                truncated_data["column_pred_probs"] = [truncated_data["column_pred_probs"][table_id] for table_id in truncated_table_ids]
+        
+        # # additionally, we need to consider and predict discarded tables and columns
+        # while len(truncated_data_info) != 0:
+        #     truncated_dataset = []
+        #     for truncated_data_id, truncated_table_ids in truncated_data_info:
+        #         print(dataset[truncated_data_id]["question"])
+        #         truncated_data = deepcopy(dataset[truncated_data_id])
+        #         truncated_data["db_schema"] = [truncated_data["db_schema"][table_id] for table_id in truncated_table_ids]
+        #         truncated_data["table_labels"] = [truncated_data["table_labels"][table_id] for table_id in truncated_table_ids]
+        #         truncated_data["column_labels"] = [truncated_data["column_labels"][table_id] for table_id in truncated_table_ids]
+        #         truncated_data["table_pred_probs"] = [truncated_data["table_pred_probs"][table_id] for table_id in truncated_table_ids]
+        #         truncated_data["column_pred_probs"] = [truncated_data["column_pred_probs"][table_id] for table_id in truncated_table_ids]
                 
-                truncated_dataset.append(truncated_data)
+        #         truncated_dataset.append(truncated_data)
             
-            with open("./data/pre-processing/truncated_dataset.json", "w") as f:
-                f.write(json.dumps(truncated_dataset, indent = 2, ensure_ascii = False))
+        #     with open("./data/pre-processing/truncated_dataset.json", "w") as f:
+        #         f.write(json.dumps(truncated_dataset, indent = 2, ensure_ascii = False))
             
-            opt.dev_filepath = "./data/pre-processing/truncated_dataset.json"
-            total_table_pred_probs, total_column_pred_probs = _test(opt)
+        #     opt.dev_filepath = "./data/pre-processing/truncated_dataset.json"
+        #     total_table_pred_probs, total_column_pred_probs = _test(opt)
             
-            for data_id, data in enumerate(truncated_dataset):
-                table_num = len(data["table_labels"])
-                if table_num == len(total_table_pred_probs[data_id]):
-                    table_pred_probs = total_table_pred_probs[data_id]
-                else:
-                    table_pred_probs = total_table_pred_probs[data_id] + [-1 for _ in range(table_num-len(total_table_pred_probs[data_id]))]
+        #     for data_id, data in enumerate(truncated_dataset):
+        #         table_num = len(data["table_labels"])
+        #         if table_num == len(total_table_pred_probs[data_id]):
+        #             table_pred_probs = total_table_pred_probs[data_id]
+        #         else:
+        #             table_pred_probs = total_table_pred_probs[data_id] + [-1 for _ in range(table_num-len(total_table_pred_probs[data_id]))]
 
-                column_pred_probs = []
-                for table_id in range(table_num):
-                    if table_id >= len(total_column_pred_probs[data_id]):
-                        column_pred_probs.append([-1 for _ in range(len(data["column_labels"][table_id]))])
-                        continue
-                    if len(total_column_pred_probs[data_id][table_id]) == len(data["column_labels"][table_id]):
-                        column_pred_probs.append(total_column_pred_probs[data_id][table_id])
-                    else:
-                        truncated_column_num = len(data["column_labels"][table_id]) - len(total_column_pred_probs[data_id][table_id])
-                        column_pred_probs.append(total_column_pred_probs[data_id][table_id] + [-1 for _ in range(truncated_column_num)])
+        #         column_pred_probs = []
+        #         for table_id in range(table_num):
+        #             if table_id >= len(total_column_pred_probs[data_id]):
+        #                 column_pred_probs.append([-1 for _ in range(len(data["column_labels"][table_id]))])
+        #                 continue
+        #             if len(total_column_pred_probs[data_id][table_id]) == len(data["column_labels"][table_id]):
+        #                 column_pred_probs.append(total_column_pred_probs[data_id][table_id])
+        #             else:
+        #                 truncated_column_num = len(data["column_labels"][table_id]) - len(total_column_pred_probs[data_id][table_id])
+        #                 column_pred_probs.append(total_column_pred_probs[data_id][table_id] + [-1 for _ in range(truncated_column_num)])
                 
-                # fill the predicted probability into the dataset
-                truncated_data_id = truncated_data_info[data_id][0]
-                truncated_table_ids = truncated_data_info[data_id][1]
-                for idx, truncated_table_id in enumerate(truncated_table_ids):
-                    dataset[truncated_data_id]["table_pred_probs"][truncated_table_id] = table_pred_probs[idx]
-                    dataset[truncated_data_id]["column_pred_probs"][truncated_table_id] = column_pred_probs[idx]
+        #         # fill the predicted probability into the dataset
+        #         truncated_data_id = truncated_data_info[data_id][0]
+        #         truncated_table_ids = truncated_data_info[data_id][1]
+        #         for idx, truncated_table_id in enumerate(truncated_table_ids):
+        #             dataset[truncated_data_id]["table_pred_probs"][truncated_table_id] = table_pred_probs[idx]
+        #             dataset[truncated_data_id]["column_pred_probs"][truncated_table_id] = column_pred_probs[idx]
             
-            # check if there are tables and columns in the new dataset that have not yet been predicted
-            truncated_data_info = []
-            for data_id, data in enumerate(dataset):
-                table_num = len(data["table_labels"])
+        #     # check if there are tables and columns in the new dataset that have not yet been predicted
+        #     truncated_data_info = []
+        #     for data_id, data in enumerate(dataset):
+        #         table_num = len(data["table_labels"])
 
-                truncated_table_ids = []
-                for table_id in range(table_num):
-                    # the current table is not predicted
-                    if data["table_pred_probs"][table_id] == -1:
-                        truncated_table_ids.append(table_id)
-                    # some columns in the current table are not predicted
-                    if data["table_pred_probs"][table_id] != -1 and -1 in data["column_pred_probs"][table_id]:
-                        truncated_table_ids.append(table_id)
+        #         truncated_table_ids = []
+        #         for table_id in range(table_num):
+        #             # the current table is not predicted
+        #             if data["table_pred_probs"][table_id] == -1:
+        #                 truncated_table_ids.append(table_id)
+        #             # some columns in the current table are not predicted
+        #             if data["table_pred_probs"][table_id] != -1 and -1 in data["column_pred_probs"][table_id]:
+        #                 truncated_table_ids.append(table_id)
                 
-                if len(truncated_table_ids) > 0:
-                    truncated_data_info.append([data_id, truncated_table_ids])
+        #         if len(truncated_table_ids) > 0:
+        #             truncated_data_info.append([data_id, truncated_table_ids])
             
-            os.remove("./data/pre-processing/truncated_dataset.json")
+        #     os.remove("./data/pre-processing/truncated_dataset.json")
 
         with open(opt.output_filepath, "w") as f:
             f.write(json.dumps(dataset, indent = 2, ensure_ascii = False))

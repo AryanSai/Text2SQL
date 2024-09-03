@@ -69,9 +69,12 @@ def get_db_schemas(all_db_infos):
         primary_keys, foreign_keys = [], []
         # record primary keys
         for pk_column_idx in db["primary_keys"]:
-            pk_table_name_original = table_names_original[column_names_original[pk_column_idx][0]]
-            pk_column_name_original = column_names_original[pk_column_idx][1]
-            
+            if isinstance(pk_column_idx, list):
+                pk_table_name_original = table_names_original[column_names_original[pk_column_idx[0]][0]]
+                pk_column_name_original = column_names_original[pk_column_idx[0]][1]
+            else:
+                pk_table_name_original = table_names_original[column_names_original[pk_column_idx][0]]
+                pk_column_name_original = column_names_original[pk_column_idx][1]
             primary_keys.append(
                 {
                     "table_name_original": pk_table_name_original.lower(), 

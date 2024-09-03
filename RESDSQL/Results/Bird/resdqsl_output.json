@@ -1,0 +1,252 @@
+[
+    {
+        "input": "Which toxic element can be found in the molecule TR151? | atom : atom.molecule_id ( TR151 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR151 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR151 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecule_id = 'TRA150'"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get? | posts : posts.viewcount , posts.title ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posts.id , posts.posttypeid , posts.score | posthistory : posthistory.postid , posthistory.text ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posthistory.id , posthistory.userid , posthistory.comment ( Title , title ) | badges : badges.id , badges.name , badges.date , badges.userid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | comments.postid = posts.id | posthistory.postid = posts.id | posts.parentid = posts.id",
+        "db_id": "codebase_community",
+        "sql": "select count ( * ) from posts join posthistory on posts.id = posthistory.postid where posthistory.text = 'Integration of Weka and RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked? | player_attributes : player_attributes.preferred_foot ( left ) , player_attributes.player_api_id , player_attributes.positioning , player_attributes.player_fifa_api_id , player_attributes.gk_positioning | player : player.player_api_id , player.id , player.player_fifa_api_id , player.player_name , player.birthday | team : team.team_api_id , team.team_fifa_api_id , team.id , team.team_long_name , team.team_short_name | league : league.id , league.name , league.country_id | player_attributes.player_api_id = player.player_api_id | player_attributes.player_fifa_api_id = player.player_fifa_api_id",
+        "db_id": "european_football_2",
+        "sql": "select count ( * ) from player_attributes where preferred_foot = 'left' and attacking = 'striking'"
+    },
+    {
+        "input": "How old is the most influential user? | users : users.age , users.reputation , users.displayname ( useR ) , users.id , users.location | badges : badges.id , badges.name , badges.date , badges.userid | posthistory : posthistory.id , posthistory.text , posthistory.comment , posthistory.posthistorytypeid , posthistory.postid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | badges.userid = users.id | comments.userid = users.id | posthistory.userid = users.id",
+        "db_id": "codebase_community",
+        "sql": "select age from users order by authority desc limit 1"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set. | sets : sets.type ( commander , expansion ) , sets.id , sets.block ( Commander ) , sets.code , sets.isonlineonly | cards : cards.promotypes , cards.ispromo , cards.isonlineonly , cards.setcode , cards.subtypes | set_translations : set_translations.id , set_translations.language , set_translations.translation , set_translations.setcode | foreign_data : foreign_data.id , foreign_data.language , foreign_data.name , foreign_data.text , foreign_data.type | foreign_data.uuid = cards.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select id from sets where type = 'commissioner' group by id order by count ( * ) desc limit 1"
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation. | sets : sets.name , sets.code , sets.id , sets.block , sets.booster | set_translations : set_translations.language ( Japanese , Korean ) , set_translations.translation , set_translations.setcode , set_translations.id | foreign_data : foreign_data.language ( Japanese , Korean ) , foreign_data.id , foreign_data.name , foreign_data.text , foreign_data.type | legalities : legalities.id , legalities.format , legalities.status , legalities.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select name from sets where code not in ( select set_code from set_translations where language = 'Japanese' ) but in ( select setcode from set_translations where language = 'Korean' )"
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order. | atom : atom.molecule_id ( TR000 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR000 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR000 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecular_id = 'TR000' order by element desc"
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation. | sets : sets.name , sets.code , sets.id , sets.block , sets.booster | set_translations : set_translations.language ( Japanese , Korean ) , set_translations.translation , set_translations.setcode , set_translations.id | foreign_data : foreign_data.language ( Japanese , Korean ) , foreign_data.id , foreign_data.name , foreign_data.text , foreign_data.type | legalities : legalities.id , legalities.format , legalities.status , legalities.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select name from sets where code not in ( select set_code from set_translations where language = 'Japanese' ) but in ( select setcode from set_translations where language = 'Korean' )"
+    },
+    {
+        "input": "How old is the most influential user? | users : users.age , users.reputation , users.displayname ( useR ) , users.id , users.location | badges : badges.id , badges.name , badges.date , badges.userid | posthistory : posthistory.id , posthistory.text , posthistory.comment , posthistory.posthistorytypeid , posthistory.postid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | badges.userid = users.id | comments.userid = users.id | posthistory.userid = users.id",
+        "db_id": "codebase_community",
+        "sql": "select age from users order by authority desc limit 1"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set. | sets : sets.type ( commander , expansion ) , sets.id , sets.block ( Commander ) , sets.code , sets.isonlineonly | cards : cards.promotypes , cards.ispromo , cards.isonlineonly , cards.setcode , cards.subtypes | set_translations : set_translations.id , set_translations.language , set_translations.translation , set_translations.setcode | foreign_data : foreign_data.id , foreign_data.language , foreign_data.name , foreign_data.text , foreign_data.type | foreign_data.uuid = cards.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select id from sets where type = 'commissioner' group by id order by count ( * ) desc limit 1"
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order. | atom : atom.molecule_id ( TR000 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR000 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR000 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecular_id = 'TR000' order by element desc"
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation. | sets : sets.name , sets.code , sets.id , sets.block , sets.booster | set_translations : set_translations.language ( Japanese , Korean ) , set_translations.translation , set_translations.setcode , set_translations.id | foreign_data : foreign_data.language ( Japanese , Korean ) , foreign_data.id , foreign_data.name , foreign_data.text , foreign_data.type | legalities : legalities.id , legalities.format , legalities.status , legalities.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select name from sets where code not in ( select set_code from set_translations where language = 'Japanese' ) but in ( select setcode from set_translations where language = 'Korean' )"
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1? | atom : atom.atom_id ( TR000_1 ) , atom.element , atom.molecule_id | molecule : molecule.label , molecule.molecule_id | connected : connected.atom_id ( TR000_1 ) , connected.atom_id2 ( TR000_1 ) , connected.bond_id | bond : bond.bond_id , bond.molecule_id , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where atom_id = 'TRA00_1'"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set. | sets : sets.type ( commander , expansion ) , sets.id , sets.block ( Commander ) , sets.code , sets.isonlineonly | cards : cards.promotypes , cards.ispromo , cards.isonlineonly , cards.setcode , cards.subtypes | set_translations : set_translations.id , set_translations.language , set_translations.translation , set_translations.setcode | foreign_data : foreign_data.id , foreign_data.language , foreign_data.name , foreign_data.text , foreign_data.type | foreign_data.uuid = cards.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select id from sets where type = 'commissioner' group by id order by count ( * ) desc limit 1"
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1? | atom : atom.atom_id ( TR000_1 ) , atom.element , atom.molecule_id | molecule : molecule.label , molecule.molecule_id | connected : connected.atom_id ( TR000_1 ) , connected.atom_id2 ( TR000_1 ) , connected.bond_id | bond : bond.bond_id , bond.molecule_id , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where atom_id = 'TRA00_1'"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked? | player_attributes : player_attributes.preferred_foot ( left ) , player_attributes.player_api_id , player_attributes.positioning , player_attributes.player_fifa_api_id , player_attributes.gk_positioning | player : player.player_api_id , player.id , player.player_fifa_api_id , player.player_name , player.birthday | team : team.team_api_id , team.team_fifa_api_id , team.id , team.team_long_name , team.team_short_name | league : league.id , league.name , league.country_id | player_attributes.player_api_id = player.player_api_id | player_attributes.player_fifa_api_id = player.player_fifa_api_id",
+        "db_id": "european_football_2",
+        "sql": "select count ( * ) from player_attributes where preferred_foot = 'left' and attacking = 'striking'"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked? | player_attributes : player_attributes.preferred_foot ( left ) , player_attributes.player_api_id , player_attributes.positioning , player_attributes.player_fifa_api_id , player_attributes.gk_positioning | player : player.player_api_id , player.id , player.player_fifa_api_id , player.player_name , player.birthday | team : team.team_api_id , team.team_fifa_api_id , team.id , team.team_long_name , team.team_short_name | league : league.id , league.name , league.country_id | player_attributes.player_api_id = player.player_api_id | player_attributes.player_fifa_api_id = player.player_fifa_api_id",
+        "db_id": "european_football_2",
+        "sql": "select count ( * ) from player_attributes where preferred_foot = 'left' and attacking = 'striking'"
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\". | atom : atom.molecule_id ( TR004 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR004 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR004 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where drug_id = 'TR004'"
+    },
+    {
+        "input": "Which toxic element can be found in the molecule TR151? | atom : atom.molecule_id ( TR151 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR151 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR151 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecule_id = 'TRA150'"
+    },
+    {
+        "input": "How many student have the position of president? | member : member.position ( President ) , member.link_to_major , member.email , member.phone , member.member_id | zip_code : zip_code.type , zip_code.county , zip_code.state , zip_code.zip_code , zip_code.city ( Many ) | major : major.department , major.college , major.major_id , major.major_name | event : event.type , event.notes , event.location , event.status , event.event_id | member.zip = zip_code.zip_code | member.link_to_major = major.major_id",
+        "db_id": "student_club",
+        "sql": "select count ( * ) from member where position = 'Presentation'"
+    },
+    {
+        "input": "How many student have the position of president? | member : member.position ( President ) , member.link_to_major , member.email , member.phone , member.member_id | zip_code : zip_code.type , zip_code.county , zip_code.state , zip_code.zip_code , zip_code.city ( Many ) | major : major.department , major.college , major.major_id , major.major_name | event : event.type , event.notes , event.location , event.status , event.event_id | member.zip = zip_code.zip_code | member.link_to_major = major.major_id",
+        "db_id": "student_club",
+        "sql": "select count ( * ) from member where position = 'Presentation'"
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\". | atom : atom.molecule_id ( TR004 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR004 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR004 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where drug_id = 'TR004'"
+    },
+    {
+        "input": "How old is the most influential user? | users : users.age , users.reputation , users.displayname ( useR ) , users.id , users.location | badges : badges.id , badges.name , badges.date , badges.userid | posthistory : posthistory.id , posthistory.text , posthistory.comment , posthistory.posthistorytypeid , posthistory.postid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | badges.userid = users.id | comments.userid = users.id | posthistory.userid = users.id",
+        "db_id": "codebase_community",
+        "sql": "select age from users order by authority desc limit 1"
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\". | atom : atom.molecule_id ( TR004 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR004 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR004 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where drug_id = 'TR004'"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set. | sets : sets.type ( commander , expansion ) , sets.id , sets.block ( Commander ) , sets.code , sets.isonlineonly | cards : cards.promotypes , cards.ispromo , cards.isonlineonly , cards.setcode , cards.subtypes | set_translations : set_translations.id , set_translations.language , set_translations.translation , set_translations.setcode | foreign_data : foreign_data.id , foreign_data.language , foreign_data.name , foreign_data.text , foreign_data.type | foreign_data.uuid = cards.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select id from sets where type = 'commissioner' group by id order by count ( * ) desc limit 1"
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation. | sets : sets.name , sets.code , sets.id , sets.block , sets.booster | set_translations : set_translations.language ( Japanese , Korean ) , set_translations.translation , set_translations.setcode , set_translations.id | foreign_data : foreign_data.language ( Japanese , Korean ) , foreign_data.id , foreign_data.name , foreign_data.text , foreign_data.type | legalities : legalities.id , legalities.format , legalities.status , legalities.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select name from sets where code not in ( select set_code from set_translations where language = 'Japanese' ) but in ( select setcode from set_translations where language = 'Korean' )"
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\". | atom : atom.molecule_id ( TR004 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR004 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR004 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where drug_id = 'TR004'"
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order. | atom : atom.molecule_id ( TR000 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR000 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR000 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecular_id = 'TR000' order by element desc"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get? | posts : posts.viewcount , posts.title ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posts.id , posts.posttypeid , posts.score | posthistory : posthistory.postid , posthistory.text ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posthistory.id , posthistory.userid , posthistory.comment ( Title , title ) | badges : badges.id , badges.name , badges.date , badges.userid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | comments.postid = posts.id | posthistory.postid = posts.id | posts.parentid = posts.id",
+        "db_id": "codebase_community",
+        "sql": "select count ( * ) from posts join posthistory on posts.id = posthistory.postid where posthistory.text = 'Integration of Weka and RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation. | sets : sets.name , sets.code , sets.id , sets.block , sets.booster | set_translations : set_translations.language ( Japanese , Korean ) , set_translations.translation , set_translations.setcode , set_translations.id | foreign_data : foreign_data.language ( Japanese , Korean ) , foreign_data.id , foreign_data.name , foreign_data.text , foreign_data.type | legalities : legalities.id , legalities.format , legalities.status , legalities.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select name from sets where code not in ( select set_code from set_translations where language = 'Japanese' ) but in ( select setcode from set_translations where language = 'Korean' )"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get? | posts : posts.viewcount , posts.title ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posts.id , posts.posttypeid , posts.score | posthistory : posthistory.postid , posthistory.text ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posthistory.id , posthistory.userid , posthistory.comment ( Title , title ) | badges : badges.id , badges.name , badges.date , badges.userid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | comments.postid = posts.id | posthistory.postid = posts.id | posts.parentid = posts.id",
+        "db_id": "codebase_community",
+        "sql": "select count ( * ) from posts join posthistory on posts.id = posthistory.postid where posthistory.text = 'Integration of Weka and RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "How many student have the position of president? | member : member.position ( President ) , member.link_to_major , member.email , member.phone , member.member_id | zip_code : zip_code.type , zip_code.county , zip_code.state , zip_code.zip_code , zip_code.city ( Many ) | major : major.department , major.college , major.major_id , major.major_name | event : event.type , event.notes , event.location , event.status , event.event_id | member.zip = zip_code.zip_code | member.link_to_major = major.major_id",
+        "db_id": "student_club",
+        "sql": "select count ( * ) from member where position = 'Presentation'"
+    },
+    {
+        "input": "Which toxic element can be found in the molecule TR151? | atom : atom.molecule_id ( TR151 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR151 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR151 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecule_id = 'TRA150'"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set. | sets : sets.type ( commander , expansion ) , sets.id , sets.block ( Commander ) , sets.code , sets.isonlineonly | cards : cards.promotypes , cards.ispromo , cards.isonlineonly , cards.setcode , cards.subtypes | set_translations : set_translations.id , set_translations.language , set_translations.translation , set_translations.setcode | foreign_data : foreign_data.id , foreign_data.language , foreign_data.name , foreign_data.text , foreign_data.type | foreign_data.uuid = cards.uuid | set_translations.setcode = sets.code",
+        "db_id": "card_games",
+        "sql": "select id from sets where type = 'commissioner' group by id order by count ( * ) desc limit 1"
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order. | atom : atom.molecule_id ( TR000 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR000 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR000 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecular_id = 'TR000' order by element desc"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get? | posts : posts.viewcount , posts.title ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posts.id , posts.posttypeid , posts.score | posthistory : posthistory.postid , posthistory.text ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posthistory.id , posthistory.userid , posthistory.comment ( Title , title ) | badges : badges.id , badges.name , badges.date , badges.userid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | comments.postid = posts.id | posthistory.postid = posts.id | posts.parentid = posts.id",
+        "db_id": "codebase_community",
+        "sql": "select count ( * ) from posts join posthistory on posts.id = posthistory.postid where posthistory.text = 'Integration of Weka and RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "How many student have the position of president? | member : member.position ( President ) , member.link_to_major , member.email , member.phone , member.member_id | zip_code : zip_code.type , zip_code.county , zip_code.state , zip_code.zip_code , zip_code.city ( Many ) | major : major.department , major.college , major.major_id , major.major_name | event : event.type , event.notes , event.location , event.status , event.event_id | member.zip = zip_code.zip_code | member.link_to_major = major.major_id",
+        "db_id": "student_club",
+        "sql": "select count ( * ) from member where position = 'Presentation'"
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1? | atom : atom.atom_id ( TR000_1 ) , atom.element , atom.molecule_id | molecule : molecule.label , molecule.molecule_id | connected : connected.atom_id ( TR000_1 ) , connected.atom_id2 ( TR000_1 ) , connected.bond_id | bond : bond.bond_id , bond.molecule_id , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where atom_id = 'TRA00_1'"
+    },
+    {
+        "input": "Which toxic element can be found in the molecule TR151? | atom : atom.molecule_id ( TR151 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR151 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR151 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecule_id = 'TRA150'"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked? | player_attributes : player_attributes.preferred_foot ( left ) , player_attributes.player_api_id , player_attributes.positioning , player_attributes.player_fifa_api_id , player_attributes.gk_positioning | player : player.player_api_id , player.id , player.player_fifa_api_id , player.player_name , player.birthday | team : team.team_api_id , team.team_fifa_api_id , team.id , team.team_long_name , team.team_short_name | league : league.id , league.name , league.country_id | player_attributes.player_api_id = player.player_api_id | player_attributes.player_fifa_api_id = player.player_fifa_api_id",
+        "db_id": "european_football_2",
+        "sql": "select count ( * ) from player_attributes where preferred_foot = 'left' and attacking = 'striking'"
+    },
+    {
+        "input": "How old is the most influential user? | users : users.age , users.reputation , users.displayname ( useR ) , users.id , users.location | badges : badges.id , badges.name , badges.date , badges.userid | posthistory : posthistory.id , posthistory.text , posthistory.comment , posthistory.posthistorytypeid , posthistory.postid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | badges.userid = users.id | comments.userid = users.id | posthistory.userid = users.id",
+        "db_id": "codebase_community",
+        "sql": "select age from users order by authority desc limit 1"
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\". | atom : atom.molecule_id ( TR004 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR004 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR004 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where drug_id = 'TR004'"
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order. | atom : atom.molecule_id ( TR000 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR000 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR000 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecular_id = 'TR000' order by element desc"
+    },
+    {
+        "input": "Which toxic element can be found in the molecule TR151? | atom : atom.molecule_id ( TR151 ) , atom.element , atom.atom_id | molecule : molecule.molecule_id ( TR151 ) , molecule.label | connected : connected.atom_id , connected.atom_id2 , connected.bond_id | bond : bond.bond_id , bond.molecule_id ( TR151 ) , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where molecule_id = 'TRA150'"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get? | posts : posts.viewcount , posts.title ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posts.id , posts.posttypeid , posts.score | posthistory : posthistory.postid , posthistory.text ( Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer ) , posthistory.id , posthistory.userid , posthistory.comment ( Title , title ) | badges : badges.id , badges.name , badges.date , badges.userid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | comments.postid = posts.id | posthistory.postid = posts.id | posts.parentid = posts.id",
+        "db_id": "codebase_community",
+        "sql": "select count ( * ) from posts join posthistory on posts.id = posthistory.postid where posthistory.text = 'Integration of Weka and RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1? | atom : atom.atom_id ( TR000_1 ) , atom.element , atom.molecule_id | molecule : molecule.label , molecule.molecule_id | connected : connected.atom_id ( TR000_1 ) , connected.atom_id2 ( TR000_1 ) , connected.bond_id | bond : bond.bond_id , bond.molecule_id , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where atom_id = 'TRA00_1'"
+    },
+    {
+        "input": "How old is the most influential user? | users : users.age , users.reputation , users.displayname ( useR ) , users.id , users.location | badges : badges.id , badges.name , badges.date , badges.userid | posthistory : posthistory.id , posthistory.text , posthistory.comment , posthistory.posthistorytypeid , posthistory.postid | comments : comments.id , comments.score , comments.text , comments.postid , comments.creationdate | badges.userid = users.id | comments.userid = users.id | posthistory.userid = users.id",
+        "db_id": "codebase_community",
+        "sql": "select age from users order by authority desc limit 1"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked? | player_attributes : player_attributes.preferred_foot ( left ) , player_attributes.player_api_id , player_attributes.positioning , player_attributes.player_fifa_api_id , player_attributes.gk_positioning | player : player.player_api_id , player.id , player.player_fifa_api_id , player.player_name , player.birthday | team : team.team_api_id , team.team_fifa_api_id , team.id , team.team_long_name , team.team_short_name | league : league.id , league.name , league.country_id | player_attributes.player_api_id = player.player_api_id | player_attributes.player_fifa_api_id = player.player_fifa_api_id",
+        "db_id": "european_football_2",
+        "sql": "select count ( * ) from player_attributes where preferred_foot = 'left' and attacking = 'striking'"
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1? | atom : atom.atom_id ( TR000_1 ) , atom.element , atom.molecule_id | molecule : molecule.label , molecule.molecule_id | connected : connected.atom_id ( TR000_1 ) , connected.atom_id2 ( TR000_1 ) , connected.bond_id | bond : bond.bond_id , bond.molecule_id , bond.bond_type | atom.molecule_id = molecule.molecule_id | bond.molecule_id = molecule.molecule_id | connected.bond_id = bond.bond_id | connected.atom_id2 = atom.atom_id | connected.atom_id = atom.atom_id",
+        "db_id": "toxicology",
+        "sql": "select element from atom where atom_id = 'TRA00_1'"
+    },
+    {
+        "input": "How many student have the position of president? | member : member.position ( President ) , member.link_to_major , member.email , member.phone , member.member_id | zip_code : zip_code.type , zip_code.county , zip_code.state , zip_code.zip_code , zip_code.city ( Many ) | major : major.department , major.college , major.major_id , major.major_name | event : event.type , event.notes , event.location , event.status , event.event_id | member.zip = zip_code.zip_code | member.link_to_major = major.major_id",
+        "db_id": "student_club",
+        "sql": "select count ( * ) from member where position = 'Presentation'"
+    }
+]

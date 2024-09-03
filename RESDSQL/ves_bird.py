@@ -1,5 +1,5 @@
 import json
-import argparse,re,sys, numpy as np,time,math,sqlite3, multiprocessing as mp
+import argparse,re,sys, numpy as np,time,math,sqlite3, multiprocessing as mp, csv
 from func_timeout import func_timeout, FunctionTimedOut
 import matplotlib.pyplot as plt,numpy as np
 
@@ -25,6 +25,7 @@ def execute_sql(sql, db_path):
     return exec_time
 
 def iterated_execute_sql(predicted_sql,ground_truth,db_path,iterate_num):
+    # print(db_path)
     conn = sqlite3.connect(db_path)
     diff_list = []
     cursor = conn.cursor()
@@ -33,6 +34,7 @@ def iterated_execute_sql(predicted_sql,ground_truth,db_path,iterate_num):
     cursor.execute(ground_truth)
     ground_truth_res = cursor.fetchall()
     time_ratio = 0
+    # print(predicted_res,ground_truth_res)
     if set(predicted_res) == set(ground_truth_res):
         for i in range(iterate_num):
             predicted_time = execute_sql(predicted_sql, db_path)
@@ -49,6 +51,7 @@ def execute_model(predicted_sql,ground_truth, db_place, idx, iterate_num, meta_t
         # while it needs more your patience....
         time_ratio = func_timeout(meta_time_out * iterate_num, iterated_execute_sql,
                                   args=(predicted_sql, ground_truth, db_place, iterate_num))
+        # print([idx, math.sqrt(time_ratio)])
     except KeyboardInterrupt:
         sys.exit(0)
     except FunctionTimedOut:
@@ -64,7 +67,7 @@ def run_sqls_parallel(num_iterations, sqls, db_ids, num_cpus=1, meta_time_out=30
     pool = mp.Pool(processes=num_cpus)
     for i,sql_pair in enumerate(sqls):
         predicted_sql, ground_truth = sql_pair
-        db_path = "../Datasets/spider/database/{}/{}.sqlite".format(db_ids[i],db_ids[i])
+        db_path = "../Datasets/bird/databases/{}/{}.sqlite".format(db_ids[i],db_ids[i])
         pool.apply_async(execute_model, args=(predicted_sql, ground_truth, db_path , i, num_iterations, meta_time_out), callback=result_callback)
     pool.close()
     pool.join()
@@ -88,38 +91,36 @@ def compute_ves(exec_results):
     ves = (total_ratio/num_queries)
     return ves
 
-def compute_ves_by_diff(exec_results,hardness_list):
+
+def compute_ves_by_diff(exec_results,challengingness_list):
     num_queries = len(exec_results)
-    easy_results, medium_results, hard_results, extra_hard_results = [], [], [], []
-    for i,hardness in enumerate(hardness_list):
-        if hardness == 'easy':
-            easy_results.append(exec_results[i])
-        if hardness == 'medium':
-            medium_results.append(exec_results[i])
-        if hardness == 'hard':
-            hard_results.append(exec_results[i])
-        if hardness == 'extra':
-            extra_hard_results.append(exec_results[i])
-    easy_ves = compute_ves(easy_results)
-    medium_ves = compute_ves(medium_results)
-    hard_ves = compute_ves(hard_results)
-    extra_hard_ves = compute_ves(extra_hard_results)
+    simple_results, moderate_results, challenging_results = [], [], []
+    for i,challengingness in enumerate(challengingness_list):
+        if challengingness == 'simple':
+            simple_results.append(exec_results[i])
+        if challengingness == 'moderate':
+            moderate_results.append(exec_results[i])
+        if challengingness == 'challenging':
+            challenging_results.append(exec_results[i])
+    simple_ves = compute_ves(simple_results)
+    moderate_ves = compute_ves(moderate_results)
+    challenging_ves = compute_ves(challenging_results)
     all_ves = compute_ves(exec_results)
-    count_lists = [len(easy_results), len(medium_results), len(hard_results), len(extra_hard_results), num_queries]
-    return easy_ves, medium_ves, hard_ves, extra_hard_ves, all_ves, count_lists
+    count_lists = [len(simple_results), len(moderate_results), len(challenging_results), num_queries]
+    return simple_ves, moderate_ves, challenging_ves, all_ves, count_lists
 
 def print_data(score_lists,count_lists):
-    levels = ['easy', 'medium', 'hard', 'extra' ,'total']
-    print("{:20} {:20} {:20} {:20} {:20} {:20}".format("", *levels))
-    print("{:20} {:<20} {:<20} {:<20} {:<20} {:<20}".format('count', *count_lists))
+    levels = ['simple', 'moderate', 'challenging', 'total']
+    print("{:20} {:20} {:20} {:20} {:20}".format("", *levels))
+    print("{:20} {:<20} {:<20} {:<20} {:<20}".format('count', *count_lists))
 
     print('========================================   VES   ========================================')
-    print("{:20} {:<20.2f} {:<20.2f} {:<20.2f} {:<20.2f} {:<20.2f}".format('ves', *score_lists))
+    print("{:20} {:<20.2f} {:<20.2f} {:<20.2f} {:<20.2f}".format('ves', *score_lists))
 
 
 def plot_ves(score_lists, model_name, num_iterations):
-    save_path=results_path+model_name+'_VES_Score.png'    
-    levels = ['easy', 'medium', 'hard', 'extra', 'total']
+    save_path=results_path+model_name+'_VES_Score.png'
+    levels = ['simple', 'moderate', 'challenging', 'total']
     max_score = max(score_lists) if score_lists else 1  
     if max_score == 0:  # Add this check to handle the case where max_score is zero
         normalized_scores = [0 for score in score_lists]
@@ -145,7 +146,6 @@ if __name__ == '__main__':
     parser.add_argument('--iterations', dest='iterations', type=int, default=20)
     parser.add_argument('--output', dest='output', type=str, required=True)
     
-    
     args = parser.parse_args()
     
     model_name=args.model
@@ -153,11 +153,10 @@ if __name__ == '__main__':
     num_iterations = args.iterations
     results_path = args.output
     
-    
     gold_queries=[]
     pred_queries=[]
     db_ids=[]
-    hardness_list=[]
+    challengingness_list=[]
     
     with open(input_file, 'r') as file:
         result = json.load(file)
@@ -166,7 +165,7 @@ if __name__ == '__main__':
         gold_queries.append(entry['gold'])
         pred_queries.append(entry['pred'][0])
         db_ids.append(entry['db_id'])
-        hardness_list.append(entry['hardness'])
+        challengingness_list.append(entry['difficulty'])
 
     exec_result = []
     
@@ -174,14 +173,13 @@ if __name__ == '__main__':
     
     run_sqls_parallel(num_iterations, query_pairs, db_ids, num_cpus=1, meta_time_out=30.0)
     exec_result = sort_results(exec_result)
+    print('Started Evaluation')
     
-    print('Started VES Evaluation')
-    
-    easy_ves, medium_ves, hard_ves, extra_hard_ves, ves, count_lists = compute_ves_by_diff(exec_result, hardness_list)
-    score_lists = [easy_ves, medium_ves, hard_ves, extra_hard_ves, ves]
+    simple_ves, moderate_ves, challenging_ves, ves, count_lists = compute_ves_by_diff(exec_result, challengingness_list)
+    score_lists = [simple_ves, moderate_ves, challenging_ves, ves]
     
     print_data(score_lists, count_lists)
     print('===========================================================================================')
     print("Finished VES evaluation")
-    
+
     plot_ves(score_lists, model_name, num_iterations)

@@ -28,21 +28,21 @@ DATASET_FILE="Datasets/bird/bird_dev_as_spider.json"
 #     --moderate $MODERATE \
 #     --challenging $CHALLENGING 
 
-CUDA_VISIBLE_DEVICES=0 python3 consistency_bird.py \
-    --modelpath $MODEL_PATH\
-    --dataset $DATASET_FILE \
-    --dbdir $DB_DIR\
-    --dbtable $DB_TABLE\
-    --dataset_tag $DATASET_TAG\
-    --inputjson $INPUT_JSON \
-    --output $RESULTS_DIR \
-    --exact_threshold $EXACT \
-    --exec_threshold $EXEC \
-    --consistency_threshold $CONSISTENCY 
+# CUDA_VISIBLE_DEVICES=0 python3 consistency_bird.py \
+#     --modelpath $MODEL_PATH\
+#     --dataset $DATASET_FILE \
+#     --dbdir $DB_DIR\
+#     --dbtable $DB_TABLE\
+#     --dataset_tag $DATASET_TAG\
+#     --inputjson $INPUT_JSON \
+#     --output $RESULTS_DIR \
+#     --exact_threshold $EXACT \
+#     --exec_threshold $EXEC \
+#     --consistency_threshold $CONSISTENCY 
 
-# INPUT_FILE="Results/codegemma-7b-Q8_0_Consistency_Results_SPIDER.csv"
-# ITERATIONS=20
+INPUT_FILE="Results/newbird/codegemma-7b-Q8_0_Consistency_Results_BIRD.csv"
+ITERATIONS=20
 
-# python3 ves.py \
-#     --input_file $INPUT_FILE \
-#     --iterations $ITERATIONS
+python3 ves_bird.py \
+    --input_file $INPUT_FILE \
+    --iterations $ITERATIONS

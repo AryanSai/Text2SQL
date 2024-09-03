@@ -827,6 +827,7 @@ def execute_sql2(predicted_sql,ground_truth, db_path):
     return res    
 
 def execute_sql(predicted_sql, ground_truth_sql, db_path):
+    
     conn = sqlite3.connect(db_path)
     cursor = conn.cursor()
     
