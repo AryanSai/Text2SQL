@@ -1,0 +1,252 @@
+[
+  {
+    "input": "What are the African countries that have a  population less than any country in Asia?",
+    "db_id": "world_1",
+    "sql": "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )"
+  },
+  {
+    "input": "What is the name of the different car makers who produced a car in 1970?",
+    "db_id": "car_1",
+    "sql": "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970"
+  },
+  {
+    "input": "List the names of conductors in ascending order of age.",
+    "db_id": "orchestra",
+    "sql": "select name from conductor order by age asc"
+  },
+  {
+    "input": "What is the id, line 1, and line 2 of the address with the most students?",
+    "db_id": "student_transcripts_tracking",
+    "sql": "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1"
+  },
+  {
+    "input": "What are the African countries that have a  population less than any country in Asia?",
+    "db_id": "world_1",
+    "sql": "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )"
+  },
+  {
+    "input": "What is the id, line 1, and line 2 of the address with the most students?",
+    "db_id": "student_transcripts_tracking",
+    "sql": "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1"
+  },
+  {
+    "input": "Return the number of flights departing from Aberdeen.",
+    "db_id": "flight_2",
+    "sql": "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'"
+  },
+  {
+    "input": "What is the id, line 1, and line 2 of the address with the most students?",
+    "db_id": "student_transcripts_tracking",
+    "sql": "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1"
+  },
+  {
+    "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+    "db_id": "dog_kennels",
+    "sql": "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id"
+  },
+  {
+    "input": "What is the name of the singer with the largest net worth?",
+    "db_id": "singer",
+    "sql": "select name from singer order by net_worth_millions desc limit 1"
+  },
+  {
+    "input": "Return the number of flights departing from Aberdeen.",
+    "db_id": "flight_2",
+    "sql": "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'"
+  },
+  {
+    "input": "What is the name of the different car makers who produced a car in 1970?",
+    "db_id": "car_1",
+    "sql": "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970"
+  },
+  {
+    "input": "Show ids of all students who do not have any friends.",
+    "db_id": "network_1",
+    "sql": "select student_id from friend except select student_id from friend"
+  },
+  {
+    "input": "List the names of conductors in ascending order of age.",
+    "db_id": "orchestra",
+    "sql": "select name from conductor order by age asc"
+  },
+  {
+    "input": "What is the id, line 1, and line 2 of the address with the most students?",
+    "db_id": "student_transcripts_tracking",
+    "sql": "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1"
+  },
+  {
+    "input": "Show ids of all students who do not have any friends.",
+    "db_id": "network_1",
+    "sql": "select student_id from friend except select student_id from friend"
+  },
+  {
+    "input": "What is the name of the different car makers who produced a car in 1970?",
+    "db_id": "car_1",
+    "sql": "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970"
+  },
+  {
+    "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+    "db_id": "concert_singer",
+    "sql": "select country from singer where age > 40 intersect select country from singer where age < 30"
+  },
+  {
+    "input": "Show ids of all students who do not have any friends.",
+    "db_id": "network_1",
+    "sql": "select student_id from friend except select student_id from friend"
+  },
+  {
+    "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+    "db_id": "concert_singer",
+    "sql": "select country from singer where age > 40 intersect select country from singer where age < 30"
+  },
+  {
+    "input": "Return the number of flights departing from Aberdeen.",
+    "db_id": "flight_2",
+    "sql": "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'"
+  },
+  {
+    "input": "Which distinct car models are the produced after 1980?",
+    "db_id": "car_1",
+    "sql": "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980"
+  },
+  {
+    "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+    "db_id": "dog_kennels",
+    "sql": "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id"
+  },
+  {
+    "input": "Return the number of flights departing from Aberdeen.",
+    "db_id": "flight_2",
+    "sql": "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'"
+  },
+  {
+    "input": "List the names of conductors in ascending order of age.",
+    "db_id": "orchestra",
+    "sql": "select name from conductor order by age asc"
+  },
+  {
+    "input": "What are the African countries that have a  population less than any country in Asia?",
+    "db_id": "world_1",
+    "sql": "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )"
+  },
+  {
+    "input": "List the names of conductors in ascending order of age.",
+    "db_id": "orchestra",
+    "sql": "select name from conductor order by age asc"
+  },
+  {
+    "input": "What is the name of the singer with the largest net worth?",
+    "db_id": "singer",
+    "sql": "select name from singer order by net_worth_millions desc limit 1"
+  },
+  {
+    "input": "Return the number of flights departing from Aberdeen.",
+    "db_id": "flight_2",
+    "sql": "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'"
+  },
+  {
+    "input": "Which distinct car models are the produced after 1980?",
+    "db_id": "car_1",
+    "sql": "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980"
+  },
+  {
+    "input": "What is the name of the different car makers who produced a car in 1970?",
+    "db_id": "car_1",
+    "sql": "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970"
+  },
+  {
+    "input": "Show ids of all students who do not have any friends.",
+    "db_id": "network_1",
+    "sql": "select student_id from friend except select student_id from friend"
+  },
+  {
+    "input": "What is the name of the singer with the largest net worth?",
+    "db_id": "singer",
+    "sql": "select name from singer order by net_worth_millions desc limit 1"
+  },
+  {
+    "input": "What is the name of the singer with the largest net worth?",
+    "db_id": "singer",
+    "sql": "select name from singer order by net_worth_millions desc limit 1"
+  },
+  {
+    "input": "Which distinct car models are the produced after 1980?",
+    "db_id": "car_1",
+    "sql": "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980"
+  },
+  {
+    "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+    "db_id": "dog_kennels",
+    "sql": "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id"
+  },
+  {
+    "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+    "db_id": "concert_singer",
+    "sql": "select country from singer where age > 40 intersect select country from singer where age < 30"
+  },
+  {
+    "input": "What is the name of the different car makers who produced a car in 1970?",
+    "db_id": "car_1",
+    "sql": "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970"
+  },
+  {
+    "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+    "db_id": "dog_kennels",
+    "sql": "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id"
+  },
+  {
+    "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+    "db_id": "concert_singer",
+    "sql": "select country from singer where age > 40 intersect select country from singer where age < 30"
+  },
+  {
+    "input": "What is the name of the singer with the largest net worth?",
+    "db_id": "singer",
+    "sql": "select name from singer order by net_worth_millions desc limit 1"
+  },
+  {
+    "input": "What are the African countries that have a  population less than any country in Asia?",
+    "db_id": "world_1",
+    "sql": "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )"
+  },
+  {
+    "input": "Which distinct car models are the produced after 1980?",
+    "db_id": "car_1",
+    "sql": "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980"
+  },
+  {
+    "input": "List the names of conductors in ascending order of age.",
+    "db_id": "orchestra",
+    "sql": "select name from conductor order by age asc"
+  },
+  {
+    "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+    "db_id": "concert_singer",
+    "sql": "select country from singer where age > 40 intersect select country from singer where age < 30"
+  },
+  {
+    "input": "What are the African countries that have a  population less than any country in Asia?",
+    "db_id": "world_1",
+    "sql": "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )"
+  },
+  {
+    "input": "What is the id, line 1, and line 2 of the address with the most students?",
+    "db_id": "student_transcripts_tracking",
+    "sql": "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1"
+  },
+  {
+    "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+    "db_id": "dog_kennels",
+    "sql": "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id"
+  },
+  {
+    "input": "Which distinct car models are the produced after 1980?",
+    "db_id": "car_1",
+    "sql": "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980"
+  },
+  {
+    "input": "Show ids of all students who do not have any friends.",
+    "db_id": "network_1",
+    "sql": "select student_id from friend except select student_id from friend"
+  }
+]

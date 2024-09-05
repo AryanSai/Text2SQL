@@ -52,13 +52,13 @@ python preprocess_final_list.py \
     --output "${RESULTS_DIR}/preprocessed_final_list_${MODEL}.json" \
 
 echo preprocess test set
-python preprocessing.py \
-    --mode "test" \
-    --table_path $table_path \
-    --input_dataset_path "${RESULTS_DIR}/preprocessed_final_list_${MODEL}.json" \
-    --output_dataset_path "${RESULTS_DIR}/preprocessed_dev_${MODEL}.json" \
-    --db_path $db_path \
-    --target_type "sql" 
+# python preprocessing.py \
+#     --mode "test" \
+#     --table_path $table_path \
+#     --input_dataset_path "${RESULTS_DIR}/preprocessed_final_list_${MODEL}.json" \
+#     --output_dataset_path "${RESULTS_DIR}/preprocessed_dev_${MODEL}.json" \
+#     --db_path $db_path \
+#     --target_type "sql" 
 
 echo predict probability for each schema item
 python schema_item_classifier.py \

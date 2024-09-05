@@ -212,6 +212,7 @@ def decode_natsqls2(
     final_sqls = []
 
     for batch_id in range(batch_size):
+        pred_executable_sql = ""
         db_id = batch_db_ids[batch_id]
         db_file_path = db_path + "/{}/{}.sqlite".format(db_id, db_id)
         
@@ -272,6 +273,7 @@ def decode_sqls2(
     final_sqls = []
     
     for batch_id in range(batch_size):
+        pred_executable_sql = ""
         db_id = batch_db_ids[batch_id]
         db_file_path = db_path + "/{}/{}.sqlite".format(db_id, db_id)
         for seq_id in range(num_return_sequences):

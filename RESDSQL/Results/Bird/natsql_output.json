@@ -1,0 +1,252 @@
+[
+    {
+        "input": "Which toxic element can be found in the molecule TR151?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR151'"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+        "db_id": "codebase_community",
+        "sql": "select count ( posts.viewcount ) from posts where posts.title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+        "db_id": "european_football_2",
+        "sql": ""
+    },
+    {
+        "input": "How old is the most influential user?",
+        "db_id": "codebase_community",
+        "sql": "select users.age from users order by users.reputation desc limit 1"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR000' order by atom.element asc"
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "How old is the most influential user?",
+        "db_id": "codebase_community",
+        "sql": "select users.age from users order by users.reputation desc limit 1"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR000' order by atom.element asc"
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.atom_id = 'TR000_1'"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.atom_id = 'TR000_1'"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+        "db_id": "european_football_2",
+        "sql": ""
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+        "db_id": "european_football_2",
+        "sql": ""
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\".",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR004'"
+    },
+    {
+        "input": "Which toxic element can be found in the molecule TR151?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR151'"
+    },
+    {
+        "input": "How many student have the position of president?",
+        "db_id": "student_club",
+        "sql": "select count ( member.email ) from member where member.position = 'President'"
+    },
+    {
+        "input": "How many student have the position of president?",
+        "db_id": "student_club",
+        "sql": "select count ( member.email ) from member where member.position = 'President'"
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\".",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR004'"
+    },
+    {
+        "input": "How old is the most influential user?",
+        "db_id": "codebase_community",
+        "sql": "select users.age from users order by users.reputation desc limit 1"
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\".",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR004'"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\".",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR004'"
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR000' order by atom.element asc"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+        "db_id": "codebase_community",
+        "sql": "select count ( posts.viewcount ) from posts where posts.title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+        "db_id": "codebase_community",
+        "sql": "select count ( posts.viewcount ) from posts where posts.title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "How many student have the position of president?",
+        "db_id": "student_club",
+        "sql": "select count ( member.email ) from member where member.position = 'President'"
+    },
+    {
+        "input": "Which toxic element can be found in the molecule TR151?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR151'"
+    },
+    {
+        "input": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+        "db_id": "card_games",
+        "sql": ""
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR000' order by atom.element asc"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+        "db_id": "codebase_community",
+        "sql": "select count ( posts.viewcount ) from posts where posts.title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "How many student have the position of president?",
+        "db_id": "student_club",
+        "sql": "select count ( member.email ) from member where member.position = 'President'"
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.atom_id = 'TR000_1'"
+    },
+    {
+        "input": "Which toxic element can be found in the molecule TR151?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR151'"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+        "db_id": "european_football_2",
+        "sql": ""
+    },
+    {
+        "input": "How old is the most influential user?",
+        "db_id": "codebase_community",
+        "sql": "select users.age from users order by users.reputation desc limit 1"
+    },
+    {
+        "input": "List all the elements of the toxicology of the molecule \"TR004\".",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR004'"
+    },
+    {
+        "input": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR000' order by atom.element asc"
+    },
+    {
+        "input": "Which toxic element can be found in the molecule TR151?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.molecule_id = 'TR151'"
+    },
+    {
+        "input": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+        "db_id": "codebase_community",
+        "sql": "select count ( posts.viewcount ) from posts where posts.title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'"
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.atom_id = 'TR000_1'"
+    },
+    {
+        "input": "How old is the most influential user?",
+        "db_id": "codebase_community",
+        "sql": "select users.age from users order by users.reputation desc limit 1"
+    },
+    {
+        "input": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+        "db_id": "european_football_2",
+        "sql": ""
+    },
+    {
+        "input": "What is the element of toxicology for the atom with the ID of TR000_1?",
+        "db_id": "toxicology",
+        "sql": "select atom.element from atom where atom.atom_id = 'TR000_1'"
+    },
+    {
+        "input": "How many student have the position of president?",
+        "db_id": "student_club",
+        "sql": "select count ( member.email ) from member where member.position = 'President'"
+    }
+]

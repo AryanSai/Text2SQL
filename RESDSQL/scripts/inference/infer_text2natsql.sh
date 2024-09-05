@@ -55,71 +55,71 @@ else
     exit
 fi
 
-echo prepare table file for natsql
-python NatSQL/table_transform.py \
-    --in_file $table_path \
-    --out_file $tables_for_natsql \
-    --correct_col_type \
-    --remove_start_table  \
-    --analyse_same_column \
-    --table_transform \
-    --correct_primary_keys \
-    --use_extra_col_types \
-    --db_path $db_path
+# echo prepare table file for natsql
+# python NatSQL/table_transform.py \
+#     --in_file $table_path \
+#     --out_file $tables_for_natsql \
+#     --correct_col_type \
+#     --remove_start_table  \
+#     --analyse_same_column \
+#     --table_transform \
+#     --correct_primary_keys \
+#     --use_extra_col_types \
+#     --db_path $db_path
 
-echo preprocess test set
-python preprocessing.py \
-    --mode "test" \
-    --table_path $table_path \
-    --input_dataset_path  $preprocessed_dataset\
-    --output_dataset_path "${RESULTS_DIR}/natsql_preprocessed_dev_${MODEL}.json" \
-    --db_path $db_path \
-    --target_type "sql" 
+# echo preprocess test set
+# python preprocessing.py \
+#     --mode "test" \
+#     --table_path $table_path \
+#     --input_dataset_path  $preprocessed_dataset\
+#     --output_dataset_path "${RESULTS_DIR}/natsql_preprocessed_dev_${MODEL}.json" \
+#     --db_path $db_path \
+#     --target_type "sql" 
 
-echo predict probability for each schema item
-python schema_item_classifier.py \
-    --batch_size 32 \
-    --device $device \
-    --seed 42 \
-    --save_path "./models/text2sql_schema_item_classifier" \
-    --dev_filepath "${RESULTS_DIR}/natsql_preprocessed_dev_${MODEL}.json" \
-    --output_filepath "${RESULTS_DIR}/natsql_test_with_probs_resdsql_${MODEL}.json" \
-    --use_contents \
-    --add_fk_info \
-    --mode "test"
+# echo predict probability for each schema item
+# python schema_item_classifier.py \
+#     --batch_size 32 \
+#     --device $device \
+#     --seed 42 \
+#     --save_path "./models/text2sql_schema_item_classifier" \
+#     --dev_filepath "${RESULTS_DIR}/natsql_preprocessed_dev_${MODEL}.json" \
+#     --output_filepath "${RESULTS_DIR}/natsql_test_with_probs_resdsql_${MODEL}.json" \
+#     --use_contents \
+#     --add_fk_info \
+#     --mode "test"
 
-echo generate text2sql test set
-python text2sql_data_generator.py \
-    --input_dataset_path "${RESULTS_DIR}/natsql_test_with_probs_resdsql_${MODEL}.json" \
-    --output_dataset_path "${RESULTS_DIR}/natsql_test_${MODEL}.json" \
-    --topk_table_num 4 \
-    --topk_column_num 5 \
-    --mode "test" \
-    --use_contents \
-    --add_fk_info \
-    --output_skeleton \
-    --target_type "sql"
+# echo generate text2sql test set
+# python text2sql_data_generator.py \
+#     --input_dataset_path "${RESULTS_DIR}/natsql_test_with_probs_resdsql_${MODEL}.json" \
+#     --output_dataset_path "${RESULTS_DIR}/natsql_test_${MODEL}.json" \
+#     --topk_table_num 4 \
+#     --topk_column_num 5 \
+#     --mode "test" \
+#     --use_contents \
+#     --add_fk_info \
+#     --output_skeleton \
+#     --target_type "sql"
 
-echo inference using the best text2sql ckpt
-python text2sql.py \
-    --batch_size 1 \
-    --device 1 \
-    --seed 42 \
-    --save_path $model_path \
-    --mode "eval" \
-    --dev_filepath "${RESULTS_DIR}/natsql_test_${MODEL}.json" \
-    --original_dev_filepath $original_dev \
-    --db_path $db_path \
-    --num_beams 8 \
-    --num_return_sequences 8 \
-    --target_type "sql" \
-    --output "${RESULTS_DIR}/natsql_output.json"
+# echo inference using the best text2sql ckpt
+# python text2sql.py \
+#     --batch_size 1 \
+#     --device 1 \
+#     --seed 42 \
+#     --save_path $model_path \
+#     --mode "eval" \
+#     --dev_filepath "${RESULTS_DIR}/natsql_test_${MODEL}.json" \
+#     --original_dev_filepath $original_dev \
+#     --db_path $db_path \
+#     --num_beams 8 \
+#     --num_return_sequences 8 \
+#     --target_type "sql" \
+#     --output "${RESULTS_DIR}/natsql_output.json"
 
-echo preparing for consistency
-python3 prepare_for_consistency.py\
-    --input "${RESULTS_DIR}/natsql_output.json"\
-    --original_dev $original_dev \
-    --output "${RESULTS_DIR}/natsql_output_for_consistency_${MODEL}.json"
+# echo preparing for consistency
+# python3 prepare_for_consistency.py\
+#     --input "${RESULTS_DIR}/natsql_output.json"\
+#     --original_dev $original_dev \
+#     --output "${RESULTS_DIR}/natsql_output_for_consistency_${MODEL}.json"
 
 if [ $2 = "spider" ]
 then
