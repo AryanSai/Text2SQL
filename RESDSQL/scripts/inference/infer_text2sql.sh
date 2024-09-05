@@ -113,7 +113,7 @@ then
     --dbdir $db_path\
     --dbtable $table_path\
     --inputjson "${RESULTS_DIR}/resdqsl_output_for_consistency_${MODEL}.json"\
-    --output $RESULTS_DIR \
+    --output "${RESULTS_DIR}/" \
     --exact_threshold $EXACT \
     --exec_threshold $EXEC \
     --consistency_threshold $CONSISTENCY \

@@ -45,7 +45,8 @@ if __name__ == '__main__':
     question_dict = {entry["question"]: entry for entry in data2}
 
     for entry in result:
-        input_str = entry["input"].split('|')[0].strip()
+        input_str = entry["input"]
+        # .split('|')[0].strip()
 
         if input_str in question_dict:
             merged_entry = {

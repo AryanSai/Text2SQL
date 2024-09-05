@@ -196,6 +196,120 @@ def decode_natsqls(
     
     return final_sqls
 
+
+def decode_natsqls2(
+    db_path,
+    generator_outputs,
+    batch_db_ids,
+    batch_inputs,
+    tokenizer,
+    batch_tc_original,
+    table_dict
+):
+    batch_size = generator_outputs.shape[0]
+    num_return_sequences = generator_outputs.shape[1]
+
+    final_sqls = []
+
+    for batch_id in range(batch_size):
+        db_id = batch_db_ids[batch_id]
+        db_file_path = db_path + "/{}/{}.sqlite".format(db_id, db_id)
+        
+        for seq_id in range(num_return_sequences):
+            cursor = get_cursor_from_path(db_file_path)
+            pred_sequence = tokenizer.decode(generator_outputs[batch_id, seq_id, :], skip_special_tokens = True)
+
+            pred_natsql = pred_sequence.split("|")[-1].strip()
+            pred_natsql = pred_natsql.replace("='", "= '").replace("!=", " !=").replace(",", " ,")
+            old_pred_natsql = pred_natsql
+            pred_natsql = fix_fatal_errors_in_natsql(pred_natsql, batch_tc_original[batch_id])
+            if old_pred_natsql != pred_natsql:
+                # print("Before fix:", old_pred_natsql)
+                # print("After fix:", pred_natsql)
+                print("---------------")
+            pred_sql = natsql_to_sql(pred_natsql, db_id, db_file_path, table_dict[db_id]).strip()
+
+            try:
+                # Note: execute_sql will be success for empty string
+                assert len(pred_sql) > 0, "pred sql is empty!"
+
+                results = execute_sql(cursor, pred_sql)
+                # if the current sql has no execution error, we record and return it
+                pred_executable_sql = pred_sql
+                cursor.close()
+                cursor.connection.close()
+                break
+            except Exception as e:
+                # print(pred_sql)
+                # print(e)
+                cursor.close()
+                cursor.connection.close()
+            except FunctionTimedOut as fto:
+                # print(pred_sql)
+                # print(fto)
+                del cursor
+                
+        result = {
+            'input': batch_inputs[batch_id].split('|')[0].strip(),
+            'db_id': db_id,
+            'sql': pred_executable_sql
+        }
+        final_sqls.append(result)
+        
+    return final_sqls
+
+def decode_sqls2(
+    db_path,
+    generator_outputs,
+    batch_db_ids,
+    batch_inputs,
+    tokenizer,
+    batch_tc_original
+):
+    batch_size = generator_outputs.shape[0]
+    num_return_sequences = generator_outputs.shape[1]
+
+    final_sqls = []
+    
+    for batch_id in range(batch_size):
+        db_id = batch_db_ids[batch_id]
+        db_file_path = db_path + "/{}/{}.sqlite".format(db_id, db_id)
+        for seq_id in range(num_return_sequences):
+            cursor = get_cursor_from_path(db_file_path)
+            pred_sequence = tokenizer.decode(generator_outputs[batch_id, seq_id, :], skip_special_tokens = True)
+
+            pred_sql = pred_sequence.split("|")[-1].strip()
+            pred_sql = pred_sql.replace("='", "= '").replace("!=", " !=").replace(",", " ,")
+        
+            try:
+                # Note: execute_sql will be success for empty string
+                assert len(pred_sql) > 0, "pred sql is empty!"
+                results = execute_sql(cursor, pred_sql)
+                # if the current sql has no execution error, we record and return it
+                pred_executable_sql = pred_sql
+                cursor.close()
+                cursor.connection.close()
+                break
+            except Exception as e:
+                # print(pred_sql)
+                # print(e)
+                cursor.close()
+                cursor.connection.close()
+            except FunctionTimedOut as fto:
+                # print(pred_sql)
+                # print(fto)
+                del cursor
+                
+        result = {
+            'input': batch_inputs[batch_id].split('|')[0].strip(),
+            'db_id': db_id,
+            'sql': pred_executable_sql
+        }
+        final_sqls.append(result)
+    
+    return final_sqls
+
+
 def decode_sqls(
     db_path,
     generator_outputs,
@@ -248,75 +362,3 @@ def decode_sqls(
         
     
     return final_sqls
-
-def decode_natsqls2(
-    db_path,
-    generator_outputs,
-    batch_db_ids,
-    batch_inputs,
-    tokenizer,
-    batch_tc_original,
-    table_dict
-):
-    batch_size = generator_outputs.shape[0]
-    num_return_sequences = generator_outputs.shape[1]
-
-    results = []
-    
-    for batch_id in range(batch_size):
-        db_id = batch_db_ids[batch_id]
-        db_file_path = db_path + "/{}/{}.sqlite".format(db_id, db_id)
-        
-        for seq_id in range(num_return_sequences):
-            cursor = get_cursor_from_path(db_file_path)
-            pred_sequence = tokenizer.decode(generator_outputs[batch_id, seq_id, :], skip_special_tokens = True)
-
-            pred_natsql = pred_sequence.split("|")[-1].strip()
-            pred_natsql = pred_natsql.replace("='", "= '").replace("!=", " !=").replace(",", " ,")
-            old_pred_natsql = pred_natsql
-            pred_natsql = fix_fatal_errors_in_natsql(pred_natsql, batch_tc_original[batch_id])
-            if old_pred_natsql != pred_natsql:
-                # print("Before fix:", old_pred_natsql)
-                # print("After fix:", pred_natsql)
-                print("---------------")
-            pred_sql = natsql_to_sql(pred_natsql, db_id, db_file_path, table_dict[db_id]).strip()
-        
-        result = {
-            'input': batch_inputs[batch_id],
-            'db_id': db_id,
-            'sql': pred_sql
-        }
-        results.append(result)
-        
-    return results
-
-def decode_sqls2(
-    db_path,
-    generator_outputs,
-    batch_db_ids,
-    batch_inputs,
-    tokenizer,
-    batch_tc_original
-):
-    batch_size = generator_outputs.shape[0]
-    num_return_sequences = generator_outputs.shape[1]
-
-    results = []
-    
-    for batch_id in range(batch_size):
-        db_id = batch_db_ids[batch_id]
-        
-        for seq_id in range(num_return_sequences):
-            pred_sequence = tokenizer.decode(generator_outputs[batch_id, seq_id, :], skip_special_tokens = True)
-
-            pred_sql = pred_sequence.split("|")[-1].strip()
-            pred_sql = pred_sql.replace("='", "= '").replace("!=", " !=").replace(",", " ,")
-        
-        result = {
-            'input': batch_inputs[batch_id],
-            'db_id': db_id,
-            'sql': pred_sql
-        }
-        results.append(result)
-    
-    return results
