@@ -2,7 +2,7 @@
 
 REPEAT=5
 MODEL_PATH="Models/codegemma-7b-Q8_0.gguf"
-RESULTS_DIR="Results/"
+RESULTS_DIR="Results/Spider/"
 TOTAL=10
 EASY=10
 MEDIUM=20
@@ -16,7 +16,6 @@ CONSISTENCY=0.5
 
 DB_DIR="Datasets/spider/database"
 DB_TABLE="Datasets/spider/tables.json"
-DATASET_TAG="_SPIDER"
 INPUT_JSON="input_list_SPIDER.json"
 DATASET_FILE="Datasets/spider/dev_with_hardness.json"
 OUTPUT="input_list_SPIDER.json"
@@ -36,7 +35,6 @@ OUTPUT="input_list_SPIDER.json"
 #     --dataset $DATASET_FILE \
 #     --dbdir $DB_DIR\
 #     --dbtable $DB_TABLE\
-#     --dataset_tag $DATASET_TAG\
 #     --inputjson $INPUT_JSON \
 #     --output $RESULTS_DIR \
 #     --exact_threshold $EXACT \

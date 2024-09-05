@@ -60,31 +60,31 @@ def pick_difficulty_lists(dataset, number_of_samples,repeat):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--dataset', dest='dataset', type=str, required=True)
-    parser.add_argument('--dataset_tag', dest='dataset_tag', type=str, required=True)
     parser.add_argument('--repeat', dest='repeat', type=int, default=7)
     parser.add_argument('--total', dest='total', type=int, default=50)
     parser.add_argument('--simple', dest='simple', type=int, default=20)
     parser.add_argument('--moderate', dest='moderate', type=int, default=30)
     parser.add_argument('--challenging', dest='challenging', type=int, default=50)
+    parser.add_argument('--outputjson', dest='outputjson', type=str, required=True)
     
     args = parser.parse_args()
     
     dataset = args.dataset
-    dataset_tag = args.dataset_tag
     repeat = args.repeat
     total = args.total
     simple =args.simple
     moderate = args.moderate
     challenging = args.challenging
+    outputjson = args.outputjson
     
     number_of_samples = divide_samples(total, simple, moderate, challenging)
     # number_of_samples =[1,1,1]
     
     final_list = pick_difficulty_lists(dataset, number_of_samples, repeat)
     
-    save_json(final_list, repeat, 'input_list'+dataset_tag+'.json')
+    save_json(final_list, repeat, outputjson)
 
-    # loaded_list = load_json('final_list'+dataset_tag+'.json')
+    # loaded_list = load_json('input_list_BIRD.json')
     
     # print(loaded_list)
     print('---List Generation Complete---')

@@ -69,7 +69,7 @@ def fetchSchema(db):
 def model_predict(question):
     template = "Question: Convert the following text to an SQLite query and end the query with a semi-colon(;). Please provide only the query without any explanation: " 
     with suppress_stdout_stderr():
-        llm = Llama(model_path = model_path, n_ctx=512,n_gpu_layers=15)
+        llm = Llama(model_path = model_path, n_ctx=512,n_gpu_layers=18)
         output = llm(
             prompt = template + question + "\nAnswer:",
             max_tokens=300,
@@ -116,7 +116,7 @@ def plot_heatmap(title,df,labels,measure_name):
     plot = sns.heatmap(df, cmap="Blues", annot=labels, fmt="", annot_kws={"size": 12})
     plt.title(title) 
     plt.suptitle('n = ' + str(repeat), fontsize=10)
-    plot.figure.savefig(results_path + measure_name +dataset_tag+".png")  
+    plot.figure.savefig(results_path + measure_name +"_BIRD.png")  
     plt.close()
 
 def load_json(filename):
@@ -140,12 +140,10 @@ if __name__ == "__main__":
     print('===========================================================================================')
     
     parser = argparse.ArgumentParser()
-
     parser.add_argument('--modelpath', dest='modelpath', type=str, required=True)
     parser.add_argument('--dataset', dest='dataset', type=str, required=True)
     parser.add_argument('--dbdir', dest='dbdir', type=str, required=True)
     parser.add_argument('--dbtable', dest='dbtable', type=str, required=True)
-    parser.add_argument('--dataset_tag', dest='dataset_tag', type=str, required=True)
     parser.add_argument('--inputjson', dest='inputjson', type=str, required=True)
     parser.add_argument('--output', dest='output', type=str, required=True)
     parser.add_argument('--exact_threshold', dest='exact_threshold', type=float, required=True)
@@ -153,12 +151,11 @@ if __name__ == "__main__":
     parser.add_argument('--consistency_threshold', dest='consistency_threshold', type=float, required=True)
     
     args = parser.parse_args()
-
+    
     model_path = args.modelpath
     dataset = args.dataset
     db_dir = args.dbdir
     table = args.dbtable
-    dataset_tag = args.dataset_tag
     input_json = args.inputjson
     results_path = args.output
     threshold_for_execution = args.exec_threshold
@@ -278,11 +275,11 @@ if __name__ == "__main__":
         df_cm_exact_and_exec_labels = create_labeled_dataframe(cm_exact_and_exec)
 
         # plot the heatmaps
-        plot_heatmap('Consistency on Exact Measure',df_cm_exact_numeric,df_cm_exact_labels,"_Exact_Measure")
-        plot_heatmap('Consistency on Execution Measure',df_cm_exec_numeric,df_cm_exec_labels,"_Execution_Measure")
-        plot_heatmap('Consistency on Both Exact and Execution Measure',df_cm_exact_and_exec_numeric,df_cm_exact_and_exec_labels,"_Exact_And_Execution_Measure")
+        plot_heatmap(model_name+'_Consistency on Exact Measure',df_cm_exact_numeric,df_cm_exact_labels,"_Exact_Measure")
+        plot_heatmap(model_name+'_Consistency on Execution Measure',df_cm_exec_numeric,df_cm_exec_labels,"_Execution_Measure")
+        plot_heatmap(model_name+'_Consistency on Both Exact and Execution Measure',df_cm_exact_and_exec_numeric,df_cm_exact_and_exec_labels,"_Exact_And_Execution_Measure")
 
-    result.to_csv(results_path + "_Consistency_Results" + dataset_tag + ".csv")
+    result.to_csv(results_path + model_name+"_Consistency_Results_BIRD.csv")
     
     print('===========================================================================================')
     print("Finished Consistency Metric Evaluation")
