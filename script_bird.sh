@@ -1,9 +1,9 @@
 #!/bin/bash
 
-REPEAT=5
+REPEAT=7
 MODEL_PATH="Models/codegemma-7b-Q8_0.gguf"
 RESULTS_DIR="Results/Bird/"
-TOTAL=100
+TOTAL=500
 SIMPLE=20
 MODERATE=30
 CHALLENGING=50
@@ -18,18 +18,18 @@ DB_TABLE="Datasets/bird/dev_tables.json"
 INPUT_JSON="input_list_BIRD.json"
 DATASET_FILE="Datasets/bird/bird_dev_as_spider.json"
 
-echo Input Generation------------------------------------------------
-python3 input_generator_bird.py \
-    --dataset $DATASET_FILE \
-    --repeat $REPEAT\
-    --total $TOTAL \
-    --simple $SIMPLE \
-    --moderate $MODERATE \
-    --challenging $CHALLENGING \
-    --outputjson $INPUT_JSON
+# echo Input Generation------------------------------------------------
+# python3 input_generator_bird.py \
+#     --dataset $DATASET_FILE \
+#     --repeat $REPEAT\
+#     --total $TOTAL \
+#     --simple $SIMPLE \
+#     --moderate $MODERATE \
+#     --challenging $CHALLENGING \
+#     --outputjson $INPUT_JSON
 
 echo Consistency Evaluation------------------------------------------------
-CUDA_VISIBLE_DEVICES=0 python3 consistency_bird.py \
+CUDA_VISIBLE_DEVICES=1 python3 consistency_bird.py \
     --modelpath $MODEL_PATH\
     --dataset $DATASET_FILE \
     --dbdir $DB_DIR\

@@ -10,6 +10,7 @@
 
 
 To Do:
-
-- ASTORMER also
+- ASTORMER
 - wandb
+- f1 score
+- time tracking for inference

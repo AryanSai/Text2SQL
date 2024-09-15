@@ -12,3 +12,4 @@ RESDSQL/third_party/
 RESDSQL/predictions/
 RESDSQL/__pycache__/
 astormer/
+wandb/

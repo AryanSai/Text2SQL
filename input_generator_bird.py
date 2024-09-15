@@ -78,13 +78,14 @@ if __name__ == "__main__":
     outputjson = args.outputjson
     
     number_of_samples = divide_samples(total, simple, moderate, challenging)
+    print(number_of_samples)
     # number_of_samples =[1,1,1]
     
     final_list = pick_difficulty_lists(dataset, number_of_samples, repeat)
     
     save_json(final_list, repeat, outputjson)
 
-    # loaded_list = load_json('input_list_BIRD.json')
+    loaded_list = load_json('input_list_BIRD.json')
     
-    # print(loaded_list)
+    print(loaded_list)
     print('---List Generation Complete---')

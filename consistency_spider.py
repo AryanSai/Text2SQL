@@ -7,7 +7,9 @@ from evaluation import main
 # from list_generator import pick_hardness_lists
 import nltk
 nltk.download('punkt_tab')
-  
+import wandb
+wandb.login(key = 'b58371874ad31931082450505a758fce636f6d3f')
+
 class suppress_stdout_stderr(object):
     def __enter__(self):
         self.outnull_file = open(os.devnull, 'w')
@@ -71,7 +73,7 @@ def fetchSchema(db):
 def model_predict(question):
     template = "Question: Convert the following text to an SQLite query and end the query with a semi-colon(;). Please provide only the query without any explanation: " 
     with suppress_stdout_stderr():
-        llm = Llama(model_path = model_path, n_ctx=512,n_gpu_layers=15)
+        llm = Llama(model_path = model_path, n_ctx=512,n_gpu_layers=20)
         output = llm(
             prompt = template + question + "\nAnswer:",
             max_tokens=300,
@@ -286,3 +288,4 @@ if __name__ == "__main__":
     
     print('===========================================================================================')
     print("Finished Consistency Metric Evaluation")
+    wandb.finish()

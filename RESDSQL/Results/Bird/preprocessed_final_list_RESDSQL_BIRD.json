@@ -1,3722 +1,1452 @@
 [
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "Which toxic element can be found in the molecule TR151?",
-        "question_id": 290,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR151\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
-        "db_id": "codebase_community",
-        "difficulty": "moderate",
-        "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
-        "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
-        "question_id": 572,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        4
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                31,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            35,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
-        "db_id": "european_football_2",
-        "difficulty": "moderate",
-        "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
-        "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
-        "question_id": 1080,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            7,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"left\"",
-                    null
-                ],
-                "and",
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            8,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"low\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
-        "db_id": "codebase_community",
-        "difficulty": "simple",
-        "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
-        "question": "How old is the most influential user?",
-        "question_id": 661,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        6
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                64,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            53,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    6
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    1,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            53,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": []
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
-        "db_id": "card_games",
-        "difficulty": "challenging",
-        "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
-        "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
-        "question_id": 513,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 1,
-            "orderBy": [
-                "desc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            106,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                87,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            107,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"commander\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
-        "db_id": "card_games",
-        "difficulty": "moderate",
-        "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
-        "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
-        "question_id": 529,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                102,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    8,
-                    [
-                        0,
-                        [
-                            0,
-                            91,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    4
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            110,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": [
-                            [
-                                false,
-                                2,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"Korean\"",
-                                null
-                            ],
-                            "and",
-                            [
-                                true,
-                                9,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"%Japanese%\"",
-                                null
-                            ]
-                        ]
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR000 is the molecule id;",
-        "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
-        "question_id": 220,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 3,
-            "orderBy": [
-                "asc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            3,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
-        "db_id": "card_games",
-        "difficulty": "moderate",
-        "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
-        "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
-        "question_id": 529,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                102,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    8,
-                    [
-                        0,
-                        [
-                            0,
-                            91,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    4
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            110,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": [
-                            [
-                                false,
-                                2,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"Korean\"",
-                                null
-                            ],
-                            "and",
-                            [
-                                true,
-                                9,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"%Japanese%\"",
-                                null
-                            ]
-                        ]
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
-        "db_id": "codebase_community",
-        "difficulty": "simple",
-        "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
-        "question": "How old is the most influential user?",
-        "question_id": 661,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        6
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                64,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            53,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    6
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    1,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            53,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": []
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
-        "db_id": "card_games",
-        "difficulty": "challenging",
-        "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
-        "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
-        "question_id": 513,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 1,
-            "orderBy": [
-                "desc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            106,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                87,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            107,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"commander\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR000 is the molecule id;",
-        "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
-        "question_id": 220,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 3,
-            "orderBy": [
-                "asc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            3,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
-        "db_id": "card_games",
-        "difficulty": "moderate",
-        "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
-        "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
-        "question_id": 529,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                102,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    8,
-                    [
-                        0,
-                        [
-                            0,
-                            91,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    4
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            110,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": [
-                            [
-                                false,
-                                2,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"Korean\"",
-                                null
-                            ],
-                            "and",
-                            [
-                                true,
-                                9,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"%Japanese%\"",
-                                null
-                            ]
-                        ]
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
-        "question_id": 322,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            1,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000_1\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
-        "db_id": "card_games",
-        "difficulty": "challenging",
-        "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
-        "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
-        "question_id": 513,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 1,
-            "orderBy": [
-                "desc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            106,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                87,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            107,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"commander\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
-        "question_id": 322,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            1,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000_1\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
-        "db_id": "european_football_2",
-        "difficulty": "moderate",
-        "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
-        "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
-        "question_id": 1080,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            7,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"left\"",
-                    null
-                ],
-                "and",
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            8,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"low\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
-        "db_id": "european_football_2",
-        "difficulty": "moderate",
-        "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
-        "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
-        "question_id": 1080,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            7,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"left\"",
-                    null
-                ],
-                "and",
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            8,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"low\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR004 is the molecule id;",
-        "question": "List all the elements of the toxicology of the molecule \"TR004\".",
-        "question_id": 240,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR004\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "Which toxic element can be found in the molecule TR151?",
-        "question_id": 290,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR151\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
-        "db_id": "student_club",
-        "difficulty": "simple",
-        "evidence": "'President' is a position of Student Club",
-        "question": "How many student have the position of president?",
-        "question_id": 1377,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        7
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                40,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            44,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"President\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
-        "db_id": "student_club",
-        "difficulty": "simple",
-        "evidence": "'President' is a position of Student Club",
-        "question": "How many student have the position of president?",
-        "question_id": 1377,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        7
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                40,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            44,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"President\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR004 is the molecule id;",
-        "question": "List all the elements of the toxicology of the molecule \"TR004\".",
-        "question_id": 240,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR004\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
-        "db_id": "codebase_community",
-        "difficulty": "simple",
-        "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
-        "question": "How old is the most influential user?",
-        "question_id": 661,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        6
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                64,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            53,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    6
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    1,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            53,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": []
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR004 is the molecule id;",
-        "question": "List all the elements of the toxicology of the molecule \"TR004\".",
-        "question_id": 240,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR004\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
-        "db_id": "card_games",
-        "difficulty": "challenging",
-        "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
-        "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
-        "question_id": 513,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 1,
-            "orderBy": [
-                "desc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            106,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                87,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            107,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"commander\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
-        "db_id": "card_games",
-        "difficulty": "moderate",
-        "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
-        "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
-        "question_id": 529,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                102,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    8,
-                    [
-                        0,
-                        [
-                            0,
-                            91,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    4
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            110,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": [
-                            [
-                                false,
-                                2,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"Korean\"",
-                                null
-                            ],
-                            "and",
-                            [
-                                true,
-                                9,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"%Japanese%\"",
-                                null
-                            ]
-                        ]
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR004 is the molecule id;",
-        "question": "List all the elements of the toxicology of the molecule \"TR004\".",
-        "question_id": 240,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR004\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR000 is the molecule id;",
-        "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
-        "question_id": 220,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 3,
-            "orderBy": [
-                "asc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            3,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
-        "db_id": "codebase_community",
-        "difficulty": "moderate",
-        "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
-        "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
-        "question_id": 572,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        4
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                31,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            35,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
-        "db_id": "card_games",
-        "difficulty": "moderate",
-        "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
-        "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
-        "question_id": 529,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                102,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    8,
-                    [
-                        0,
-                        [
-                            0,
-                            91,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    4
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            110,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": [
-                            [
-                                false,
-                                2,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"Korean\"",
-                                null
-                            ],
-                            "and",
-                            [
-                                true,
-                                9,
-                                [
-                                    0,
-                                    [
-                                        0,
-                                        109,
-                                        false
-                                    ],
-                                    null
-                                ],
-                                "\"%Japanese%\"",
-                                null
-                            ]
-                        ]
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
-        "db_id": "codebase_community",
-        "difficulty": "moderate",
-        "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
-        "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
-        "question_id": 572,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        4
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                31,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            35,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
-        "db_id": "student_club",
-        "difficulty": "simple",
-        "evidence": "'President' is a position of Student Club",
-        "question": "How many student have the position of president?",
-        "question_id": 1377,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        7
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                40,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            44,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"President\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "Which toxic element can be found in the molecule TR151?",
-        "question_id": 290,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR151\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
-        "db_id": "card_games",
-        "difficulty": "challenging",
-        "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
-        "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
-        "question_id": 513,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        3
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 1,
-            "orderBy": [
-                "desc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            106,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                87,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            107,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"commander\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR000 is the molecule id;",
-        "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
-        "question_id": 220,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 3,
-            "orderBy": [
-                "asc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            3,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
-        "db_id": "codebase_community",
-        "difficulty": "moderate",
-        "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
-        "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
-        "question_id": 572,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        4
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                31,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            35,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
-        "db_id": "student_club",
-        "difficulty": "simple",
-        "evidence": "'President' is a position of Student Club",
-        "question": "How many student have the position of president?",
-        "question_id": 1377,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        7
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                40,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            44,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"President\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
-        "question_id": 322,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            1,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000_1\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "Which toxic element can be found in the molecule TR151?",
-        "question_id": 290,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR151\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
-        "db_id": "european_football_2",
-        "difficulty": "moderate",
-        "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
-        "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
-        "question_id": 1080,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            7,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"left\"",
-                    null
-                ],
-                "and",
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            8,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"low\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
-        "db_id": "codebase_community",
-        "difficulty": "simple",
-        "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
-        "question": "How old is the most influential user?",
-        "question_id": 661,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        6
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                64,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            53,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    6
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    1,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            53,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": []
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR004 is the molecule id;",
-        "question": "List all the elements of the toxicology of the molecule \"TR004\".",
-        "question_id": 240,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR004\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "TR000 is the molecule id;",
-        "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
-        "question_id": 220,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": 3,
-            "orderBy": [
-                "asc",
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            3,
-                            false
-                        ],
-                        null
-                    ]
-                ]
-            ],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "Which toxic element can be found in the molecule TR151?",
-        "question_id": 290,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                true,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            2,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR151\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
-        "db_id": "codebase_community",
-        "difficulty": "moderate",
-        "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
-        "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
-        "question_id": 572,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        4
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                31,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            35,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
-        "question_id": 322,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            1,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000_1\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
-        "db_id": "codebase_community",
-        "difficulty": "simple",
-        "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
-        "question": "How old is the most influential user?",
-        "question_id": 661,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        6
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                64,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            53,
-                            false
-                        ],
-                        null
-                    ],
-                    {
-                        "except": null,
-                        "from": {
-                            "conds": [],
-                            "table_units": [
-                                [
-                                    "table_unit",
-                                    6
-                                ]
-                            ]
-                        },
-                        "groupBy": [],
-                        "having": [],
-                        "intersect": null,
-                        "limit": null,
-                        "orderBy": [],
-                        "select": [
-                            false,
-                            [
-                                [
-                                    1,
-                                    [
-                                        0,
-                                        [
-                                            0,
-                                            53,
-                                            false
-                                        ],
-                                        null
-                                    ]
-                                ]
-                            ]
-                        ],
-                        "union": null,
-                        "where": []
-                    },
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
-        "db_id": "european_football_2",
-        "difficulty": "moderate",
-        "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
-        "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
-        "question_id": 1080,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            7,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"left\"",
-                    null
-                ],
-                "and",
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            8,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"low\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
-        "db_id": "toxicology",
-        "difficulty": "challenging",
-        "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
-        "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
-        "question_id": 322,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        0
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        0,
-                        [
-                            0,
-                            [
-                                0,
-                                3,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            1,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"TR000_1\"",
-                    null
-                ]
-            ]
-        }
-    },
-    {
-        "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
-        "db_id": "student_club",
-        "difficulty": "simple",
-        "evidence": "'President' is a position of Student Club",
-        "question": "How many student have the position of president?",
-        "question_id": 1377,
-        "sql": {
-            "except": null,
-            "from": {
-                "conds": [],
-                "table_units": [
-                    [
-                        "table_unit",
-                        7
-                    ]
-                ]
-            },
-            "groupBy": [],
-            "having": [],
-            "intersect": null,
-            "limit": null,
-            "orderBy": [],
-            "select": [
-                false,
-                [
-                    [
-                        3,
-                        [
-                            0,
-                            [
-                                0,
-                                40,
-                                false
-                            ],
-                            null
-                        ]
-                    ]
-                ]
-            ],
-            "union": null,
-            "where": [
-                [
-                    false,
-                    2,
-                    [
-                        0,
-                        [
-                            0,
-                            44,
-                            false
-                        ],
-                        null
-                    ],
-                    "\"President\"",
-                    null
-                ]
-            ]
-        }
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "Which toxic element can be found in the molecule TR151?",
+    "question_id": 290,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR151\"", null]]
     }
+  },
+  {
+    "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
+    "db_id": "codebase_community",
+    "difficulty": "moderate",
+    "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
+    "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+    "question_id": 572,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 4]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 31, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 35, false], null],
+          "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
+    "db_id": "european_football_2",
+    "difficulty": "moderate",
+    "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
+    "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+    "question_id": 1080,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [
+        [false, 2, [0, [0, 7, false], null], "\"left\"", null],
+        "and",
+        [false, 2, [0, [0, 8, false], null], "\"low\"", null]
+      ]
+    }
+  },
+  {
+    "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
+    "db_id": "codebase_community",
+    "difficulty": "simple",
+    "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
+    "question": "How old is the most influential user?",
+    "question_id": 661,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 6]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 64, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 53, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 6]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[1, [0, [0, 53, false], null]]]],
+            "union": null,
+            "where": []
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
+    "db_id": "card_games",
+    "difficulty": "challenging",
+    "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
+    "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+    "question_id": 513,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 1,
+      "orderBy": ["desc", [[0, [0, 106, false], null]]],
+      "select": [false, [[0, [0, [0, 87, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 107, false], null], "\"commander\"", null]]
+    }
+  },
+  {
+    "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
+    "db_id": "card_games",
+    "difficulty": "moderate",
+    "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
+    "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+    "question_id": 529,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 102, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          8,
+          [0, [0, 91, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 4]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[0, [0, [0, 110, false], null]]]],
+            "union": null,
+            "where": [
+              [false, 2, [0, [0, 109, false], null], "\"Korean\"", null],
+              "and",
+              [true, 9, [0, [0, 109, false], null], "\"%Japanese%\"", null]
+            ]
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR000 is the molecule id;",
+    "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+    "question_id": 220,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 3,
+      "orderBy": ["asc", [[0, [0, 3, false], null]]],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR000\"", null]]
+    }
+  },
+  {
+    "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
+    "db_id": "card_games",
+    "difficulty": "moderate",
+    "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
+    "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+    "question_id": 529,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 102, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          8,
+          [0, [0, 91, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 4]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[0, [0, [0, 110, false], null]]]],
+            "union": null,
+            "where": [
+              [false, 2, [0, [0, 109, false], null], "\"Korean\"", null],
+              "and",
+              [true, 9, [0, [0, 109, false], null], "\"%Japanese%\"", null]
+            ]
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
+    "db_id": "codebase_community",
+    "difficulty": "simple",
+    "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
+    "question": "How old is the most influential user?",
+    "question_id": 661,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 6]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 64, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 53, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 6]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[1, [0, [0, 53, false], null]]]],
+            "union": null,
+            "where": []
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
+    "db_id": "card_games",
+    "difficulty": "challenging",
+    "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
+    "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+    "question_id": 513,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 1,
+      "orderBy": ["desc", [[0, [0, 106, false], null]]],
+      "select": [false, [[0, [0, [0, 87, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 107, false], null], "\"commander\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR000 is the molecule id;",
+    "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+    "question_id": 220,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 3,
+      "orderBy": ["asc", [[0, [0, 3, false], null]]],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR000\"", null]]
+    }
+  },
+  {
+    "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
+    "db_id": "card_games",
+    "difficulty": "moderate",
+    "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
+    "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+    "question_id": 529,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 102, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          8,
+          [0, [0, 91, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 4]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[0, [0, [0, 110, false], null]]]],
+            "union": null,
+            "where": [
+              [false, 2, [0, [0, 109, false], null], "\"Korean\"", null],
+              "and",
+              [true, 9, [0, [0, 109, false], null], "\"%Japanese%\"", null]
+            ]
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
+    "question_id": 322,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 1, false], null], "\"TR000_1\"", null]]
+    }
+  },
+  {
+    "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
+    "db_id": "card_games",
+    "difficulty": "challenging",
+    "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
+    "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+    "question_id": 513,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 1,
+      "orderBy": ["desc", [[0, [0, 106, false], null]]],
+      "select": [false, [[0, [0, [0, 87, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 107, false], null], "\"commander\"", null]]
+    }
+  },
+  {
+    "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
+    "question_id": 322,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 1, false], null], "\"TR000_1\"", null]]
+    }
+  },
+  {
+    "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
+    "db_id": "european_football_2",
+    "difficulty": "moderate",
+    "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
+    "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+    "question_id": 1080,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [
+        [false, 2, [0, [0, 7, false], null], "\"left\"", null],
+        "and",
+        [false, 2, [0, [0, 8, false], null], "\"low\"", null]
+      ]
+    }
+  },
+  {
+    "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
+    "db_id": "european_football_2",
+    "difficulty": "moderate",
+    "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
+    "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+    "question_id": 1080,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [
+        [false, 2, [0, [0, 7, false], null], "\"left\"", null],
+        "and",
+        [false, 2, [0, [0, 8, false], null], "\"low\"", null]
+      ]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR004 is the molecule id;",
+    "question": "List all the elements of the toxicology of the molecule \"TR004\".",
+    "question_id": 240,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR004\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "Which toxic element can be found in the molecule TR151?",
+    "question_id": 290,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR151\"", null]]
+    }
+  },
+  {
+    "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
+    "db_id": "student_club",
+    "difficulty": "simple",
+    "evidence": "'President' is a position of Student Club",
+    "question": "How many student have the position of president?",
+    "question_id": 1377,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 7]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 40, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 44, false], null], "\"President\"", null]]
+    }
+  },
+  {
+    "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
+    "db_id": "student_club",
+    "difficulty": "simple",
+    "evidence": "'President' is a position of Student Club",
+    "question": "How many student have the position of president?",
+    "question_id": 1377,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 7]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 40, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 44, false], null], "\"President\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR004 is the molecule id;",
+    "question": "List all the elements of the toxicology of the molecule \"TR004\".",
+    "question_id": 240,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR004\"", null]]
+    }
+  },
+  {
+    "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
+    "db_id": "codebase_community",
+    "difficulty": "simple",
+    "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
+    "question": "How old is the most influential user?",
+    "question_id": 661,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 6]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 64, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 53, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 6]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[1, [0, [0, 53, false], null]]]],
+            "union": null,
+            "where": []
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR004 is the molecule id;",
+    "question": "List all the elements of the toxicology of the molecule \"TR004\".",
+    "question_id": 240,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR004\"", null]]
+    }
+  },
+  {
+    "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
+    "db_id": "card_games",
+    "difficulty": "challenging",
+    "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
+    "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+    "question_id": 513,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 1,
+      "orderBy": ["desc", [[0, [0, 106, false], null]]],
+      "select": [false, [[0, [0, [0, 87, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 107, false], null], "\"commander\"", null]]
+    }
+  },
+  {
+    "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
+    "db_id": "card_games",
+    "difficulty": "moderate",
+    "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
+    "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+    "question_id": 529,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 102, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          8,
+          [0, [0, 91, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 4]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[0, [0, [0, 110, false], null]]]],
+            "union": null,
+            "where": [
+              [false, 2, [0, [0, 109, false], null], "\"Korean\"", null],
+              "and",
+              [true, 9, [0, [0, 109, false], null], "\"%Japanese%\"", null]
+            ]
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR004 is the molecule id;",
+    "question": "List all the elements of the toxicology of the molecule \"TR004\".",
+    "question_id": 240,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR004\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR000 is the molecule id;",
+    "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+    "question_id": 220,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 3,
+      "orderBy": ["asc", [[0, [0, 3, false], null]]],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR000\"", null]]
+    }
+  },
+  {
+    "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
+    "db_id": "codebase_community",
+    "difficulty": "moderate",
+    "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
+    "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+    "question_id": 572,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 4]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 31, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 35, false], null],
+          "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT name FROM sets WHERE code IN ( SELECT setCode FROM set_translations WHERE language = 'Korean' AND language NOT LIKE '%Japanese%' )",
+    "db_id": "card_games",
+    "difficulty": "moderate",
+    "evidence": "names of sets refers to name; doesn't have Japanese translation refers to language not like '%Japanese%'; have Korean translation refers to language = 'Korean'",
+    "question": "Find and list the names of sets which doesn't have Japanese translation but have Korean translation.",
+    "question_id": 529,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 102, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          8,
+          [0, [0, 91, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 4]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[0, [0, [0, 110, false], null]]]],
+            "union": null,
+            "where": [
+              [false, 2, [0, [0, 109, false], null], "\"Korean\"", null],
+              "and",
+              [true, 9, [0, [0, 109, false], null], "\"%Japanese%\"", null]
+            ]
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
+    "db_id": "codebase_community",
+    "difficulty": "moderate",
+    "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
+    "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+    "question_id": 572,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 4]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 31, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 35, false], null],
+          "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
+    "db_id": "student_club",
+    "difficulty": "simple",
+    "evidence": "'President' is a position of Student Club",
+    "question": "How many student have the position of president?",
+    "question_id": 1377,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 7]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 40, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 44, false], null], "\"President\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "Which toxic element can be found in the molecule TR151?",
+    "question_id": 290,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR151\"", null]]
+    }
+  },
+  {
+    "query": "SELECT id FROM sets WHERE type = 'commander' ORDER BY totalSetSize DESC LIMIT 1",
+    "db_id": "card_games",
+    "difficulty": "challenging",
+    "evidence": "expansion type refers to type where type = 'commander'; totalSetSize: The total number of cards in the set, including promotional and related supplemental products but excluding Alchemy modifications; highest total number of cards refers to MAX(totalSetSize)",
+    "question": "Among the sets whose expansion type is Commander, which set has the highest total number of cards including promotional and related supplemental products but excluding Alchemy modifications? Indicate the id of the set.",
+    "question_id": 513,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 3]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 1,
+      "orderBy": ["desc", [[0, [0, 106, false], null]]],
+      "select": [false, [[0, [0, [0, 87, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 107, false], null], "\"commander\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR000 is the molecule id;",
+    "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+    "question_id": 220,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 3,
+      "orderBy": ["asc", [[0, [0, 3, false], null]]],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR000\"", null]]
+    }
+  },
+  {
+    "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
+    "db_id": "codebase_community",
+    "difficulty": "moderate",
+    "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
+    "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+    "question_id": 572,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 4]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 31, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 35, false], null],
+          "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
+    "db_id": "student_club",
+    "difficulty": "simple",
+    "evidence": "'President' is a position of Student Club",
+    "question": "How many student have the position of president?",
+    "question_id": 1377,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 7]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 40, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 44, false], null], "\"President\"", null]]
+    }
+  },
+  {
+    "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
+    "question_id": 322,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 1, false], null], "\"TR000_1\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "Which toxic element can be found in the molecule TR151?",
+    "question_id": 290,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR151\"", null]]
+    }
+  },
+  {
+    "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
+    "db_id": "european_football_2",
+    "difficulty": "moderate",
+    "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
+    "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+    "question_id": 1080,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [
+        [false, 2, [0, [0, 7, false], null], "\"left\"", null],
+        "and",
+        [false, 2, [0, [0, 8, false], null], "\"low\"", null]
+      ]
+    }
+  },
+  {
+    "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
+    "db_id": "codebase_community",
+    "difficulty": "simple",
+    "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
+    "question": "How old is the most influential user?",
+    "question_id": 661,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 6]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 64, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 53, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 6]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[1, [0, [0, 53, false], null]]]],
+            "union": null,
+            "where": []
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR004'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR004 is the molecule id;",
+    "question": "List all the elements of the toxicology of the molecule \"TR004\".",
+    "question_id": 240,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR004\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR000' ORDER BY T.element LIMIT 3",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "TR000 is the molecule id;",
+    "question": "Please list top three elements of the toxicology of the molecule TR000 in alphabetical order.",
+    "question_id": 220,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": 3,
+      "orderBy": ["asc", [[0, [0, 3, false], null]]],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR000\"", null]]
+    }
+  },
+  {
+    "query": "SELECT DISTINCT T.element FROM atom AS T WHERE T.molecule_id = 'TR151'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "Which toxic element can be found in the molecule TR151?",
+    "question_id": 290,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [true, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 2, false], null], "\"TR151\"", null]]
+    }
+  },
+  {
+    "query": "SELECT ViewCount FROM posts WHERE Title = 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer'",
+    "db_id": "codebase_community",
+    "difficulty": "moderate",
+    "evidence": "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\" is the Title of post; views refers to ViewCount",
+    "question": "How many views did the post titled 'Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer' get?",
+    "question_id": 572,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 4]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 31, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 35, false], null],
+          "\"Integration of Weka and/or RapidMiner into Informatica PowerCenter/Developer\"",
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
+    "question_id": 322,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 1, false], null], "\"TR000_1\"", null]]
+    }
+  },
+  {
+    "query": "SELECT Age FROM users WHERE Reputation = ( SELECT MAX(Reputation) FROM users )",
+    "db_id": "codebase_community",
+    "difficulty": "simple",
+    "evidence": "How old describes age; the most influential refers to user where MAX(Reputation);",
+    "question": "How old is the most influential user?",
+    "question_id": 661,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 6]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 64, false], null]]]],
+      "union": null,
+      "where": [
+        [
+          false,
+          2,
+          [0, [0, 53, false], null],
+          {
+            "except": null,
+            "from": {
+              "conds": [],
+              "table_units": [["table_unit", 6]]
+            },
+            "groupBy": [],
+            "having": [],
+            "intersect": null,
+            "limit": null,
+            "orderBy": [],
+            "select": [false, [[1, [0, [0, 53, false], null]]]],
+            "union": null,
+            "where": []
+          },
+          null
+        ]
+      ]
+    }
+  },
+  {
+    "query": "SELECT COUNT(player_api_id) FROM Player_Attributes WHERE preferred_foot = 'left' AND attacking_work_rate = 'low'",
+    "db_id": "european_football_2",
+    "difficulty": "moderate",
+    "evidence": "preferred foot when attacking was the left refers to preferred_foot = 'left'; players who would remain in his position when the team attacked refers to attacking_work_rate = 'low';",
+    "question": "Among the players whose preferred foot was the left foot when attacking, how many of them would remain in his position when the team attacked?",
+    "question_id": 1080,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [
+        [false, 2, [0, [0, 7, false], null], "\"left\"", null],
+        "and",
+        [false, 2, [0, [0, 8, false], null], "\"low\"", null]
+      ]
+    }
+  },
+  {
+    "query": "SELECT T.element FROM atom AS T WHERE T.atom_id = 'TR000_1'",
+    "db_id": "toxicology",
+    "difficulty": "challenging",
+    "evidence": "atom with ID refers to atom_id; element = 'cl' means Chlorine; element = 'c' means Carbon; element = 'h' means Hydrogen; element = 'o' means Oxygen, element = 's' means Sulfur; element = 'n' means Nitrogen, element = 'p' means Phosphorus, element = 'na' means Sodium, element = 'br' means Bromine, element = 'f' means Fluorine; element = 'i' means Iodine; element = 'sn' means Tin; element = 'pb' means Lead; element = 'te' means Tellurium; element = 'ca' means Calcium",
+    "question": "What is the element of toxicology for the atom with the ID of TR000_1?",
+    "question_id": 322,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 0]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[0, [0, [0, 3, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 1, false], null], "\"TR000_1\"", null]]
+    }
+  },
+  {
+    "query": "SELECT COUNT(member_id) FROM member WHERE position = 'President'",
+    "db_id": "student_club",
+    "difficulty": "simple",
+    "evidence": "'President' is a position of Student Club",
+    "question": "How many student have the position of president?",
+    "question_id": 1377,
+    "sql": {
+      "except": null,
+      "from": {
+        "conds": [],
+        "table_units": [["table_unit", 7]]
+      },
+      "groupBy": [],
+      "having": [],
+      "intersect": null,
+      "limit": null,
+      "orderBy": [],
+      "select": [false, [[3, [0, [0, 40, false], null]]]],
+      "union": null,
+      "where": [[false, 2, [0, [0, 44, false], null], "\"President\"", null]]
+    }
+  }
 ]

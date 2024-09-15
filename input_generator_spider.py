@@ -63,7 +63,7 @@ def pick_hardness_lists(dataset, number_of_samples,repeat):
     
     random.shuffle(combined_list)
     
-    print(combined_list)
+    # print(combined_list)
     
     return combined_list
 
@@ -98,6 +98,6 @@ if __name__ == "__main__":
 
     loaded_list = load_json(output)
     
-    print(loaded_list)
+    # print(loaded_list)
     
     print('---List Generation Complete---')
