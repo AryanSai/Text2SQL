@@ -1,0 +1,252 @@
+[
+    {
+        "input": "What are the African countries that have a  population less than any country in Asia?",
+        "db_id": "world_1",
+        "sql": ""
+    },
+    {
+        "input": "What is the name of the different car makers who produced a car in 1970?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "List the names of conductors in ascending order of age.",
+        "db_id": "orchestra",
+        "sql": "select conductor.name from conductor order by conductor.age asc"
+    },
+    {
+        "input": "What is the id, line 1, and line 2 of the address with the most students?",
+        "db_id": "student_transcripts_tracking",
+        "sql": ""
+    },
+    {
+        "input": "What are the African countries that have a  population less than any country in Asia?",
+        "db_id": "world_1",
+        "sql": ""
+    },
+    {
+        "input": "What is the id, line 1, and line 2 of the address with the most students?",
+        "db_id": "student_transcripts_tracking",
+        "sql": ""
+    },
+    {
+        "input": "Return the number of flights departing from Aberdeen.",
+        "db_id": "flight_2",
+        "sql": ""
+    },
+    {
+        "input": "What is the id, line 1, and line 2 of the address with the most students?",
+        "db_id": "student_transcripts_tracking",
+        "sql": ""
+    },
+    {
+        "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+        "db_id": "dog_kennels",
+        "sql": ""
+    },
+    {
+        "input": "What is the name of the singer with the largest net worth?",
+        "db_id": "singer",
+        "sql": "select singer.name from singer order by singer.net_worth_millions desc limit 1"
+    },
+    {
+        "input": "Return the number of flights departing from Aberdeen.",
+        "db_id": "flight_2",
+        "sql": ""
+    },
+    {
+        "input": "What is the name of the different car makers who produced a car in 1970?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "Show ids of all students who do not have any friends.",
+        "db_id": "network_1",
+        "sql": ""
+    },
+    {
+        "input": "List the names of conductors in ascending order of age.",
+        "db_id": "orchestra",
+        "sql": "select conductor.name from conductor order by conductor.age asc"
+    },
+    {
+        "input": "What is the id, line 1, and line 2 of the address with the most students?",
+        "db_id": "student_transcripts_tracking",
+        "sql": ""
+    },
+    {
+        "input": "Show ids of all students who do not have any friends.",
+        "db_id": "network_1",
+        "sql": ""
+    },
+    {
+        "input": "What is the name of the different car makers who produced a car in 1970?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+        "db_id": "concert_singer",
+        "sql": "select singer.country from singer where singer.age > 40 and singer.age < 30"
+    },
+    {
+        "input": "Show ids of all students who do not have any friends.",
+        "db_id": "network_1",
+        "sql": ""
+    },
+    {
+        "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+        "db_id": "concert_singer",
+        "sql": "select singer.country from singer where singer.age > 40 and singer.age < 30"
+    },
+    {
+        "input": "Return the number of flights departing from Aberdeen.",
+        "db_id": "flight_2",
+        "sql": ""
+    },
+    {
+        "input": "Which distinct car models are the produced after 1980?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+        "db_id": "dog_kennels",
+        "sql": ""
+    },
+    {
+        "input": "Return the number of flights departing from Aberdeen.",
+        "db_id": "flight_2",
+        "sql": ""
+    },
+    {
+        "input": "List the names of conductors in ascending order of age.",
+        "db_id": "orchestra",
+        "sql": "select conductor.name from conductor order by conductor.age asc"
+    },
+    {
+        "input": "What are the African countries that have a  population less than any country in Asia?",
+        "db_id": "world_1",
+        "sql": ""
+    },
+    {
+        "input": "List the names of conductors in ascending order of age.",
+        "db_id": "orchestra",
+        "sql": "select conductor.name from conductor order by conductor.age asc"
+    },
+    {
+        "input": "What is the name of the singer with the largest net worth?",
+        "db_id": "singer",
+        "sql": "select singer.name from singer order by singer.net_worth_millions desc limit 1"
+    },
+    {
+        "input": "Return the number of flights departing from Aberdeen.",
+        "db_id": "flight_2",
+        "sql": ""
+    },
+    {
+        "input": "Which distinct car models are the produced after 1980?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "What is the name of the different car makers who produced a car in 1970?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "Show ids of all students who do not have any friends.",
+        "db_id": "network_1",
+        "sql": ""
+    },
+    {
+        "input": "What is the name of the singer with the largest net worth?",
+        "db_id": "singer",
+        "sql": "select singer.name from singer order by singer.net_worth_millions desc limit 1"
+    },
+    {
+        "input": "What is the name of the singer with the largest net worth?",
+        "db_id": "singer",
+        "sql": "select singer.name from singer order by singer.net_worth_millions desc limit 1"
+    },
+    {
+        "input": "Which distinct car models are the produced after 1980?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+        "db_id": "dog_kennels",
+        "sql": ""
+    },
+    {
+        "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+        "db_id": "concert_singer",
+        "sql": "select singer.country from singer where singer.age > 40 and singer.age < 30"
+    },
+    {
+        "input": "What is the name of the different car makers who produced a car in 1970?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+        "db_id": "dog_kennels",
+        "sql": ""
+    },
+    {
+        "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+        "db_id": "concert_singer",
+        "sql": "select singer.country from singer where singer.age > 40 and singer.age < 30"
+    },
+    {
+        "input": "What is the name of the singer with the largest net worth?",
+        "db_id": "singer",
+        "sql": "select singer.name from singer order by singer.net_worth_millions desc limit 1"
+    },
+    {
+        "input": "What are the African countries that have a  population less than any country in Asia?",
+        "db_id": "world_1",
+        "sql": ""
+    },
+    {
+        "input": "Which distinct car models are the produced after 1980?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "List the names of conductors in ascending order of age.",
+        "db_id": "orchestra",
+        "sql": "select conductor.name from conductor order by conductor.age asc"
+    },
+    {
+        "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+        "db_id": "concert_singer",
+        "sql": "select singer.country from singer where singer.age > 40 and singer.age < 30"
+    },
+    {
+        "input": "What are the African countries that have a  population less than any country in Asia?",
+        "db_id": "world_1",
+        "sql": ""
+    },
+    {
+        "input": "What is the id, line 1, and line 2 of the address with the most students?",
+        "db_id": "student_transcripts_tracking",
+        "sql": ""
+    },
+    {
+        "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+        "db_id": "dog_kennels",
+        "sql": ""
+    },
+    {
+        "input": "Which distinct car models are the produced after 1980?",
+        "db_id": "car_1",
+        "sql": ""
+    },
+    {
+        "input": "Show ids of all students who do not have any friends.",
+        "db_id": "network_1",
+        "sql": ""
+    }
+]

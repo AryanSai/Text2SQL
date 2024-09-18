@@ -1,0 +1,1079 @@
+[
+    {
+        "input": "What are the African countries that have a  population less than any country in Asia?",
+        "db_id": "world_1",
+        "pred": [
+            "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )",
+            "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )",
+            "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )",
+            "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )",
+            "select name from country where population < ( select max ( population ) from country where continent = 'Africa' )"
+        ],
+        "gold": "SELECT Name FROM country WHERE Continent  =  \"Africa\"  AND population  <  (SELECT max(population) FROM country WHERE Continent  =  \"Asia\")",
+        "question": "What are the African countries that have a  population less than any country in Asia?",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        2
+                    ]
+                ],
+                "conds": []
+            },
+            "select": [
+                false,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                9,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [
+                [
+                    false,
+                    2,
+                    [
+                        0,
+                        [
+                            0,
+                            10,
+                            false
+                        ],
+                        null
+                    ],
+                    "\"Africa\"",
+                    null
+                ],
+                "and",
+                [
+                    false,
+                    4,
+                    [
+                        0,
+                        [
+                            0,
+                            14,
+                            false
+                        ],
+                        null
+                    ],
+                    {
+                        "from": {
+                            "table_units": [
+                                [
+                                    "table_unit",
+                                    2
+                                ]
+                            ],
+                            "conds": []
+                        },
+                        "select": [
+                            false,
+                            [
+                                [
+                                    1,
+                                    [
+                                        0,
+                                        [
+                                            0,
+                                            14,
+                                            false
+                                        ],
+                                        null
+                                    ]
+                                ]
+                            ]
+                        ],
+                        "where": [
+                            [
+                                false,
+                                2,
+                                [
+                                    0,
+                                    [
+                                        0,
+                                        10,
+                                        false
+                                    ],
+                                    null
+                                ],
+                                "\"Asia\"",
+                                null
+                            ]
+                        ],
+                        "groupBy": [],
+                        "having": [],
+                        "orderBy": [],
+                        "limit": null,
+                        "intersect": null,
+                        "union": null,
+                        "except": null
+                    },
+                    null
+                ]
+            ],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [],
+            "limit": null,
+            "intersect": null,
+            "union": null,
+            "except": null
+        },
+        "hardness": "extra"
+    },
+    {
+        "input": "What is the name of the different car makers who produced a car in 1970?",
+        "db_id": "car_1",
+        "pred": [
+            "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970",
+            "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970",
+            "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970",
+            "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970",
+            "select distinct car_makers.maker from car_makers join cars_data on car_makers.id = cars_data.id where cars_data.year = 1970"
+        ],
+        "gold": "SELECT DISTINCT T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model JOIN CARS_DATA AS T4 ON T3.MakeId  =  T4.id WHERE T4.year  =  '1970';",
+        "question": "What is the name of the different car makers who produced a car in 1970?",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        2
+                    ],
+                    [
+                        "table_unit",
+                        3
+                    ],
+                    [
+                        "table_unit",
+                        4
+                    ],
+                    [
+                        "table_unit",
+                        5
+                    ]
+                ],
+                "conds": [
+                    [
+                        false,
+                        2,
+                        [
+                            0,
+                            [
+                                0,
+                                6,
+                                false
+                            ],
+                            null
+                        ],
+                        [
+                            0,
+                            11,
+                            false
+                        ],
+                        null
+                    ],
+                    "and",
+                    [
+                        false,
+                        2,
+                        [
+                            0,
+                            [
+                                0,
+                                12,
+                                false
+                            ],
+                            null
+                        ],
+                        [
+                            0,
+                            14,
+                            false
+                        ],
+                        null
+                    ],
+                    "and",
+                    [
+                        false,
+                        2,
+                        [
+                            0,
+                            [
+                                0,
+                                13,
+                                false
+                            ],
+                            null
+                        ],
+                        [
+                            0,
+                            16,
+                            false
+                        ],
+                        null
+                    ]
+                ]
+            },
+            "select": [
+                true,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                7,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [
+                [
+                    false,
+                    2,
+                    [
+                        0,
+                        [
+                            0,
+                            23,
+                            false
+                        ],
+                        null
+                    ],
+                    "\"1970\"",
+                    null
+                ]
+            ],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [],
+            "limit": null,
+            "intersect": null,
+            "union": null,
+            "except": null
+        },
+        "hardness": "extra"
+    },
+    {
+        "input": "List the names of conductors in ascending order of age.",
+        "db_id": "orchestra",
+        "pred": [
+            "select name from conductor order by age asc",
+            "select name from conductor order by age asc",
+            "select name from conductor order by age asc",
+            "select name from conductor order by age asc",
+            "select name from conductor order by age asc"
+        ],
+        "gold": "SELECT Name FROM conductor ORDER BY Age ASC",
+        "question": "List the names of conductors in ascending order of age.",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        0
+                    ]
+                ],
+                "conds": []
+            },
+            "select": [
+                false,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                2,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [
+                "asc",
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            3,
+                            false
+                        ],
+                        null
+                    ]
+                ]
+            ],
+            "limit": null,
+            "intersect": null,
+            "union": null,
+            "except": null
+        },
+        "hardness": "easy"
+    },
+    {
+        "input": "What is the id, line 1, and line 2 of the address with the most students?",
+        "db_id": "student_transcripts_tracking",
+        "pred": [
+            "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1",
+            "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1",
+            "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1",
+            "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1",
+            "select addresses.address_id , addresses.line_1 , addresses.line_2 from addresses join students on addresses.address_id = students.current_address_id group by addresses.address_id order by count ( * ) desc limit 1"
+        ],
+        "gold": "SELECT T1.address_id ,  T1.line_1 ,  T1.line_2 FROM Addresses AS T1 JOIN Students AS T2 ON T1.address_id  =  T2.current_address_id GROUP BY T1.address_id ORDER BY count(*) DESC LIMIT 1",
+        "question": "What is the id, line 1, and line 2 of the address with the most students?",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        0
+                    ],
+                    [
+                        "table_unit",
+                        6
+                    ]
+                ],
+                "conds": [
+                    [
+                        false,
+                        2,
+                        [
+                            0,
+                            [
+                                0,
+                                1,
+                                false
+                            ],
+                            null
+                        ],
+                        [
+                            0,
+                            33,
+                            false
+                        ],
+                        null
+                    ]
+                ]
+            },
+            "select": [
+                false,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                1,
+                                false
+                            ],
+                            null
+                        ]
+                    ],
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                2,
+                                false
+                            ],
+                            null
+                        ]
+                    ],
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                3,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [],
+            "groupBy": [
+                [
+                    0,
+                    1,
+                    false
+                ]
+            ],
+            "having": [],
+            "orderBy": [
+                "desc",
+                [
+                    [
+                        0,
+                        [
+                            3,
+                            0,
+                            false
+                        ],
+                        null
+                    ]
+                ]
+            ],
+            "limit": 1,
+            "intersect": null,
+            "union": null,
+            "except": null
+        },
+        "hardness": "extra"
+    },
+    {
+        "input": "Return the number of flights departing from Aberdeen.",
+        "db_id": "flight_2",
+        "pred": [
+            "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'",
+            "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'",
+            "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'",
+            "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'",
+            "select count ( * ) from flights join airports on flights.sourceairport = airports.airportcode where airports.city = 'Aberdeen'"
+        ],
+        "gold": "SELECT count(*) FROM FLIGHTS AS T1 JOIN AIRPORTS AS T2 ON T1.SourceAirport  =  T2.AirportCode WHERE T2.City  =  \"Aberdeen\"",
+        "question": "Return the number of flights departing from Aberdeen.",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        2
+                    ],
+                    [
+                        "table_unit",
+                        1
+                    ]
+                ],
+                "conds": [
+                    [
+                        false,
+                        2,
+                        [
+                            0,
+                            [
+                                0,
+                                12,
+                                false
+                            ],
+                            null
+                        ],
+                        [
+                            0,
+                            6,
+                            false
+                        ],
+                        null
+                    ]
+                ]
+            },
+            "select": [
+                false,
+                [
+                    [
+                        3,
+                        [
+                            0,
+                            [
+                                0,
+                                0,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [
+                [
+                    false,
+                    2,
+                    [
+                        0,
+                        [
+                            0,
+                            5,
+                            false
+                        ],
+                        null
+                    ],
+                    "\"Aberdeen\"",
+                    null
+                ]
+            ],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [],
+            "limit": null,
+            "intersect": null,
+            "union": null,
+            "except": null
+        },
+        "hardness": "medium"
+    },
+    {
+        "input": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+        "db_id": "dog_kennels",
+        "pred": [
+            "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id",
+            "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id",
+            "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id",
+            "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id",
+            "select professional_id , role_code , email_address from professionals except select professionals.professional_id , professionals.role_code , professionals.email_address from professionals join treatments on professionals.professional_id = treatments.professional_id join dogs on treatments.dog_id = dogs.dog_id"
+        ],
+        "gold": "SELECT professional_id ,  role_code ,  email_address FROM Professionals EXCEPT SELECT T1.professional_id ,  T1.role_code ,  T1.email_address FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id",
+        "question": "Give me the id, role and email of the professionals who did not perform any treatment on dogs.",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        6
+                    ]
+                ],
+                "conds": []
+            },
+            "select": [
+                false,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                33,
+                                false
+                            ],
+                            null
+                        ]
+                    ],
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                34,
+                                false
+                            ],
+                            null
+                        ]
+                    ],
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                41,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [],
+            "limit": null,
+            "intersect": null,
+            "union": null,
+            "except": {
+                "from": {
+                    "table_units": [
+                        [
+                            "table_unit",
+                            6
+                        ],
+                        [
+                            "table_unit",
+                            7
+                        ]
+                    ],
+                    "conds": [
+                        [
+                            false,
+                            2,
+                            [
+                                0,
+                                [
+                                    0,
+                                    33,
+                                    false
+                                ],
+                                null
+                            ],
+                            [
+                                0,
+                                46,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                },
+                "select": [
+                    false,
+                    [
+                        [
+                            0,
+                            [
+                                0,
+                                [
+                                    0,
+                                    33,
+                                    false
+                                ],
+                                null
+                            ]
+                        ],
+                        [
+                            0,
+                            [
+                                0,
+                                [
+                                    0,
+                                    34,
+                                    false
+                                ],
+                                null
+                            ]
+                        ],
+                        [
+                            0,
+                            [
+                                0,
+                                [
+                                    0,
+                                    41,
+                                    false
+                                ],
+                                null
+                            ]
+                        ]
+                    ]
+                ],
+                "where": [],
+                "groupBy": [],
+                "having": [],
+                "orderBy": [],
+                "limit": null,
+                "intersect": null,
+                "union": null,
+                "except": null
+            }
+        },
+        "hardness": "extra"
+    },
+    {
+        "input": "What is the name of the singer with the largest net worth?",
+        "db_id": "singer",
+        "pred": [
+            "select name from singer order by net_worth_millions desc limit 1",
+            "select name from singer order by net_worth_millions desc limit 1",
+            "select name from singer order by net_worth_millions desc limit 1",
+            "select name from singer order by net_worth_millions desc limit 1",
+            "select name from singer order by net_worth_millions desc limit 1"
+        ],
+        "gold": "SELECT Name FROM singer ORDER BY Net_Worth_Millions DESC LIMIT 1",
+        "question": "What is the name of the singer with the largest net worth?",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        0
+                    ]
+                ],
+                "conds": []
+            },
+            "select": [
+                false,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                2,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [
+                "desc",
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            4,
+                            false
+                        ],
+                        null
+                    ]
+                ]
+            ],
+            "limit": 1,
+            "intersect": null,
+            "union": null,
+            "except": null
+        },
+        "hardness": "medium"
+    },
+    {
+        "input": "Show ids of all students who do not have any friends.",
+        "db_id": "network_1",
+        "pred": [
+            "select student_id from friend except select student_id from friend",
+            "select student_id from friend except select student_id from friend",
+            "select student_id from friend except select student_id from friend",
+            "select student_id from friend except select student_id from friend",
+            "select student_id from friend except select student_id from friend"
+        ],
+        "gold": "SELECT id FROM Highschooler EXCEPT SELECT student_id FROM Friend",
+        "question": "Show ids of all students who do not have any friends.",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        0
+                    ]
+                ],
+                "conds": []
+            },
+            "select": [
+                false,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                1,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [],
+            "limit": null,
+            "intersect": null,
+            "union": null,
+            "except": {
+                "from": {
+                    "table_units": [
+                        [
+                            "table_unit",
+                            1
+                        ]
+                    ],
+                    "conds": []
+                },
+                "select": [
+                    false,
+                    [
+                        [
+                            0,
+                            [
+                                0,
+                                [
+                                    0,
+                                    4,
+                                    false
+                                ],
+                                null
+                            ]
+                        ]
+                    ]
+                ],
+                "where": [],
+                "groupBy": [],
+                "having": [],
+                "orderBy": [],
+                "limit": null,
+                "intersect": null,
+                "union": null,
+                "except": null
+            }
+        },
+        "hardness": "hard"
+    },
+    {
+        "input": "Show countries where a singer above age 40 and a singer below 30 are from.",
+        "db_id": "concert_singer",
+        "pred": [
+            "select country from singer where age > 40 intersect select country from singer where age < 30",
+            "select country from singer where age > 40 intersect select country from singer where age < 30",
+            "select country from singer where age > 40 intersect select country from singer where age < 30",
+            "select country from singer where age > 40 intersect select country from singer where age < 30",
+            "select country from singer where age > 40 intersect select country from singer where age < 30"
+        ],
+        "gold": "SELECT country FROM singer WHERE age  >  40 INTERSECT SELECT country FROM singer WHERE age  <  30",
+        "question": "Show countries where a singer above age 40 and a singer below 30 are from.",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        1
+                    ]
+                ],
+                "conds": []
+            },
+            "select": [
+                false,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                10,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [
+                [
+                    false,
+                    3,
+                    [
+                        0,
+                        [
+                            0,
+                            13,
+                            false
+                        ],
+                        null
+                    ],
+                    40.0,
+                    null
+                ]
+            ],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [],
+            "limit": null,
+            "intersect": {
+                "from": {
+                    "table_units": [
+                        [
+                            "table_unit",
+                            1
+                        ]
+                    ],
+                    "conds": []
+                },
+                "select": [
+                    false,
+                    [
+                        [
+                            0,
+                            [
+                                0,
+                                [
+                                    0,
+                                    10,
+                                    false
+                                ],
+                                null
+                            ]
+                        ]
+                    ]
+                ],
+                "where": [
+                    [
+                        false,
+                        4,
+                        [
+                            0,
+                            [
+                                0,
+                                13,
+                                false
+                            ],
+                            null
+                        ],
+                        30.0,
+                        null
+                    ]
+                ],
+                "groupBy": [],
+                "having": [],
+                "orderBy": [],
+                "limit": null,
+                "intersect": null,
+                "union": null,
+                "except": null
+            },
+            "union": null,
+            "except": null
+        },
+        "hardness": "hard"
+    },
+    {
+        "input": "Which distinct car models are the produced after 1980?",
+        "db_id": "car_1",
+        "pred": [
+            "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980",
+            "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980",
+            "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980",
+            "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980",
+            "select distinct car_names.model from car_names join cars_data on car_names.makeid = cars_data.id where cars_data.year > 1980"
+        ],
+        "gold": "SELECT DISTINCT T1.model FROM MODEL_LIST AS T1 JOIN CAR_NAMES AS T2 ON T1.model  =  T2.model JOIN CARS_DATA AS T3 ON T2.MakeId  =  T3.id WHERE T3.year  >  1980;",
+        "question": "Which distinct car models are the produced after 1980?",
+        "sql": {
+            "from": {
+                "table_units": [
+                    [
+                        "table_unit",
+                        3
+                    ],
+                    [
+                        "table_unit",
+                        4
+                    ],
+                    [
+                        "table_unit",
+                        5
+                    ]
+                ],
+                "conds": [
+                    [
+                        false,
+                        2,
+                        [
+                            0,
+                            [
+                                0,
+                                12,
+                                false
+                            ],
+                            null
+                        ],
+                        [
+                            0,
+                            14,
+                            false
+                        ],
+                        null
+                    ],
+                    "and",
+                    [
+                        false,
+                        2,
+                        [
+                            0,
+                            [
+                                0,
+                                13,
+                                false
+                            ],
+                            null
+                        ],
+                        [
+                            0,
+                            16,
+                            false
+                        ],
+                        null
+                    ]
+                ]
+            },
+            "select": [
+                true,
+                [
+                    [
+                        0,
+                        [
+                            0,
+                            [
+                                0,
+                                12,
+                                false
+                            ],
+                            null
+                        ]
+                    ]
+                ]
+            ],
+            "where": [
+                [
+                    false,
+                    3,
+                    [
+                        0,
+                        [
+                            0,
+                            23,
+                            false
+                        ],
+                        null
+                    ],
+                    1980.0,
+                    null
+                ]
+            ],
+            "groupBy": [],
+            "having": [],
+            "orderBy": [],
+            "limit": null,
+            "intersect": null,
+            "union": null,
+            "except": null
+        },
+        "hardness": "hard"
+    }
+]

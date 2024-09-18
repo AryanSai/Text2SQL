@@ -1,11 +1,11 @@
 set -e
 device="1"
-REPEAT=5
+REPEAT=7
 # thresholds
 EXACT=0.5
 EXEC=0.5
 CONSISTENCY=0.5
-ITERATIONS=20
+ITERATIONS=100
 
 if [ $1 = "base" ]
 then
@@ -46,12 +46,12 @@ else
     exit
 fi
 
-python preprocess_final_list.py \
-    --original_dev $original_dev \
-    --input $INPUT_LIST\
-    --output "${RESULTS_DIR}/preprocessed_final_list_${MODEL}.json" \
+# python preprocess_final_list.py \
+#     --original_dev $original_dev \
+#     --input $INPUT_LIST\
+#     --output "${RESULTS_DIR}/preprocessed_final_list_${MODEL}.json" \
 
-echo preprocess test set
+# echo preprocess test set
 # python preprocessing.py \
 #     --mode "test" \
 #     --table_path $table_path \
@@ -144,5 +144,3 @@ else
     echo "The second arg must in [spider, bird]."
     exit
 fi
-
-

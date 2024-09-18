@@ -460,6 +460,7 @@ def _test(opt):
     return returned_table_pred_probs, returned_column_pred_probs
 
 if __name__ == "__main__":
+    print("hiiiii")
     opt = parse_option()
     if opt.mode == "train":
         _train(opt)
@@ -472,6 +473,7 @@ if __name__ == "__main__":
         # record predicted probability
         truncated_data_info = []
         for data_id, data in enumerate(dataset):
+            print(data_id)
             table_num = len(data["table_labels"])
             if table_num == len(total_table_pred_probs[data_id]):
                 table_pred_probs = total_table_pred_probs[data_id]

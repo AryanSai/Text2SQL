@@ -5,8 +5,8 @@ import matplotlib.pyplot as plt
 from llama_cpp import Llama
 from evaluation import main
 # from list_generator import pick_difficulty_lists
-import wandb
-wandb.login(key = 'b58371874ad31931082450505a758fce636f6d3f')
+# import wandb
+# wandb.login(key = 'b58371874ad31931082450505a758fce636f6d3f')
 
 class suppress_stdout_stderr(object):
     def __enter__(self):
