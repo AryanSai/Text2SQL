@@ -58,7 +58,7 @@ if __name__ == '__main__':
                 # "query_toks_no_value": question_dict[input_str]["query_toks_no_value"],
                 "question": question_dict[input_str]["question"],
                 # "question_toks": question_dict[input_str]["question_toks"],
-                "sql": question_dict[input_str]["sql"]
+                "sql": question_dict[input_str]["query"]
             }
             if "hardness" in question_dict[input_str]:
                 merged_entry["hardness"] = question_dict[input_str]["hardness"]

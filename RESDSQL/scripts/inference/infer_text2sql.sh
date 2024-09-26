@@ -39,7 +39,7 @@ then
     db_path="../Datasets/bird/databases"
     MODEL="RESDSQL_BIRD"
     INPUT_LIST="../input_list_BIRD.json"
-    original_dev="../Datasets/bird/bird_dev_as_spider.json"
+    original_dev="../Datasets/bird/dev.json"
     RESULTS_DIR="Results/Bird"
 else
     echo "The second arg must in [spider, bird]."
@@ -51,6 +51,16 @@ fi
 #     --input $INPUT_LIST\
 #     --output "${RESULTS_DIR}/preprocessed_final_list_${MODEL}.json" \
 
+# preprocess dev dataset
+python preprocessing.py \
+    --mode "eval" \
+    --table_path "./data/spider/tables.json" \
+    --input_dataset_path "./data/spider/dev_with_hardness.json" \
+    --natsql_dataset_path "./NatSQL/NatSQLv1_6/dev-natsql.json" \
+    --output_dataset_path "preprocessed_dev_natsql.json" \
+    --db_path "./database" \
+    --target_type "natsql"
+    
 # echo preprocess test set
 # python preprocessing.py \
 #     --mode "test" \
@@ -60,50 +70,50 @@ fi
 #     --db_path $db_path \
 #     --target_type "sql" 
 
-echo predict probability for each schema item
-python schema_item_classifier.py \
-    --batch_size 32 \
-    --device $device \
-    --seed 42 \
-    --save_path "./models/text2sql_schema_item_classifier" \
-    --dev_filepath "${RESULTS_DIR}/preprocessed_dev_${MODEL}.json" \
-    --output_filepath "${RESULTS_DIR}/test_with_probs_resdsql_${MODEL}.json" \
-    --use_contents \
-    --add_fk_info \
-    --mode "test"
+# echo predict probability for each schema item
+# python schema_item_classifier.py \
+#     --batch_size 32 \
+#     --device $device \
+#     --seed 42 \
+#     --save_path "./models/text2sql_schema_item_classifier" \
+#     --dev_filepath "${RESULTS_DIR}/preprocessed_dev_${MODEL}.json" \
+#     --output_filepath "${RESULTS_DIR}/test_with_probs_resdsql_${MODEL}.json" \
+#     --use_contents \
+#     --add_fk_info \
+#     --mode "test"
 
-echo generate text2sql test set
-python text2sql_data_generator.py \
-    --input_dataset_path "${RESULTS_DIR}/test_with_probs_resdsql_${MODEL}.json" \
-    --output_dataset_path "${RESULTS_DIR}/resdsql_test_${MODEL}.json" \
-    --topk_table_num 4 \
-    --topk_column_num 5 \
-    --mode "test" \
-    --use_contents \
-    --add_fk_info \
-    --output_skeleton \
-    --target_type "sql"
+# echo generate text2sql test set
+# python text2sql_data_generator.py \
+#     --input_dataset_path "${RESULTS_DIR}/test_with_probs_resdsql_${MODEL}.json" \
+#     --output_dataset_path "${RESULTS_DIR}/resdsql_test_${MODEL}.json" \
+#     --topk_table_num 4 \
+#     --topk_column_num 5 \
+#     --mode "test" \
+#     --use_contents \
+#     --add_fk_info \
+#     --output_skeleton \
+#     --target_type "sql"
 
-echo inference using the best text2sql ckpt
-python text2sql.py \
-    --batch_size $batch_size \
-    --device 1 \
-    --seed 42 \
-    --save_path $model_path \
-    --mode "eval" \
-    --dev_filepath "${RESULTS_DIR}/resdsql_test_${MODEL}.json" \
-    --original_dev_filepath $original_dev \
-    --db_path $db_path \
-    --num_beams 8 \
-    --num_return_sequences 8 \
-    --target_type "sql" \
-    --output "${RESULTS_DIR}/resdqsl_output.json"
+# echo inference using the best text2sql ckpt
+# python text2sql.py \
+#     --batch_size $batch_size \
+#     --device 1 \
+#     --seed 42 \
+#     --save_path $model_path \
+#     --mode "eval" \
+#     --dev_filepath "${RESULTS_DIR}/resdsql_test_${MODEL}.json" \
+#     --original_dev_filepath $original_dev \
+#     --db_path $db_path \
+#     --num_beams 8 \
+#     --num_return_sequences 8 \
+#     --target_type "sql" \
+#     --output "${RESULTS_DIR}/resdqsl_output.json"
 
-echo preparing for consistency
-python3 prepare_for_consistency.py\
-    --input "${RESULTS_DIR}/resdqsl_output.json"\
-    --original_dev $original_dev \
-    --output "${RESULTS_DIR}/resdqsl_output_for_consistency_${MODEL}.json"
+# echo preparing for consistency
+# python3 prepare_for_consistency.py\
+#     --input "${RESULTS_DIR}/resdqsl_output.json"\
+#     --original_dev $original_dev \
+#     --output "${RESULTS_DIR}/resdqsl_output_for_consistency_${MODEL}.json"
 
 echo consistency check
 if [ $2 = "spider" ]
@@ -125,7 +135,7 @@ then
         --iterations $ITERATIONS
 elif [ $2 = "bird" ]
 then
-    CUDA_VISIBLE_DEVICES=0 python3 consistency_bird.py \
+    CUDA_VISIBLE_DEVICES=0 python3 consistency_bird_new.py \
     --model $MODEL\
     --dbdir $db_path\
     --dbtable $table_path\

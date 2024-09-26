@@ -42,11 +42,17 @@ def pick_difficulty_lists(dataset, number_of_samples,repeat):
         elif entry.get("difficulty") == "challenging":
             hard.append(i)
 
+    print("og easy=",len(easy))
+    print("og mediumm=",len(medium))
+    print("og hard=",len(hard))
+    
     # randomly sample indices from each category
     easy_sample = random.sample(easy, min(number_of_samples[0], len(easy)))
     medium_sample = random.sample(medium, min(number_of_samples[1], len(medium)))
     hard_sample = random.sample(hard, min(number_of_samples[2], len(hard)))
-    
+    print("easy=",len(easy_sample))
+    print("mediumm=",len(medium_sample))
+    print("hard=",len(hard_sample))
     repeated_easy = [item for item in easy_sample for _ in range(repeat)]
     repeated_medium = [item for item in medium_sample for _ in range(repeat)]
     repeated_hard = [item for item in hard_sample for _ in range(repeat)]
@@ -78,7 +84,7 @@ if __name__ == "__main__":
     outputjson = args.outputjson
     
     number_of_samples = divide_samples(total, simple, moderate, challenging)
-    print(number_of_samples)
+    print("number of sample: ",number_of_samples)
     # number_of_samples =[1,1,1]
     
     final_list = pick_difficulty_lists(dataset, number_of_samples, repeat)

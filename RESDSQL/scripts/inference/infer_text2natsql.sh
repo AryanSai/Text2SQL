@@ -38,6 +38,7 @@ then
     db_path="../Datasets/spider/database/"
     MODEL="RESDSQL_NATSQL_SPIDER"
     INPUT_LIST="../input_list_SPIDER.json"
+    input_dataset_path="./data/spider/dev.json"
     original_dev="./data/spider/dev_with_hardness.json"
     RESULTS_DIR="Results/Spider"
     preprocessed_dataset="${RESULTS_DIR}/preprocessed_final_list_RESDSQL_SPIDER.json"
@@ -49,7 +50,7 @@ then
     INPUT_LIST="../input_list_BIRD.json"
     RESULTS_DIR="Results/Bird"
     preprocessed_dataset="${RESULTS_DIR}/preprocessed_final_list_RESDSQL_BIRD.json"
-    original_dev="../Datasets/bird/bird_dev_as_spider.json"
+    original_dev="../Datasets/bird/dev.json"
 else
     echo "The second arg must in [spider, bird]."
     exit
@@ -74,14 +75,14 @@ python preprocessing.py \
     --input_dataset_path  $preprocessed_dataset\
     --output_dataset_path "${RESULTS_DIR}/natsql_preprocessed_dev_${MODEL}.json" \
     --db_path $db_path \
-    --target_type "sql" 
+    --target_type "natsql" 
 
 echo predict probability for each schema item
 python schema_item_classifier.py \
     --batch_size 32 \
     --device $device \
     --seed 42 \
-    --save_path "./models/text2sql_schema_item_classifier" \
+    --save_path "./models/text2natsql_schema_item_classifier" \
     --dev_filepath "${RESULTS_DIR}/natsql_preprocessed_dev_${MODEL}.json" \
     --output_filepath "${RESULTS_DIR}/natsql_test_with_probs_resdsql_${MODEL}.json" \
     --use_contents \
@@ -96,9 +97,8 @@ python text2sql_data_generator.py \
     --topk_column_num 5 \
     --mode "test" \
     --use_contents \
-    --add_fk_info \
     --output_skeleton \
-    --target_type "sql"
+    --target_type "natsql"
 
 echo inference using the best text2sql ckpt
 python text2sql.py \
@@ -110,9 +110,10 @@ python text2sql.py \
     --dev_filepath "${RESULTS_DIR}/natsql_test_${MODEL}.json" \
     --original_dev_filepath $original_dev \
     --db_path $db_path \
+    --tables_for_natsql $tables_for_natsql \
     --num_beams 8 \
     --num_return_sequences 8 \
-    --target_type "sql" \
+    --target_type "natsql" \
     --output "${RESULTS_DIR}/natsql_output.json"
 
 echo preparing for consistency
@@ -140,7 +141,7 @@ then
         --iterations $ITERATIONS
 elif [ $2 = "bird" ]
 then
-    CUDA_VISIBLE_DEVICES=0 python3 consistency_bird.py \
+    CUDA_VISIBLE_DEVICES=0 python3 consistency_bird_new.py \
     --model $MODEL\
     --dbdir $db_path\
     --dbtable $table_path\

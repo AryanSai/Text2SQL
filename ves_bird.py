@@ -26,10 +26,10 @@ def execute_sql(sql, db_path):
 def iterated_execute_sql(predicted_sql,ground_truth,db_path,iterate_num):
     # print('pred= ',predicted_sql)
     # print('gold= ',ground_truth)
-    print(db_path)
+    # print(db_path)
     conn = sqlite3.connect(db_path)
-    if(conn):
-        print('sai')
+    # if(conn):
+    #     print('sai')
     diff_list = []
     cursor = conn.cursor()
     cursor.execute(predicted_sql)
@@ -37,10 +37,10 @@ def iterated_execute_sql(predicted_sql,ground_truth,db_path,iterate_num):
     cursor.execute(ground_truth)
     ground_truth_res = cursor.fetchall()
     time_ratio = 0
-    print('--------------------------------------')
-    print('pred res= ',predicted_res)
-    print('gold res= ',ground_truth_res)
-    print('--------------------------------------')
+    # print('--------------------------------------')
+    # print('pred res= ',predicted_res)
+    # print('gold res= ',ground_truth_res)
+    # print('--------------------------------------')
     if set(predicted_res) == set(ground_truth_res):
         for i in range(iterate_num):
             predicted_time = execute_sql(predicted_sql, db_path)

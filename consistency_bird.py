@@ -3,10 +3,9 @@ import seaborn as sns
 import re,json,pandas as pd,sqlite3,os,sys
 import matplotlib.pyplot as plt
 from llama_cpp import Llama
-from evaluation import main
 # from list_generator import pick_difficulty_lists
-# import wandb
-# wandb.login(key = 'b58371874ad31931082450505a758fce636f6d3f')
+import wandb
+wandb.login(key = 'b58371874ad31931082450505a758fce636f6d3f')
 
 class suppress_stdout_stderr(object):
     def __enter__(self):
@@ -71,7 +70,7 @@ def fetchSchema(db):
 def model_predict(question):
     template = "Question: Convert the following text to an SQLite query and end the query with a semi-colon(;). Please provide only the query without any explanation: " 
     with suppress_stdout_stderr():
-        llm = Llama(model_path = model_path, n_ctx=2048,n_gpu_layers=-1)
+        llm = Llama(model_path = model_path, n_ctx=2048,n_gpu_layers=15)
         output = llm(
             prompt = template + question + "\nAnswer:",
             max_tokens=300,
@@ -128,6 +127,23 @@ def load_json(filename):
     repeat = data.get('repeat', 1)
     return final_list, repeat
 
+def execute_sql(predicted_sql, ground_truth_sql, db_path):
+    try:
+        conn = sqlite3.connect(db_path)
+        cursor = conn.cursor()
+        cursor.execute(predicted_sql)
+        predicted_res = cursor.fetchall()
+        
+        cursor.execute(ground_truth_sql)
+        ground_truth_res = cursor.fetchall()
+        res = 1 if set(predicted_res) == set(ground_truth_res) else 0
+    except sqlite3.Error as e:
+        print(f"An error occurred: {e}")
+        res = 0  # Return 0 in case of an error
+    finally:
+        conn.close() 
+    return res
+
 if __name__ == "__main__":
     
     wandb.init('consistency-bird')
@@ -150,7 +166,6 @@ if __name__ == "__main__":
     parser.add_argument('--dbtable', dest='dbtable', type=str, required=True)
     parser.add_argument('--inputjson', dest='inputjson', type=str, required=True)
     parser.add_argument('--output', dest='output', type=str, required=True)
-    parser.add_argument('--exact_threshold', dest='exact_threshold', type=float, required=True)
     parser.add_argument('--exec_threshold', dest='exec_threshold', type=float, required=True)
     parser.add_argument('--consistency_threshold', dest='consistency_threshold', type=float, required=True)
     
@@ -163,7 +178,6 @@ if __name__ == "__main__":
     input_json = args.inputjson
     results_path = args.output
     threshold_for_execution = args.exec_threshold
-    threshold_for_exact = args.exact_threshold
     threshold_for_consistency = args.consistency_threshold
     
     model_name = model_path.split('/')[-1].split('.gguf')[0]
@@ -193,13 +207,11 @@ if __name__ == "__main__":
             curr = [index , data[index]['question'], data[index]['db_id'], data[index]['difficulty'],data[index]['query'],repeat,response,""]
             result.loc[len(result)] = curr
 
-    cm_exact = [[[0, 0, 0] for _ in range(2)] for _ in range(2)]
     cm_exec = [[[0, 0, 0] for _ in range(2)] for _ in range(2)]
-    cm_exact_and_exec = [[[0, 0, 0] for _ in range(2)] for _ in range(2)]
 
     for index, row in result.iterrows():
         map = {}
-        exact, exec, i, j = (0,)*4
+        exec, i, j = (0,)*3
         qid = row['Qid']
         predicted_queries = row['Query Generated'].split("\n")  # multiple predictions
 
@@ -211,14 +223,11 @@ if __name__ == "__main__":
                 map[r] = 1
 
         for query in map:
-            gold = row['Query Gold'] + "\t" + data[qid]['db_id']
+            db=data[qid]['db_id']
             pred = query
-            m, e = main(gold, pred, db_dir, table)  # returns the exact match and execution accuracy
-            
-            print(f"Query: {pred}\nExact Match: {m}, Execution: {e}")
-            
-            if m:
-                exact += map[query]
+            db = os.path.join(db_dir, db, db + ".sqlite")
+            e = execute_sql(pred,row['Query Gold'] ,db)
+            print(f"Query: {pred}\n Execution: {e}")
             if e:
                 exec += map[query]
 
@@ -231,17 +240,10 @@ if __name__ == "__main__":
             i = 1
         else:
             i = 0
-
-        exact = exact / repeat
+            
         exec = exec / repeat
 
         difficulty_index = get_difficulty_index(row['Difficulty'])
-
-        if exact > threshold_for_exact:
-            j = 1
-        else:
-            j = 0
-        cm_exact[i][j][difficulty_index] += 1
 
         if exec > threshold_for_execution:
             j = 1
@@ -249,41 +251,19 @@ if __name__ == "__main__":
             j = 0
         cm_exec[i][j][difficulty_index] += 1
 
-        if exec > threshold_for_execution and exact > threshold_for_exact:
-            j = 1
-        else:
-            j = 0
-        cm_exact_and_exec[i][j][difficulty_index] += 1
-        
-        df_cm_exact_numeric = pd.DataFrame(
-            [[sum(cm_exact[i][j]) for j in range(2)] for i in range(2)],
-            columns=["0", "1"],
-            index=["0", "1"]
-        )
-
         df_cm_exec_numeric = pd.DataFrame(
             [[sum(cm_exec[i][j]) for j in range(2)] for i in range(2)],
             columns=["0", "1"],
             index=["0", "1"]
         )
 
-        df_cm_exact_and_exec_numeric = pd.DataFrame(
-            [[sum(cm_exact_and_exec[i][j]) for j in range(2)] for i in range(2)],
-            columns=["0", "1"],
-            index=["0", "1"]
-        )
-        
         #dataFrames with formatted labels
-        df_cm_exact_labels = create_labeled_dataframe(cm_exact)
         df_cm_exec_labels = create_labeled_dataframe(cm_exec)
-        df_cm_exact_and_exec_labels = create_labeled_dataframe(cm_exact_and_exec)
 
         # plot the heatmaps
-        plot_heatmap(model_name+'_Consistency on Exact Measure',df_cm_exact_numeric,df_cm_exact_labels,"_Exact_Measure")
         plot_heatmap(model_name+'_Consistency on Execution Measure',df_cm_exec_numeric,df_cm_exec_labels,"_Execution_Measure")
-        plot_heatmap(model_name+'_Consistency on Both Exact and Execution Measure',df_cm_exact_and_exec_numeric,df_cm_exact_and_exec_labels,"_Exact_And_Execution_Measure")
 
-    result.to_csv(results_path + model_name+"_Consistency_Results_BIRD.csv")
+    result.to_csv(results_path +"_Consistency_Results_BIRD.csv")
     
     print('===========================================================================================')
     print("Finished Consistency Metric Evaluation")
