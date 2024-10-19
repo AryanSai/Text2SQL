@@ -50,16 +50,6 @@ fi
 #     --original_dev $original_dev \
 #     --input $INPUT_LIST\
 #     --output "${RESULTS_DIR}/preprocessed_final_list_${MODEL}.json" \
-
-# preprocess dev dataset
-python preprocessing.py \
-    --mode "eval" \
-    --table_path "./data/spider/tables.json" \
-    --input_dataset_path "./data/spider/dev_with_hardness.json" \
-    --natsql_dataset_path "./NatSQL/NatSQLv1_6/dev-natsql.json" \
-    --output_dataset_path "preprocessed_dev_natsql.json" \
-    --db_path "./database" \
-    --target_type "natsql"
     
 # echo preprocess test set
 # python preprocessing.py \
