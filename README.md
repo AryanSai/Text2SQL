@@ -1,3 +1,3 @@
 # Text2SQL
 
-A project aimed at creating metrics for evaluating Foundational models on Text-to-SQL tasks.
+A study aimed at evaluating the consistency of Text-to-SQL models.
