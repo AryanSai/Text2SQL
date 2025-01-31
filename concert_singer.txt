@@ -1,0 +1,39 @@
+This database schema models concert events, including information about stadiums, singers, concerts, and their relationships. It establishes connections between singers and concerts, and concerts and stadiums, enabling tracking of musical performances over different years.
+
+1. Stadium Table (stadium)
+- Represents stadiums where concerts are held.
+- Attributes:
+  - Stadium_ID (Primary Key) – Unique ID for each stadium.
+  - Location – Name of the city/club where the stadium is located.
+  - Name – Stadium name.
+  - Capacity – Maximum audience capacity.
+  - Highest – Highest recorded audience for a concert.
+  - Lowest – Lowest recorded audience for a concert.
+  - Average – Average attendance for events at the stadium.
+
+2. Singer Table (singer)
+- Stores details about singers performing in concerts.
+- Attributes:
+  - Singer_ID (Primary Key) – Unique identifier for each singer.
+  - Name – Singer’s full name.
+  - Country – Country of origin.
+  - Song_Name – Most popular song or notable performance.
+  - Song_release_year – Year the song was released.
+  - Age – Current age of the singer.
+  - Is_male – Boolean (T for male, F for female).
+
+3. Concert Table (concert)
+- Represents musical concerts.
+- Attributes:
+  - concert_ID (Primary Key) – Unique ID for each concert.
+  - concert_Name – Name or title of the concert event.
+  - Theme – Theme of the concert (e.g., "Free choice", "Party All Night").
+  - Stadium_ID (Foreign Key) – Links to stadium (Stadium_ID), representing the venue.
+  - Year – The year the concert took place.
+
+4. Singer in Concert Table (singer_in_concert)
+- Establishes a many-to-many relationship between singer and concert, showing which singers performed at which concerts.
+- Attributes:
+  - concert_ID (Foreign Key) – Links to concert (concert_ID).
+  - Singer_ID (Foreign Key) – Links to singer (Singer_ID).
+- Primary Key: (concert_ID, Singer_ID) ensures that a singer can only be associated once per concert.
