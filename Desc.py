@@ -140,8 +140,8 @@ def calculate_metrics(csv_file):
 
 #############################################################################################################
 
-csv_file = "codegemma_desc_analysis.csv"
-model_path = "Models/codegemma-7b-Q8_0.gguf"
+csv_file = "deepseekcoderv2_desc_analysis.csv"
+model_path = "Models/DeepSeek-Coder-V2-Lite-2.4B-Instruct-Q8_0.gguf"
 
 analyse(csv_file,model_path)
 
