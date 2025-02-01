@@ -1,10 +1,10 @@
-import random
-import sqlite3, json, os, re
+import random,sqlite3, json, os, re
 from suppress import suppress_stdout_stderr
 from llama_cpp import Llama
 from evaluation import main
 import pandas as pd
 import matplotlib.pyplot as plt
+import seaborn as sns
 
 def get_hardness_index(hardness_level):
     if hardness_level == 'easy':
@@ -28,12 +28,12 @@ def format_cell_value(matrix, i, j):
     return (f"Overall: {sum(values)}\nEasy: {values[0]}\nMedium: {values[1]}"
             f"\nHard: {values[2]}\nExtra Hard: {values[3]}")
 
-def plot_heatmap(title,df,labels,measure_name):
+def plot_heatmap(title,df,labels):
     plt.figure(figsize=(10, 6)) 
     plot = sns.heatmap(df, cmap="Blues", annot=labels, fmt="", annot_kws={"size": 12})
     plt.title(title) 
-    plt.suptitle('n = ' + str(repeat), fontsize=10)
-    plot.figure.savefig(results_path + measure_name +"_SPIDER.png")  
+    plt.suptitle('n = 7 ', fontsize=10)
+    plot.figure.savefig(title +"_SPIDER.png")  
     plt.close()
     
 def model_predict(model_path, question, schema, schema_description=""):
@@ -59,7 +59,7 @@ def model_predict(model_path, question, schema, schema_description=""):
         )
         
     with suppress_stdout_stderr():
-        llm = Llama(model_path=model_path, n_ctx=2048, n_gpu_layers=20)
+        llm = Llama(model_path=model_path, n_ctx=2048, n_gpu_layers=-1)
         output = llm(
             prompt = prompt,
             max_tokens=300,
@@ -92,10 +92,10 @@ def get_schema():
 
 def calculate_metrics(csv_file):
     df = pd.read_csv(csv_file)
-    categories = df['Hardness'].unique()
+    categories = df['hardness'].unique()
     metrics = []
     for category in categories:
-        subset = df[df['Hardness'] == category]
+        subset = df[df['hardness'] == category]
         total = len(subset)
         
         em_without = subset['EM Without'].sum()
@@ -104,7 +104,7 @@ def calculate_metrics(csv_file):
         ex_with = subset['EX With'].sum()
         
         metrics.append({
-            "Hardness": category,
+            "hardness": category,
             "Total Questions": total,
             "EM Without (%)": (em_without / total) * 100 if total else 0,
             "EX Without (%)": (ex_without / total) * 100 if total else 0,
@@ -114,13 +114,10 @@ def calculate_metrics(csv_file):
     
     return pd.DataFrame(metrics)
 
-
-def conssistency_analysis():
+def consistency_analysis(csv_file,model_path):
     db_dir = "Datasets/spider/database"
     table = "Datasets/spider/tables.json"
-    threshold_for_execution = 0.5
-    threshold_for_exact = 0.5
-    threshold_for_consistency = 0.5
+    threshold_for_execution,threshold_for_exact,threshold_for_consistency = 0.5, 0.5, 0.5
     repeat = 7  
     model_name = model_path.split('/')[-1].split('.gguf')[0]
     
@@ -129,47 +126,47 @@ def conssistency_analysis():
     data = [entry for entry in data if entry["db_id"] == "concert_singer"]
     total_questions = len(data) 
     
-    data = data * 7
+    data = data * repeat
     random.shuffle(data)
     
-    total_em_without, total_ex_without = 0, 0
-    total_em_with, total_ex_with = 0, 0
+    total_em_without, total_ex_without, total_em_with, total_ex_with = 0, 0, 0, 0
     
     schema = get_schema()
-    result = pd.DataFrame(columns=["Question","Db_Id","Hardness","Gold","Repeated", "Without Description", "With Description", 
-                                   "EM Without", "EX Without", "EM With", "EX With", 'Without - Most Frequent Query', "With - Most Frequent Query","Consistency-EM-Without","Consistency-EX-Without","Consistency-EM-With","Consistency-EX-With" ],dtype=object)
+    result = pd.DataFrame(columns=["Question","Db_Id","hardness","Gold","Repeated", "Without Description", "With Description", 
+                                   "EM Without", "EX Without", "EM With", "EX With", 'Without - Most Frequent Query', 
+                                   "With - Most Frequent Query","Consistency-EM-Without","Consistency-EX-Without",
+                                   "Consistency-EM-With","Consistency-EX-With" ],dtype=object)
     
     for entry in data:
-        question = entry['question']
+        question = entry["question"]
         gold = entry['query'] + "\t" + entry['db_id']
         
         response_without_desc = model_predict(model_path,question,schema,"")
-        em_without, ex_without = main(gold, response_without_desc, db_dir, table)
+        _, _ = main(gold, response_without_desc, db_dir, table)
         
         print(f"Question: {question}")
         print("Prediction without schema description:", response_without_desc)
         
-        if entry['question'] in result['question'].values:
-            row_index = result.index[result['question'] == entry['question']].tolist()[0]
+        if entry["question"] in result["Question"].values:
+            row_index = result.index[result["Question"] == entry["question"]].tolist()[0]
             result.loc[row_index,'Without Description'] += "\n" + response_without_desc
         else:
-            result.loc[len(result)] = [question,entry['db_id'], entry["hardness"], entry['query'], repeat, response_without_desc, "", 0, 0, 0, 0,"",0]
+            result.loc[len(result)] = [question,entry['db_id'], entry["hardness"], entry['query'], repeat, response_without_desc, "", 0, 0, 0, 0,"","",0,0,0,0]
     
         response_with_desc = model_predict(model_path,question,schema,get_desc())
-        em_with, ex_with = main(gold, response_with_desc, db_dir, table)
+        _, _ = main(gold, response_with_desc, db_dir, table)
         
         print("Prediction with schema description:", response_with_desc)
         print('--------------------------------------------------------------')
         
-        row_index = result.index[result['question'] == entry['question']].tolist()[0]
+        row_index = result.index[result["Question"] == entry["question"]].tolist()[0]
         if result.loc[row_index, 'With Description'] == "":
-            result.loc[row_index, 'With Description'] = response_without_desc
+            result.loc[row_index, 'With Description'] = response_with_desc
         else:
-            result.loc[row_index, 'With Description'] += "\n" + response_without_desc
+            result.loc[row_index, 'With Description'] += "\n" + response_with_desc
         
     cm_exact = [[[0, 0, 0,0] for _ in range(2)] for _ in range(2)]
     cm_exec = [[[0, 0, 0,0] for _ in range(2)] for _ in range(2)]
-    cm_exact_and_exec = [[[0, 0, 0,0] for _ in range(2)] for _ in range(2)]
 
     for index, row in result.iterrows():
         without_map = {}
@@ -184,7 +181,7 @@ def conssistency_analysis():
                 without_map[r] = 1
 
         for query in without_map:
-            gold = row['Query Gold'] + "\t" + row['db_id']
+            gold = row['Gold'] + "\t" + row['Db_Id']
             pred = query
             m, e = main(gold, pred, db_dir, table)  # returns the exact match and execution accuracy
             
@@ -205,7 +202,7 @@ def conssistency_analysis():
         total_em_without += em_without
         total_ex_without += ex_without
         
-        if map[querymax] / repeat > threshold_for_consistency:
+        if without_map[querymax] / repeat > threshold_for_consistency:
             i = 1
         else:
             i = 0
@@ -216,14 +213,18 @@ def conssistency_analysis():
         hardness_index = get_hardness_index(row['hardness'])
 
         if exact > threshold_for_exact:
+            result.at[index, "Consistency-EM-Without"] = 1
             j = 1
         else:
+            result.at[index, "Consistency-EM-Without"] = 0
             j = 0
         cm_exact[i][j][hardness_index] += 1
 
         if exec > threshold_for_execution:
+            result.at[index, "Consistency-EX-Without"] = 1
             j = 1
         else:
+            result.at[index, "Consistency-EX-Without"] = 0
             j = 0
         cm_exec[i][j][hardness_index] += 1
         
@@ -242,8 +243,10 @@ def conssistency_analysis():
         df_cm_exact_labels = create_labeled_dataframe(cm_exact)
         df_cm_exec_labels = create_labeled_dataframe(cm_exec)
 
-        plot_heatmap("Desc-"+model_name+'_Consistency on Exact Measure',df_cm_exact_numeric,df_cm_exact_labels,"_Exact_Measure")
-        plot_heatmap("Desc-"+model_name+'_Consistency on Execution Measure',df_cm_exec_numeric,df_cm_exec_labels,"_Execution_Measure")
+        plot_heatmap("Desc-Without-"+model_name+"_Consistency on Exact Measure",df_cm_exact_numeric,df_cm_exact_labels)
+        plot_heatmap("Desc-Without-"+model_name+"_Consistency on Execution Measure",df_cm_exec_numeric,df_cm_exec_labels)
+        
+        ######################################################################################################
         
         with_map = {}
         exact, exec, i, j = (0,)*4
@@ -257,7 +260,7 @@ def conssistency_analysis():
                 with_map[r] = 1
 
         for query in with_map:
-            gold = row['Query Gold'] + "\t" + row['db_id']
+            gold = row['Gold'] + "\t" + row['Db_Id']
             pred = query
             m, e = main(gold, pred, db_dir, table)  # returns the exact match and execution accuracy
             
@@ -271,14 +274,14 @@ def conssistency_analysis():
         querymax = max(with_map, key=lambda k: with_map[k])  # max frequency query
         m, e = main(gold, querymax, db_dir, table)
         result.at[index, 'With - Most Frequent Query'] = querymax
-        em_with = int(bool(em_with))
-        ex_with = int(bool(ex_with))
+        em_with = int(bool(m))
+        ex_with = int(bool(e))
         result.at[index, "EM With"] = em_with
         result.at[index, "EX With"] = ex_with
         total_em_with += em_with
         total_ex_with += ex_with
         
-        if map[querymax] / repeat > threshold_for_consistency:
+        if with_map[querymax] / repeat > threshold_for_consistency:
             i = 1
         else:
             i = 0
@@ -289,14 +292,18 @@ def conssistency_analysis():
         hardness_index = get_hardness_index(row['hardness'])
 
         if exact > threshold_for_exact:
+            result.at[index, "Consistency-EM-With"] = 1
             j = 1
         else:
+            result.at[index, "Consistency-EM-With"] = 0
             j = 0
         cm_exact[i][j][hardness_index] += 1
 
         if exec > threshold_for_execution:
+            result.at[index, "Consistency-EX-With"] = 1
             j = 1
         else:
+            result.at[index, "Consistency-EX-With"] = 0
             j = 0
         cm_exec[i][j][hardness_index] += 1
         
@@ -315,8 +322,9 @@ def conssistency_analysis():
         df_cm_exact_labels = create_labeled_dataframe(cm_exact)
         df_cm_exec_labels = create_labeled_dataframe(cm_exec)
 
-        plot_heatmap("Desc-"+model_name+'_Consistency on Exact Measure',df_cm_exact_numeric,df_cm_exact_labels,"_Exact_Measure")
-        plot_heatmap("Desc-"+model_name+'_Consistency on Execution Measure',df_cm_exec_numeric,df_cm_exec_labels,"_Execution_Measure")
+        plot_heatmap("Desc-With-"+model_name+"_Consistency on Exact Measure",df_cm_exact_numeric,df_cm_exact_labels)
+        plot_heatmap("Desc-With-"+model_name+"_Consistency on Execution Measure",df_cm_exec_numeric,df_cm_exec_labels)
+    
     result.to_csv(csv_file, index=False)
     
     em_without_percent = (total_em_without / total_questions) * 100 if total_questions else 0
@@ -333,12 +341,11 @@ def conssistency_analysis():
     print('===========================================================================================')
     print("Finished Consistency Metric Evaluation")
 
-
 #############################################################################################################
 
-csv_file = "codestral22b_desc_analysis.csv"
-model_path = "Models/Codestral-22B-v0.1-Q8_0.gguf"
-conssistency_analysis(csv_file,model_path)
+csv_file = "consistencydeepseek_desc_analysis.csv"
+model_path = "Models/DeepSeek-Coder-V2-Lite-2.4B-Instruct-Q8_0.gguf"
+consistency_analysis(csv_file,model_path)
 
 metrics_df = calculate_metrics(csv_file)
 print(metrics_df)
