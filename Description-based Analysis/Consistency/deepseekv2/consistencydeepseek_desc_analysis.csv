@@ -1,0 +1,586 @@
+Question,Db_Id,hardness,Gold,Repeated,Without Description,With Description,EM Without,EX Without,EM With,EX With,Without - Most Frequent Query,With - Most Frequent Query,Consistency-EM-Without,Consistency-EX-Without,Consistency-EM-With,Consistency-EX-With
+Find the name and location of the stadiums which some concerts happened in the years of both 2014 and 2015.,concert_singer,extra,"SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015",7,"SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2","SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2",0,1,0,1,"SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2","SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2",0,1,0,1
+List all song names by singers above the average age.,concert_singer,hard,SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer),7,"SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)","SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)",0,1,0,1,SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer),SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer),0,1,0,1
+How many concerts occurred in 2014 or 2015?,concert_singer,medium,SELECT count(*) FROM concert WHERE YEAR  =  2014 OR YEAR  =  2015,7,"SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)","SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)",0,1,0,1,"SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)","SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)",0,1,0,1
+Show the name and theme for all concerts and the number of singers in each concert.,concert_singer,medium,"SELECT T2.concert_name ,  T2.theme ,  count(*) FROM singer_in_concert AS T1 JOIN concert AS T2 ON T1.concert_id  =  T2.concert_id GROUP BY T2.concert_id",7,"SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert s ON c.concert_id = s.concert_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert s ON c.concert_id = s.concert_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert s ON c.concert_id = s.concert_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert s ON c.concert_id = s.concert_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert s ON c.concert_id = s.concert_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert s ON c.concert_id = s.concert_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert s ON c.concert_id = s.concert_id GROUP BY c.concert_id","SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert sic ON c.concert_id = sic.concert_id LEFT JOIN singer s ON sic.singer_id = s.singer_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert sic ON c.concert_id = sic.concert_id LEFT JOIN singer s ON sic.singer_id = s.singer_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert sic ON c.concert_id = sic.concert_id LEFT JOIN singer s ON sic.singer_id = s.singer_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert sic ON c.concert_id = sic.concert_id LEFT JOIN singer s ON sic.singer_id = s.singer_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert sic ON c.concert_id = sic.concert_id LEFT JOIN singer s ON sic.singer_id = s.singer_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert sic ON c.concert_id = sic.concert_id LEFT JOIN singer s ON sic.singer_id = s.singer_id GROUP BY c.concert_id
+SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert sic ON c.concert_id = sic.concert_id LEFT JOIN singer s ON sic.singer_id = s.singer_id GROUP BY c.concert_id",0,1,0,1,"SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert s ON c.concert_id = s.concert_id GROUP BY c.concert_id","SELECT c.concert_name, c.theme, COUNT(s.singer_id) AS number_of_singers FROM concert c LEFT JOIN singer_in_concert sic ON c.concert_id = sic.concert_id LEFT JOIN singer s ON sic.singer_id = s.singer_id GROUP BY c.concert_id",0,1,0,1
+How many singers are from each country?,concert_singer,medium,"SELECT country ,  count(*) FROM singer GROUP BY country",7,"SELECT country, COUNT(*) AS num_singers FROM singer GROUP BY country
+SELECT country, COUNT(*) AS num_singers FROM singer GROUP BY country
+SELECT country, COUNT(*) AS num_singers FROM singer GROUP BY country
+SELECT country, COUNT(*) AS num_singers FROM singer GROUP BY country
+SELECT country, COUNT(*) AS num_singers FROM singer GROUP BY country
+SELECT country, COUNT(*) AS num_singers FROM singer GROUP BY country
+SELECT country, COUNT(*) AS num_singers FROM singer GROUP BY country","SELECT country, COUNT(*) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC
+SELECT country, COUNT(*) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC
+SELECT country, COUNT(*) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC
+SELECT country, COUNT(*) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC
+SELECT country, COUNT(*) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC
+SELECT country, COUNT(*) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC
+SELECT country, COUNT(*) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC",0,1,0,1,"SELECT country, COUNT(*) AS num_singers FROM singer GROUP BY country","SELECT country, COUNT(*) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC",0,1,0,1
+Show the stadium name and the number of concerts in each stadium.,concert_singer,medium,"SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id",7,"SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id","SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id
+SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id",0,0,0,0,"SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id","SELECT s.name AS stadium_name, COUNT(c.concert_id) AS number_of_concerts FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id GROUP BY s.stadium_id",0,0,0,0
+How many singers do we have?,concert_singer,easy,SELECT count(*) FROM singer,7,"SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer","SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer
+SELECT COUNT(*) FROM singer",1,1,1,1,SELECT COUNT(*) FROM singer,SELECT COUNT(*) FROM singer,1,1,1,1
+"What is the average, minimum, and maximum age of all singers from France?",concert_singer,medium,"SELECT avg(age) ,  min(age) ,  max(age) FROM singer WHERE country  =  'France'",7,"SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'","SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'",0,1,0,1,"SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'","SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'",0,1,0,1
+How many concerts are there in year 2014 or 2015?,concert_singer,medium,SELECT count(*) FROM concert WHERE YEAR  =  2014 OR YEAR  =  2015,7,"SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)","SELECT COUNT(*) AS total_concerts FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) AS total_concerts FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) AS total_concerts FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) AS total_concerts FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) AS total_concerts FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) AS total_concerts FROM concert WHERE year IN (2014, 2015)
+SELECT COUNT(*) AS total_concerts FROM concert WHERE year IN (2014, 2015)",0,1,0,1,"SELECT COUNT(*) FROM concert WHERE year IN (2014, 2015)","SELECT COUNT(*) AS total_concerts FROM concert WHERE year IN (2014, 2015)",0,1,0,1
+Show all countries and the number of singers in each country.,concert_singer,medium,"SELECT country ,  count(*) FROM singer GROUP BY country",7,"SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country","SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC, country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC, country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC, country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC, country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC, country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC, country
+SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC, country",0,1,0,1,"SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country","SELECT country, COUNT(singer_id) AS number_of_singers FROM singer GROUP BY country ORDER BY number_of_singers DESC, country",0,1,0,1
+What are the names of the singers who performed in a concert in 2014?,concert_singer,hard,SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014,7,"SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014","SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014
+SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014",0,1,0,1,SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014,SELECT DISTINCT s.name FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id JOIN concert c ON sic.concert_id = c.concert_id WHERE c.year = 2014,0,1,0,1
+What are all distinct countries where singers above age 20 are from?,concert_singer,easy,SELECT DISTINCT country FROM singer WHERE age  >  20,7,"SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20","SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20",1,1,1,1,SELECT DISTINCT country FROM singer WHERE age > 20,SELECT DISTINCT country FROM singer WHERE age > 20,1,1,1,1
+"For each stadium, how many concerts play there?",concert_singer,medium,"SELECT T2.name ,  count(*) FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id GROUP BY T1.stadium_id",7,"SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium LEFT JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium LEFT JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium LEFT JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium LEFT JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium LEFT JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium LEFT JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium LEFT JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id","SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id
+SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id",0,0,0,1,"SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium LEFT JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id","SELECT stadium.name, COUNT(concert.concert_id) AS concert_count FROM stadium JOIN concert ON stadium.stadium_id = concert.stadium_id GROUP BY stadium.stadium_id",0,0,0,1
+What is the maximum capacity and the average of all stadiums ?,concert_singer,medium,"select max(capacity), average from stadium",7,"SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium","SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium
+SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium",0,0,0,0,"SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium","SELECT MAX(capacity) AS max_capacity, AVG(capacity) AS avg_capacity FROM stadium",0,0,0,0
+Show countries where a singer above age 40 and a singer below 30 are from.,concert_singer,hard,SELECT country FROM singer WHERE age  >  40 INTERSECT SELECT country FROM singer WHERE age  <  30,7,"SELECT DISTINCT country FROM singer WHERE age > 40 OR age < 30
+SELECT DISTINCT country FROM singer WHERE age > 40 OR age < 30
+SELECT DISTINCT country FROM singer WHERE age > 40 OR age < 30
+SELECT DISTINCT country FROM singer WHERE age > 40 OR age < 30
+SELECT DISTINCT country FROM singer WHERE age > 40 OR age < 30
+SELECT DISTINCT country FROM singer WHERE age > 40 OR age < 30
+SELECT DISTINCT country FROM singer WHERE age > 40 OR age < 30","SELECT DISTINCT s1.country FROM singer s1 WHERE s1.age > 40 AND EXISTS (     SELECT 1     FROM singer s2     WHERE s2.country = s1.country     AND s2.age < 30 )
+SELECT DISTINCT s1.country FROM singer s1 WHERE s1.age > 40 AND EXISTS (     SELECT 1     FROM singer s2     WHERE s2.country = s1.country     AND s2.age < 30 )
+SELECT DISTINCT s1.country FROM singer s1 WHERE s1.age > 40 AND EXISTS (     SELECT 1     FROM singer s2     WHERE s2.country = s1.country     AND s2.age < 30 )
+SELECT DISTINCT s1.country FROM singer s1 WHERE s1.age > 40 AND EXISTS (     SELECT 1     FROM singer s2     WHERE s2.country = s1.country     AND s2.age < 30 )
+SELECT DISTINCT s1.country FROM singer s1 WHERE s1.age > 40 AND EXISTS (     SELECT 1     FROM singer s2     WHERE s2.country = s1.country     AND s2.age < 30 )
+SELECT DISTINCT s1.country FROM singer s1 WHERE s1.age > 40 AND EXISTS (     SELECT 1     FROM singer s2     WHERE s2.country = s1.country     AND s2.age < 30 )
+SELECT DISTINCT s1.country FROM singer s1 WHERE s1.age > 40 AND EXISTS (     SELECT 1     FROM singer s2     WHERE s2.country = s1.country     AND s2.age < 30 )",0,0,0,1,SELECT DISTINCT country FROM singer WHERE age > 40 OR age < 30,SELECT DISTINCT s1.country FROM singer s1 WHERE s1.age > 40 AND EXISTS (     SELECT 1     FROM singer s2     WHERE s2.country = s1.country     AND s2.age < 30 ),0,0,0,1
+What are the locations and names of all stations with capacity between 5000 and 10000?,concert_singer,medium,"SELECT LOCATION ,  name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",7,"SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000","SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",1,1,1,1,"SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000","SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",1,1,1,1
+Which year has most number of concerts?,concert_singer,hard,SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1,7,"SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1","SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1
+SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1",0,0,0,0,"SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1","SELECT year, COUNT(*) AS num_concerts FROM concert GROUP BY year ORDER BY num_concerts DESC LIMIT 1",0,0,0,0
+What is the name and capacity for the stadium with the highest average attendance?,concert_singer,medium,"SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1",7,"SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1","SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1",1,1,1,1,"SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1","SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1",1,1,1,1
+What are the number of concerts that occurred in the stadium with the largest capacity ?,concert_singer,hard,select count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1),7,"SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id IN (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id IN (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id IN (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id IN (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id IN (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id IN (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id IN (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )","SELECT COUNT(c.concert_id) AS number_of_concerts FROM concert c JOIN stadium s ON c.stadium_id = s.stadium_id WHERE s.capacity = (SELECT MAX(capacity) FROM stadium)
+SELECT COUNT(c.concert_id) AS number_of_concerts FROM concert c JOIN stadium s ON c.stadium_id = s.stadium_id WHERE s.capacity = (SELECT MAX(capacity) FROM stadium)
+SELECT COUNT(c.concert_id) AS number_of_concerts FROM concert c JOIN stadium s ON c.stadium_id = s.stadium_id WHERE s.capacity = (SELECT MAX(capacity) FROM stadium)
+SELECT COUNT(c.concert_id) AS number_of_concerts FROM concert c JOIN stadium s ON c.stadium_id = s.stadium_id WHERE s.capacity = (SELECT MAX(capacity) FROM stadium)
+SELECT COUNT(c.concert_id) AS number_of_concerts FROM concert c JOIN stadium s ON c.stadium_id = s.stadium_id WHERE s.capacity = (SELECT MAX(capacity) FROM stadium)
+SELECT COUNT(c.concert_id) AS number_of_concerts FROM concert c JOIN stadium s ON c.stadium_id = s.stadium_id WHERE s.capacity = (SELECT MAX(capacity) FROM stadium)
+SELECT COUNT(c.concert_id) AS number_of_concerts FROM concert c JOIN stadium s ON c.stadium_id = s.stadium_id WHERE s.capacity = (SELECT MAX(capacity) FROM stadium)",0,1,0,1,SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id IN (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 ),SELECT COUNT(c.concert_id) AS number_of_concerts FROM concert c JOIN stadium s ON c.stadium_id = s.stadium_id WHERE s.capacity = (SELECT MAX(capacity) FROM stadium),0,1,0,1
+"What are the names , themes , and number of singers for every concert ?",concert_singer,medium,"select t2.concert_name ,  t2.theme ,  count(*) from singer_in_concert as t1 join concert as t2 on t1.concert_id  =  t2.concert_id group by t2.concert_id",7,"SELECT concert.concert_name, concert.theme, COUNT(singer_in_concert.singer_id) AS number_of_singers FROM concert LEFT JOIN singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY concert.concert_id
+SELECT concert.concert_name, concert.theme, COUNT(singer_in_concert.singer_id) AS number_of_singers FROM concert LEFT JOIN singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY concert.concert_id
+SELECT concert.concert_name, concert.theme, COUNT(singer_in_concert.singer_id) AS number_of_singers FROM concert LEFT JOIN singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY concert.concert_id
+SELECT concert.concert_name, concert.theme, COUNT(singer_in_concert.singer_id) AS number_of_singers FROM concert LEFT JOIN singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY concert.concert_id
+SELECT concert.concert_name, concert.theme, COUNT(singer_in_concert.singer_id) AS number_of_singers FROM concert LEFT JOIN singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY concert.concert_id
+SELECT concert.concert_name, concert.theme, COUNT(singer_in_concert.singer_id) AS number_of_singers FROM concert LEFT JOIN singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY concert.concert_id
+SELECT concert.concert_name, concert.theme, COUNT(singer_in_concert.singer_id) AS number_of_singers FROM concert LEFT JOIN singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY concert.concert_id","SELECT      concert.concert_name AS concert_name,     concert.theme AS theme,     COUNT(singer_in_concert.singer_id) AS number_of_singers FROM      concert JOIN      singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY      concert.concert_id
+SELECT      concert.concert_name AS concert_name,     concert.theme AS theme,     COUNT(singer_in_concert.singer_id) AS number_of_singers FROM      concert JOIN      singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY      concert.concert_id
+SELECT      concert.concert_name AS concert_name,     concert.theme AS theme,     COUNT(singer_in_concert.singer_id) AS number_of_singers FROM      concert JOIN      singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY      concert.concert_id
+SELECT      concert.concert_name AS concert_name,     concert.theme AS theme,     COUNT(singer_in_concert.singer_id) AS number_of_singers FROM      concert JOIN      singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY      concert.concert_id
+SELECT      concert.concert_name AS concert_name,     concert.theme AS theme,     COUNT(singer_in_concert.singer_id) AS number_of_singers FROM      concert JOIN      singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY      concert.concert_id
+SELECT      concert.concert_name AS concert_name,     concert.theme AS theme,     COUNT(singer_in_concert.singer_id) AS number_of_singers FROM      concert JOIN      singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY      concert.concert_id
+SELECT      concert.concert_name AS concert_name,     concert.theme AS theme,     COUNT(singer_in_concert.singer_id) AS number_of_singers FROM      concert JOIN      singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY      concert.concert_id",0,1,0,1,"SELECT concert.concert_name, concert.theme, COUNT(singer_in_concert.singer_id) AS number_of_singers FROM concert LEFT JOIN singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY concert.concert_id","SELECT      concert.concert_name AS concert_name,     concert.theme AS theme,     COUNT(singer_in_concert.singer_id) AS number_of_singers FROM      concert JOIN      singer_in_concert ON concert.concert_id = singer_in_concert.concert_id GROUP BY      concert.concert_id",0,1,0,1
+What is the year that had the most concerts?,concert_singer,hard,SELECT YEAR FROM concert GROUP BY YEAR ORDER BY count(*) DESC LIMIT 1,7,"SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1","SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1
+SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1",0,0,0,0,"SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1","SELECT year, COUNT(*) AS concert_count FROM concert GROUP BY year ORDER BY concert_count DESC LIMIT 1",0,0,0,0
+What are  the different countries with singers above age 20?,concert_singer,easy,SELECT DISTINCT country FROM singer WHERE age  >  20,7,"SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20","SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20
+SELECT DISTINCT country FROM singer WHERE age > 20",1,1,1,1,SELECT DISTINCT country FROM singer WHERE age > 20,SELECT DISTINCT country FROM singer WHERE age > 20,1,1,1,1
+"What are the names, countries, and ages for every singer in descending order of age?",concert_singer,medium,"SELECT name ,  country ,  age FROM singer ORDER BY age DESC",7,"SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC","SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC",1,1,1,1,"SELECT name, country, age FROM singer ORDER BY age DESC","SELECT name, country, age FROM singer ORDER BY age DESC",1,1,1,1
+What are the names of all stadiums that did not have a concert in 2014?,concert_singer,hard,SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014,7,"SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)
+SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014)","SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id AND c.year = 2014 WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id AND c.year = 2014 WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id AND c.year = 2014 WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id AND c.year = 2014 WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id AND c.year = 2014 WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id AND c.year = 2014 WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id AND c.year = 2014 WHERE c.concert_id IS NULL",0,1,0,1,SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert WHERE year = 2014),SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id AND c.year = 2014 WHERE c.concert_id IS NULL,0,1,0,1
+List singer names and number of concerts for each singer.,concert_singer,medium,"SELECT T2.name ,  count(*) FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id GROUP BY T2.singer_id",7,"SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id","SELECT s.name, COUNT(sic.singer_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.singer_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.singer_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.singer_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.singer_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.singer_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.singer_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC",0,0,0,1,"SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id","SELECT s.name, COUNT(sic.singer_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC",0,0,0,1
+What are the names of the singers and number of concerts for each person?,concert_singer,medium,"SELECT T2.name ,  count(*) FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id GROUP BY T2.singer_id",7,"SELECT s.name, COUNT(sc.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sc ON s.singer_id = sc.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sc.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sc ON s.singer_id = sc.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sc.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sc ON s.singer_id = sc.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sc.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sc ON s.singer_id = sc.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sc.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sc ON s.singer_id = sc.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sc.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sc ON s.singer_id = sc.singer_id GROUP BY s.singer_id
+SELECT s.name, COUNT(sc.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sc ON s.singer_id = sc.singer_id GROUP BY s.singer_id","SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC
+SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC",0,0,0,1,"SELECT s.name, COUNT(sc.concert_id) AS number_of_concerts FROM singer s LEFT JOIN singer_in_concert sc ON s.singer_id = sc.singer_id GROUP BY s.singer_id","SELECT s.name, COUNT(sic.concert_id) AS number_of_concerts FROM singer s JOIN singer_in_concert sic ON s.singer_id = sic.singer_id GROUP BY s.singer_id ORDER BY number_of_concerts DESC, s.name ASC",0,0,0,1
+Find the number of concerts happened in the stadium with the highest capacity .,concert_singer,hard,select count(*) from concert where stadium_id = (select stadium_id from stadium order by capacity desc limit 1),7,"SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )","SELECT COUNT(*) AS NumberOfConcerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS NumberOfConcerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS NumberOfConcerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS NumberOfConcerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS NumberOfConcerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS NumberOfConcerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )
+SELECT COUNT(*) AS NumberOfConcerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 )",0,1,0,1,SELECT COUNT(*) AS number_of_concerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 ),SELECT COUNT(*) AS NumberOfConcerts FROM concert WHERE stadium_id = (     SELECT stadium_id     FROM stadium     ORDER BY capacity DESC     LIMIT 1 ),0,1,0,1
+What are the names of the stadiums without any concerts?,concert_singer,hard,SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert),7,"SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL","SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL",0,1,0,1,SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL,SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL,0,1,0,1
+"Show name, country, age for all singers ordered by age from the oldest to the youngest.",concert_singer,medium,"SELECT name ,  country ,  age FROM singer ORDER BY age DESC",7,"SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC","SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC
+SELECT name, country, age FROM singer ORDER BY age DESC",1,1,1,1,"SELECT name, country, age FROM singer ORDER BY age DESC","SELECT name, country, age FROM singer ORDER BY age DESC",1,1,1,1
+"What is the average, minimum, and maximum age for all French singers?",concert_singer,medium,"SELECT avg(age) ,  min(age) ,  max(age) FROM singer WHERE country  =  'France'",7,"SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'French'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'French'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'French'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'French'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'French'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'French'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'French'","SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'
+SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'",0,0,0,1,"SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'French'","SELECT AVG(age) AS average_age, MIN(age) AS minimum_age, MAX(age) AS maximum_age FROM singer WHERE country = 'France'",0,0,0,1
+what is the name and nation of the singer who have a song having 'Hey' in its name?,concert_singer,medium,"SELECT name ,  country FROM singer WHERE song_name LIKE '%Hey%'",7,"SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'","SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'",1,1,1,1,"SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'","SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'",1,1,1,1
+What is the name and capacity for the stadium with highest average attendance?,concert_singer,medium,"SELECT name ,  capacity FROM stadium ORDER BY average DESC LIMIT 1",7,"SELECT name, capacity FROM stadium WHERE average = (SELECT MAX(average) FROM stadium)
+SELECT name, capacity FROM stadium WHERE average = (SELECT MAX(average) FROM stadium)
+SELECT name, capacity FROM stadium WHERE average = (SELECT MAX(average) FROM stadium)
+SELECT name, capacity FROM stadium WHERE average = (SELECT MAX(average) FROM stadium)
+SELECT name, capacity FROM stadium WHERE average = (SELECT MAX(average) FROM stadium)
+SELECT name, capacity FROM stadium WHERE average = (SELECT MAX(average) FROM stadium)
+SELECT name, capacity FROM stadium WHERE average = (SELECT MAX(average) FROM stadium)","SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1
+SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1",0,1,1,1,"SELECT name, capacity FROM stadium WHERE average = (SELECT MAX(average) FROM stadium)","SELECT name, capacity FROM stadium ORDER BY average DESC LIMIT 1",0,1,1,1
+What is the name and country of origin of every singer who has a song with the word 'Hey' in its title?,concert_singer,medium,"SELECT name ,  country FROM singer WHERE song_name LIKE '%Hey%'",7,"SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'","SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'
+SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'",1,1,1,1,"SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'","SELECT name, country FROM singer WHERE song_name LIKE '%Hey%'",1,1,1,1
+What are all the song names by singers who are older than average?,concert_singer,hard,SELECT song_name FROM singer WHERE age  >  (SELECT avg(age) FROM singer),7,"SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)
+SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer)","SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer)
+SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer)
+SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer)
+SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer)
+SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer)
+SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer)
+SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer)",0,1,0,1,SELECT s.song_name FROM singer s WHERE s.age > (SELECT AVG(age) FROM singer),SELECT s.Song_Name FROM singer s WHERE s.Age > (SELECT AVG(Age) FROM singer),0,1,0,1
+Show names for all stadiums except for stadiums having a concert in year 2014.,concert_singer,hard,SELECT name FROM stadium EXCEPT SELECT T2.name FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  =  2014,7,"SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )","SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )
+SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 )",0,1,0,1,SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 ),SELECT name FROM stadium WHERE stadium_id NOT IN (     SELECT stadium_id     FROM concert     WHERE year = 2014 ),0,1,0,1
+What are the names and release years for all the songs of the youngest singer?,concert_singer,medium,"SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1",7,"SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)","SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)",0,1,0,0,"SELECT song_name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)","SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)",0,1,0,0
+Show the name and the release year of the song by the youngest singer.,concert_singer,medium,"SELECT song_name ,  song_release_year FROM singer ORDER BY age LIMIT 1",7,"SELECT singer.name, singer.song_release_year FROM singer ORDER BY singer.age ASC LIMIT 1
+SELECT singer.name, singer.song_release_year FROM singer ORDER BY singer.age ASC LIMIT 1
+SELECT singer.name, singer.song_release_year FROM singer ORDER BY singer.age ASC LIMIT 1
+SELECT singer.name, singer.song_release_year FROM singer ORDER BY singer.age ASC LIMIT 1
+SELECT singer.name, singer.song_release_year FROM singer ORDER BY singer.age ASC LIMIT 1
+SELECT singer.name, singer.song_release_year FROM singer ORDER BY singer.age ASC LIMIT 1
+SELECT singer.name, singer.song_release_year FROM singer ORDER BY singer.age ASC LIMIT 1","SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)
+SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)",0,0,0,0,"SELECT singer.name, singer.song_release_year FROM singer ORDER BY singer.age ASC LIMIT 1","SELECT name, song_release_year FROM singer WHERE age = (SELECT MIN(age) FROM singer)",0,0,0,0
+What is the average and maximum capacities for all stadiums ?,concert_singer,medium,"select avg(capacity) ,  max(capacity) from stadium",7,"SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium","SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium
+SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium",0,1,0,1,"SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium","SELECT AVG(capacity) AS average_capacity, MAX(capacity) AS maximum_capacity FROM stadium",0,1,0,1
+List all singer names in concerts in year 2014.,concert_singer,hard,SELECT T2.name FROM singer_in_concert AS T1 JOIN singer AS T2 ON T1.singer_id  =  T2.singer_id JOIN concert AS T3 ON T1.concert_id  =  T3.concert_id WHERE T3.year  =  2014,7,"SELECT DISTINCT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT DISTINCT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT DISTINCT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT DISTINCT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT DISTINCT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT DISTINCT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT DISTINCT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014","SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014
+SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014",1,1,1,1,SELECT DISTINCT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014,SELECT singer.name FROM singer JOIN singer_in_concert ON singer.singer_id = singer_in_concert.singer_id JOIN concert ON singer_in_concert.concert_id = concert.concert_id WHERE concert.year = 2014,1,1,1,1
+What is the name and capacity of the stadium with the most concerts after 2013 ?,concert_singer,extra,"select t2.name ,  t2.capacity from concert as t1 join stadium as t2 on t1.stadium_id  =  t2.stadium_id where t1.year  >  2013 group by t2.stadium_id order by count(*) desc limit 1",7,"SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1","SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1",0,1,0,1,"SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1","SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year > 2013 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1",0,1,0,1
+Show the stadium names without any concert.,concert_singer,hard,SELECT name FROM stadium WHERE stadium_id NOT IN (SELECT stadium_id FROM concert),7,"SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL","SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL
+SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL",0,1,0,1,SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL,SELECT s.name FROM stadium s LEFT JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.concert_id IS NULL,0,1,0,1
+Show location and name for all stadiums with a capacity between 5000 and 10000.,concert_singer,medium,"SELECT LOCATION ,  name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",7,"SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000","SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000
+SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",1,1,1,1,"SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000","SELECT location, name FROM stadium WHERE capacity BETWEEN 5000 AND 10000",1,1,1,1
+What are the names and locations of the stadiums that had concerts that occurred in both 2014 and 2015?,concert_singer,extra,"SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2014 INTERSECT SELECT T2.name ,  T2.location FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.Year  =  2015",7,"SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id, s.name, s.location HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id, s.name, s.location HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id, s.name, s.location HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id, s.name, s.location HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id, s.name, s.location HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id, s.name, s.location HAVING COUNT(DISTINCT c.year) = 2
+SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id, s.name, s.location HAVING COUNT(DISTINCT c.year) = 2","SELECT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2
+SELECT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2",0,1,0,1,"SELECT DISTINCT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id, s.name, s.location HAVING COUNT(DISTINCT c.year) = 2","SELECT s.name, s.location FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year IN (2014, 2015) GROUP BY s.stadium_id HAVING COUNT(DISTINCT c.year) = 2",0,1,0,1
+What is the total number of singers?,concert_singer,easy,SELECT count(*) FROM singer,7,"SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer","SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer
+SELECT COUNT(*) AS total_singers FROM singer",0,1,0,1,SELECT COUNT(*) AS total_singers FROM singer,SELECT COUNT(*) AS total_singers FROM singer,0,1,0,1
+Show the stadium name and capacity with most number of concerts in year 2014 or after.,concert_singer,extra,"SELECT T2.name ,  T2.capacity FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  >=  2014 GROUP BY T2.stadium_id ORDER BY count(*) DESC LIMIT 1",7,"SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1","SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1
+SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1",0,1,0,1,"SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1","SELECT s.name, s.capacity FROM stadium s JOIN concert c ON s.stadium_id = c.stadium_id WHERE c.year >= 2014 GROUP BY s.stadium_id ORDER BY COUNT(c.concert_id) DESC LIMIT 1",0,1,0,1

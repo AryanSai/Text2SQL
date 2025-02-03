@@ -167,7 +167,9 @@ def consistency_analysis(csv_file,model_path):
         
     cm_exact = [[[0, 0, 0,0] for _ in range(2)] for _ in range(2)]
     cm_exec = [[[0, 0, 0,0] for _ in range(2)] for _ in range(2)]
-
+    cm_exact2 = [[[0, 0, 0,0] for _ in range(2)] for _ in range(2)]
+    cm_exec2 = [[[0, 0, 0,0] for _ in range(2)] for _ in range(2)]
+    
     for index, row in result.iterrows():
         without_map = {}
         exact, exec, i, j = (0,)*4
@@ -297,7 +299,7 @@ def consistency_analysis(csv_file,model_path):
         else:
             result.at[index, "Consistency-EM-With"] = 0
             j = 0
-        cm_exact[i][j][hardness_index] += 1
+        cm_exact2[i][j][hardness_index] += 1
 
         if exec > threshold_for_execution:
             result.at[index, "Consistency-EX-With"] = 1
@@ -305,25 +307,25 @@ def consistency_analysis(csv_file,model_path):
         else:
             result.at[index, "Consistency-EX-With"] = 0
             j = 0
-        cm_exec[i][j][hardness_index] += 1
+        cm_exec2[i][j][hardness_index] += 1
         
-        df_cm_exact_numeric = pd.DataFrame(
-            [[sum(cm_exact[i][j]) for j in range(2)] for i in range(2)],
+        df_cm_exact_numeric2 = pd.DataFrame(
+            [[sum(cm_exact2[i][j]) for j in range(2)] for i in range(2)],
             columns=["0", "1"],
             index=["0", "1"]
         )
 
-        df_cm_exec_numeric = pd.DataFrame(
-            [[sum(cm_exec[i][j]) for j in range(2)] for i in range(2)],
+        df_cm_exec_numeric2 = pd.DataFrame(
+            [[sum(cm_exec2[i][j]) for j in range(2)] for i in range(2)],
             columns=["0", "1"],
             index=["0", "1"]
         )
         
-        df_cm_exact_labels = create_labeled_dataframe(cm_exact)
-        df_cm_exec_labels = create_labeled_dataframe(cm_exec)
+        df_cm_exact_labels2 = create_labeled_dataframe(cm_exact2)
+        df_cm_exec_labels2 = create_labeled_dataframe(cm_exec2)
 
-        plot_heatmap("Desc-With-"+model_name+"_Consistency on Exact Measure",df_cm_exact_numeric,df_cm_exact_labels)
-        plot_heatmap("Desc-With-"+model_name+"_Consistency on Execution Measure",df_cm_exec_numeric,df_cm_exec_labels)
+        plot_heatmap("Desc-With-"+model_name+"_Consistency on Exact Measure",df_cm_exact_numeric2,df_cm_exact_labels2)
+        plot_heatmap("Desc-With-"+model_name+"_Consistency on Execution Measure",df_cm_exec_numeric2,df_cm_exec_labels2)
     
     result.to_csv(csv_file, index=False)
     
@@ -343,8 +345,8 @@ def consistency_analysis(csv_file,model_path):
 
 #############################################################################################################
 
-csv_file = "consistencydeepseek_desc_analysis.csv"
-model_path = "Models/DeepSeek-Coder-V2-Lite-2.4B-Instruct-Q8_0.gguf"
+csv_file = "consistencycodegemma_desc_analysis.csv"
+model_path = "Models/codegemma-7b-Q8_0.gguf"
 consistency_analysis(csv_file,model_path)
 
 metrics_df = calculate_metrics(csv_file)

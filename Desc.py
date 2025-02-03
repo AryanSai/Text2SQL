@@ -37,6 +37,11 @@ def model_predict(model_path, question, schema, schema_description=""):
         )
     response = output['choices'][0]['text']
     match = re.search(r"SELECT .*", response, re.DOTALL | re.IGNORECASE)
+    # if match:
+    #     result = match.group(0)
+    # else:
+    #     print("NULL:", match,"\n")
+    #     result = "NULL"
     result = match.group(0) if match else "NULL"
     result = result.replace(";", "").replace("```", "").replace("\n", " ")
     return result
@@ -140,8 +145,8 @@ def calculate_metrics(csv_file):
 
 #############################################################################################################
 
-csv_file = "deepseekcoderv2_desc_analysis.csv"
-model_path = "Models/DeepSeek-Coder-V2-Lite-2.4B-Instruct-Q8_0.gguf"
+csv_file = "deepseekr1_desc_analysis.csv"
+model_path = "Models/DeepSeek-R1-Distill-Qwen-7B-Q8_0.gguf"
 
 analyse(csv_file,model_path)
 
