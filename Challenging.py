@@ -38,7 +38,7 @@ def model_predict(model_path, question, schema, temperature, evidence):
     )
         
     with suppress_stdout_stderr():
-        llm = Llama(model_path=model_path, n_ctx=2048, n_gpu_layers=-1)
+        llm = Llama(model_path=model_path, n_ctx=2048, n_gpu_layers=-1,device=0)
         output = llm(
             prompt = prompt,
             max_tokens=300,
@@ -99,11 +99,6 @@ def analyse(csv_file, model_path):
                                    ex_results["EX_0.1"], ex_results["EX_0.5"], ex_results["EX_1.0"]]
 
     result.to_csv(csv_file, index=False)
-    
-    for temp in temperatures:
-        ex_percent = (result[f"EX_{temp}"].sum() / total_questions) * 100 if total_questions else 0
-        print(f"Temperature={temp}: EX = {ex_percent:.2f}%")
-    
     return result
 
 def calculate_metrics(csv_file):
@@ -125,8 +120,8 @@ def calculate_metrics(csv_file):
 
 #############################################################################################################
 
-csv_file = "codestral22b-bird-challenging-temps.csv"
-model_path = "Models/Codestral-22B-v0.1-Q8_0.gguf"
+csv_file = "codegemma-bird-challenging.csv"
+model_path = "Models/codegemma-7b-Q8_0.gguf"
 
 analyse(csv_file, model_path)
 

@@ -1,4 +1,3 @@
-- how temperature change affects the output esp in challenging
 - cross consistency
 - with and without description for BIRD dataset
 - consitency based on multiple temperatures
