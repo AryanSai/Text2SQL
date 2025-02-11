@@ -59,7 +59,7 @@ def model_predict(model_path, question, schema, schema_description=""):
         )
         
     with suppress_stdout_stderr():
-        llm = Llama(model_path=model_path, n_ctx=2048, n_gpu_layers=-1)
+        llm = Llama(model_path=model_path, n_ctx=2048, n_gpu_layers=-1, device=1)
         output = llm(
             prompt = prompt,
             max_tokens=300,
@@ -345,8 +345,8 @@ def consistency_analysis(csv_file,model_path):
 
 #############################################################################################################
 
-csv_file = "consistencycodegemma_desc_analysis.csv"
-model_path = "Models/codegemma-7b-Q8_0.gguf"
+csv_file = "consistency-qwen2.5_desc_analysis.csv"
+model_path = "Models/qwen2.5-coder-7b-instruct-q8_0.gguf"
 consistency_analysis(csv_file,model_path)
 
 metrics_df = calculate_metrics(csv_file)

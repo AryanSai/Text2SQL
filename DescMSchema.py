@@ -172,8 +172,8 @@ def calculate_metrics(csv_file):
 
 #############################################################################################################
 
-csv_file = "mscehma-deepseekcoder_desc_analysis.csv"
-model_path = "Models/DeepSeek-Coder-V2-Lite-2.4B-Instruct-Q8_0.gguf"
+csv_file = "mschema-codestral_desc_analysis.csv"
+model_path = "Models/Codestral-22B-v0.1-Q8_0.gguf"
 
 analyse(csv_file,model_path)
 

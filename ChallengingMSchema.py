@@ -279,8 +279,8 @@ def calculate_metrics(csv_file):
 
 #############################################################################################################
 
-csv_file = "codegemma-mschema-cot.csv"
-model_path = "Models/codegemma-7b-Q8_0.gguf"
+csv_file = "Codestral-mschema-cot.csv"
+model_path = "Models/Codestral-22B-v0.1-Q8_0.gguf"
 
 analyse(csv_file, model_path)
 
