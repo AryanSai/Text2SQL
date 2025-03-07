@@ -345,8 +345,8 @@ def consistency_analysis(csv_file,model_path):
 
 #############################################################################################################
 
-csv_file = "consistency-qwen2.5_desc_analysis.csv"
-model_path = "Models/qwen2.5-coder-7b-instruct-q8_0.gguf"
+csv_file = "consistency-Codestral_desc_analysis.csv"
+model_path = "Models/Codestral-22B-v0.1-Q8_0.gguf"
 consistency_analysis(csv_file,model_path)
 
 metrics_df = calculate_metrics(csv_file)
