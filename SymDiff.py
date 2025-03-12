@@ -1,65 +1,121 @@
-import os, sqlite3
+import duckdb
 
-def execute_sql(predicted_sql, ground_truth_sql, db_path):
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
-        cursor.execute(predicted_sql)
-        predicted_res = cursor.fetchall()
-        print('----------------------------------------------------------')
-        print(set(predicted_res))
-        print('----------------------------------------------------------')
-        
-        cursor.execute(ground_truth_sql)
-        ground_truth_res = cursor.fetchall()
-        print('----------------------------------------------------------')
-        print(set(ground_truth_res))
-        print('----------------------------------------------------------')
-        
-        res = 1 if predicted_res == ground_truth_res else 0
-    except sqlite3.Error as e:
-        print(f"An error occurred: {e}")
-        res = 0  # Return 0 in case of an error
-    finally:
-        conn.close() 
+def create_dummy_db():
+    conn = duckdb.connect(database=':memory:')
+    cursor = conn.cursor()
+
+    # Create table and insert sample data
+    cursor.execute("""
+        CREATE TABLE sales (
+            product TEXT,
+            qty INTEGER,
+            price INTEGER
+        )
+    """)
+
+    data_sales = [
+        ("Laptop", 2, 1000),
+        ("Mouse", 5, 50),
+        ("Laptop", 2, 1000)
+    ]
+
+    cursor.executemany(
+        "INSERT INTO sales (product, qty, price) VALUES (?, ?, ?)", data_sales
+    )
+
+    conn.commit()
+    return conn
+
+def symmetric_difference_query(conn, sql_two, sql_one):
+    cursor = conn.cursor()
+    sym_diff_sql_1 = f"""
+    {sql_two}
+    EXCEPT ALL
+    {sql_one};
+    """
+
+    print("\n[1] sql_two EXCEPT ALL sql_one:")
+    print(sym_diff_sql_1)
+    cursor.execute(sym_diff_sql_1)
+    res1 = cursor.fetchall()
+    print(res1)
+
+    sym_diff_sql_2 = f"""
+    {sql_one}
+    EXCEPT ALL
+    {sql_two};
+    """
+
+    print("\n[2] sql_one EXCEPT ALL sql_two:")
+    print(sym_diff_sql_2)
+    cursor.execute(sym_diff_sql_2)
+    res2 = cursor.fetchall()
+    print(res2)
+    
+    sym_diff_sql = f"""
+    ({sql_two}
+    EXCEPT ALL
+    {sql_one})
+    UNION ALL
+    ({sql_one}
+    EXCEPT ALL
+    {sql_two});
+    """
+
+    print("\n[3] Symmetric difference query (UNION ALL of both EXCEPT ALLs):")
+    print(sym_diff_sql)
+    cursor.execute(sym_diff_sql)
+    res = cursor.fetchall()
+
     return res
 
-def execute_sql_sym_diff(predicted_sql, ground_truth_sql, db_path):
-    if predicted_sql == 'NULL':
-        print("Predicted SQL is None")
-        return 0
-    try:
-        conn = sqlite3.connect(db_path)
-        cursor = conn.cursor()
+def main():
+    conn = create_dummy_db()
+
+    # sql_one = "SELECT DISTINCT product FROM sales"
+    # sql_two = "SELECT product FROM sales"
+
+    sql_one = "SELECT * FROM sales"
+    sql_two = "SELECT * FROM sales ORDER BY qty"
+    # sql_two = "(SELECT * FROM sales ORDER BY qty LIMIT ALL)"
+
+    cursor = conn.cursor()
+
+    cursor.execute(sql_one)
+    result_one = cursor.fetchall()
+    print("\nQuery One Result:")
+    print(result_one)
+
+    cursor.execute(sql_two)
+    result_two = cursor.fetchall()
+    print("\nQuery Two Result:")
+    print(result_two)
+
+    if result_one == result_two:
+        print('\n✅ Normal difference is equal!')
+    else:
+        print('\n❌ Normal difference is not equal!')
         
-        sym_diff_sql = f"""
-        SELECT * FROM ({predicted_sql})
-        EXCEPT
-        SELECT * FROM ({ground_truth_sql})
-        UNION
-        SELECT * FROM ({ground_truth_sql})
-        EXCEPT
-        SELECT * FROM ({predicted_sql})
-        """
-        cursor.execute(sym_diff_sql)
-        sym_diff_res = cursor.fetchall()
-        res = 1 if not sym_diff_res else 0 
-    except sqlite3.Error as e:
-        print(f"An error occurred: {e}")
-        res = 0  
-    finally:
-        conn.close() 
-    return res
+    print("\nQuery One Result as SETS:")
+    print(set(result_one))
+    print("Query Two Result as SETS:")
+    print(set(result_two))
 
-gold = "SELECT count(*) FROM concert WHERE YEAR  =  2014 OR YEAR  =  2015"
-pred = "SELECT count(*) FROM concert WHERE YEAR  IN (2014, 2015)"
+    if set(result_one) == set(result_two):
+        print('\n✅ Set difference is equal! (but this ignores duplicates!)')
+    else:
+        print('\n❌ Set difference is not equal!')
 
-path = os.path.join("Datasets/spider/database", 'concert_singer', 'concert_singer' + ".sqlite")
+    # sym_diff = symmetric_difference_query(conn, sql_two, sql_one)
+    # print("\nSymmetric difference result:")
+    # print(sym_diff)
 
-sym_result = execute_sql_sym_diff(pred, gold, path)
+    # if sym_diff:
+    #     print("\n❌ Queries are NOT equivalent (symmetric difference found)")
+    # else:
+    #     print("\n✅ Queries are equivalent (no symmetric difference found)")
 
-result=execute_sql(pred, gold, path)
+    conn.close()
 
-print("Symmetric difference: Are queries equivalent?", bool(sym_result))
-print("Normal: Are queries equivalent?", bool(result))
-
+if __name__ == "__main__":
+    main()

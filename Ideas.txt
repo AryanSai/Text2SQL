@@ -1,4 +1,0 @@
-- cross consistency
-- with and without description for BIRD dataset
-- consitency based on multiple temperatures
-- M-Schema 

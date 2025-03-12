@@ -27,6 +27,6 @@ print('----------------------------------------------------------')
 
 print(predicted_set == ground_truth_set)  # Output: True (Incorrect!)
 
-print(predicted_set.symmetric_difference(ground_truth_set))
+# print(predicted_set.symmetric_difference(ground_truth_set))
 # print(set_A==set_B)
 
