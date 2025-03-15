@@ -27,9 +27,30 @@ def execute_sql(predicted_sql, ground_truth_sql, db_path):
         print(f"[SQL Execution Error] {e}")
         return 0
 
-def build_prompt(question, schema, evidence):
+def build_basic_prompt(question, schema, evidence):
     """
-    Builds the prompt string for the model using question, schema, and evidence.
+    Builds the simple (basic) prompt string for SQL generation.
+    """
+    template = (
+        "You are an expert SQL query generator. Convert the given question into an optimized SQLite query. "
+        "Ensure the query is syntactically correct and follows best practices. "
+        "Understand the schema provided below. Use the external knowledge provided below to understand the question better. "
+        "Use only the column names available in the provided database schema. Do not reference columns that do not exist, and ensure you correctly map columns to their respective tables. "
+        "Do not include explanations, comments, or extra text. The query must end with a semicolon (;)."
+    )
+
+    prompt = (
+        f"{template}\n\n"
+        f"Database Schema:\n{schema}\n\n"
+        f"External Knowledge:\n{evidence}\n\n"
+        f"Question: {question}\n\nAnswer:"
+    )
+
+    return prompt
+
+def build_advanced_prompt(question, schema, evidence):
+    """
+    Builds the advanced prompt string that generates step-by-step sub-questions for decomposition.
     """
     template = (
         "You are an expert at breaking down complex SQL generation tasks into simple, logical, step-by-step sub-questions. "
@@ -120,16 +141,14 @@ def build_prompt(question, schema, evidence):
 
     return prompt
 
-def model_predict(llm, question, schema, evidence):
+def model_predict(llm, prompt, extract_sql=False):
     """
-    Uses the Llama model to predict the SQL query from the question, schema, and evidence.
+    Uses the Llama model to predict the SQL query from the given prompt.
     """
-    prompt = build_prompt(question, schema, evidence)
-
     with suppress_stdout_stderr():
         output = llm(
             prompt=prompt,
-            max_tokens=300,
+            max_tokens=600,
             temperature=0.1,
             stop=["This ", "Explanation: ", "Note:", "The", ";", r"\\", r"\end{code}", "Comment:"],
             echo=False
@@ -137,14 +156,16 @@ def model_predict(llm, question, schema, evidence):
 
     response = output['choices'][0]['text']
 
-    # Extract SQL query from response (basic regex based search)
-    match = re.search(r"SELECT .*", response, re.DOTALL | re.IGNORECASE)
-    if match:
-        sql = match.group(0).replace(";", "").replace("```", "").replace("\n", " ")
-    else:
-        sql = "NULL"
+    if extract_sql:
+        # Extract SQL query from response
+        match = re.search(r"SELECT .*", response, re.DOTALL | re.IGNORECASE)
+        if match:
+            sql = match.group(0).replace(";", "").replace("```", "").replace("\n", " ")
+        else:
+            sql = "NULL"
+        return sql
 
-    return sql
+    return response.strip()
 
 def get_schema(db_dir, db_id):
     """
@@ -168,22 +189,24 @@ def get_schema(db_dir, db_id):
 
 def analyse(dataset_file, model_path, output_csv):
     """
-    Runs analysis on a dataset by predicting SQL queries and evaluating execution accuracy.
-    Saves results to a CSV.
+    Runs analysis on a dataset by predicting SQL queries using both basic and advanced prompts.
+    Evaluates execution accuracy for both. Saves results to a CSV.
     """
     db_dir = "Datasets/bird/databases"
 
     with open(dataset_file, "r", encoding="utf-8") as file:
         dataset = json.load(file)
 
-    challenging_data = [entry for entry in dataset if entry['difficulty'] == 'challenging']
-
+    data = [entry for entry in dataset if entry['difficulty'] == 'challenging']
+    # data = [entry for entry in dataset if entry['difficulty'] == 'moderate']
+    # data = [entry for entry in dataset if entry['difficulty'] == 'simple']
+    
     with suppress_stdout_stderr():
-        llm = Llama(model_path=model_path, n_ctx=2048, n_gpu_layers=-1, device=0)
+        llm = Llama(model_path=model_path, n_ctx=4096, n_gpu_layers=-1, device=0)
 
     results = []
 
-    for entry in challenging_data[:5]:
+    for entry in data:
         question = entry['question']
         ground_truth_sql = entry['query']
         db_id = entry['db_id']
@@ -192,22 +215,35 @@ def analyse(dataset_file, model_path, output_csv):
         schema = get_schema(db_dir, db_id)
         schema_str = json.dumps(schema, indent=2)
 
-        predicted_sql = model_predict(llm, question, schema_str, evidence)
+        # Generate prompts
+        basic_prompt = build_basic_prompt(question, schema_str, evidence)
+        advanced_prompt = build_advanced_prompt(question, schema_str, evidence)
+
+        # Get predictions
+        basic_predicted_sql = model_predict(llm, basic_prompt, extract_sql=True)
+        advanced_predicted_sql = model_predict(llm, advanced_prompt, extract_sql=True)
 
         db_path = os.path.join(db_dir, db_id, f"{db_id}.sqlite")
-        ex_result = execute_sql(predicted_sql, ground_truth_sql, db_path)
+
+        # Execute SQL and compare results
+        basic_ex_result = execute_sql(basic_predicted_sql, ground_truth_sql, db_path)
+        advanced_ex_result = execute_sql(advanced_predicted_sql, ground_truth_sql, db_path)
 
         print("=" * 80)
         print(f"Question: {question}")
-        print(f"Predicted SQL: {predicted_sql}")
-        print(f"Execution Match: {'Yes' if ex_result else 'No'}")
+        print(f"[Basic Prompt] Predicted SQL: {basic_predicted_sql}")
+        print(f"[Basic Prompt] Execution Match: {'Yes' if basic_ex_result else 'No'}")
+        print(f"[Advanced Prompt] Predicted SQL: {advanced_predicted_sql}")
+        print(f"[Advanced Prompt] Execution Match: {'Yes' if advanced_ex_result else 'No'}")
 
         results.append({
             "Question": question,
             "Difficulty": entry["difficulty"],
             "Ground Truth SQL": ground_truth_sql,
-            "Predicted SQL": predicted_sql,
-            "EX": ex_result
+            "Basic Predicted SQL": basic_predicted_sql,
+            "Advanced Predicted SQL": advanced_predicted_sql,
+            "EX Basic": basic_ex_result,
+            "EX Advanced": advanced_ex_result
         })
 
     results_df = pd.DataFrame(results)
@@ -218,17 +254,23 @@ def analyse(dataset_file, model_path, output_csv):
 
 def calculate_metrics(results_csv):
     """
-    Calculates execution (EX) accuracy from the CSV results.
+    Calculates execution (EX) accuracy for both basic and advanced prompts from the CSV results.
     """
     df = pd.read_csv(results_csv)
     total_questions = len(df)
-    ex_correct = df["EX"].sum()
 
-    ex_percentage = (ex_correct / total_questions) * 100 if total_questions else 0
+    ex_basic_correct = df["EX Basic"].sum()
+    ex_advanced_correct = df["EX Advanced"].sum()
+
+    ex_basic_percentage = (ex_basic_correct / total_questions) * 100 if total_questions else 0
+    ex_advanced_percentage = (ex_advanced_correct / total_questions) * 100 if total_questions else 0
 
     metrics = {
         "Total Questions": total_questions,
-        "EX (%)": ex_percentage
+        "EX Basic Count": ex_basic_correct,
+        "EX Advanced Count": ex_advanced_correct,
+        "EX Basic (%)": ex_basic_percentage,
+        "EX Advanced (%)": ex_advanced_percentage
     }
 
     print("\n" + "-" * 80)
@@ -240,8 +282,8 @@ def calculate_metrics(results_csv):
 
 if __name__ == "__main__":
     dataset_file = "Datasets/bird/dev.json"
-    model_path = "Models/qwen2.5-coder-7b-instruct-q8_0.gguf"
-    output_csv = "small-bird-qwen2.5.csv"
+    model_path = "Models/Codestral-22B-v0.1-Q8_0.gguf"
+    output_csv = "BigBird-Codestral.csv"
 
     analyse(dataset_file, model_path, output_csv)
     calculate_metrics(output_csv)

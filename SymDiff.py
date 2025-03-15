@@ -1,4 +1,4 @@
-import duckdb
+import sqlite3, duckdb
 
 def create_dummy_db():
     conn = duckdb.connect(database=':memory:')
@@ -72,11 +72,11 @@ def symmetric_difference_query(conn, sql_two, sql_one):
 def main():
     conn = create_dummy_db()
 
-    # sql_one = "SELECT DISTINCT product FROM sales"
-    # sql_two = "SELECT product FROM sales"
+    sql_one = "SELECT DISTINCT product FROM sales"
+    sql_two = "SELECT product FROM sales"
 
-    sql_one = "SELECT * FROM sales"
-    sql_two = "SELECT * FROM sales ORDER BY qty"
+    # sql_one = "SELECT * FROM sales"
+    # sql_two = "SELECT * FROM sales ORDER BY qty"
     # sql_two = "(SELECT * FROM sales ORDER BY qty LIMIT ALL)"
 
     cursor = conn.cursor()
@@ -106,14 +106,14 @@ def main():
     else:
         print('\n❌ Set difference is not equal!')
 
-    # sym_diff = symmetric_difference_query(conn, sql_two, sql_one)
-    # print("\nSymmetric difference result:")
-    # print(sym_diff)
+    sym_diff = symmetric_difference_query(conn, sql_two, sql_one)
+    print("\nSymmetric difference result:")
+    print(sym_diff)
 
-    # if sym_diff:
-    #     print("\n❌ Queries are NOT equivalent (symmetric difference found)")
-    # else:
-    #     print("\n✅ Queries are equivalent (no symmetric difference found)")
+    if sym_diff:
+        print("\n❌ Queries are NOT equivalent (symmetric difference found)")
+    else:
+        print("\n✅ Queries are equivalent (no symmetric difference found)")
 
     conn.close()
 
