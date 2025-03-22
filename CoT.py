@@ -27,7 +27,6 @@ def execute_sql(predicted_sql, ground_truth_sql, db_path):
 
 def build_prompt(question, schema, evidence):
     template = (
-        
         "You are an expert SQL query generator. Follow this step-by-step process to generate an optimized SQLite query. "
         "Think carefully and reason through each step before writing the final query.\n\n"
         
@@ -116,31 +115,44 @@ def build_prompt(question, schema, evidence):
 
     return prompt
 
-def model_predict(llm, prompt, extract_sql=False):
-    """
-    Uses the Llama model to predict the SQL query from the given prompt.
-    """
-    with suppress_stdout_stderr():
-        output = llm(
-            prompt=prompt,
-            max_tokens=600,
-            temperature=0.1,
-            stop=["This ", "Explanation: ", "Note:", "The", ";", r"\\", r"\end{code}", "Comment:"],
-            echo=False
-        )
-
-    response = output['choices'][0]['text']
-
-    if extract_sql:
-        # Extract SQL query from response
-        match = re.search(r"SELECT .*", response, re.DOTALL | re.IGNORECASE)
-        if match:
-            sql = match.group(0).replace(";", "").replace("```", "").replace("\n", " ")
-        else:
-            sql = "NULL"
-        return sql
-
-    return response.strip()
+def model_predict(llm, question, schema, evidence):
+    prompt = build_prompt(question, schema, evidence)
+    try:
+        with suppress_stdout_stderr():
+            output = llm(
+                prompt=prompt,
+                max_tokens=600,
+                temperature=0.1,
+                stop=["```", "This ", "Explanation: ", "Note:", "The", ";", r"\\", r"\end{code}", "Comment:"],
+                echo=False
+            )
+        print('---------------------------------------------------------------------------------------------------')
+        print(f"Model Output: {output}")  # Debugging: Print the full response
+        print('---------------------------------------------------------------------------------------------------')
+        response = output['choices'][0]['text']
+        print('---------------------------------------------------------------------------------------------------')
+        print(f"Model Response: {response}")  # Debugging: Print the full response
+        print('---------------------------------------------------------------------------------------------------')
+        
+        match = re.search(r"```sql\s*\n(.*?)\n?```", response, re.DOTALL | re.IGNORECASE)
+        
+        if not match:
+            match = re.search(r"(SELECT\s.*)", response, re.DOTALL | re.IGNORECASE)
+    
+        result = match.group(1) if match else "NULL"
+    
+        result = re.sub(r"^\s*sql\s+", "", result, flags=re.IGNORECASE)
+    
+        result = result.replace("```", "").replace(";", "").strip()
+    
+        result = re.sub(r"\s+", " ", result)
+        print('---------------------------------------------------------------------------------------------------')
+        print(f"Extracted SQL: {result}")  # Debugging: Print the extracted SQL
+        print('---------------------------------------------------------------------------------------------------')
+    except Exception as e:
+        print(f"Error in model prediction: {e}")
+        result = "NULL"
+    return result
 
 def get_schema(db_dir, db_id):
     """
@@ -177,7 +189,7 @@ def analyse(dataset_file, model_path, output_csv):
     # data = [entry for entry in dataset if entry['difficulty'] == 'simple']
     
     with suppress_stdout_stderr():
-        llm = Llama(model_path=model_path, n_ctx=4096, n_gpu_layers=-1, device=0)
+        llm = Llama(model_path=model_path, n_ctx=4096, n_gpu_layers=-1, device=1)
 
     results = []
 
@@ -190,9 +202,7 @@ def analyse(dataset_file, model_path, output_csv):
         schema = get_schema(db_dir, db_id)
         schema_str = json.dumps(schema, indent=2)
 
-        prompt = build_prompt(question, schema_str, evidence)
-
-        predicted_sql = model_predict(llm, prompt, extract_sql=True)
+        predicted_sql = model_predict(llm, question, schema_str, evidence)
 
         db_path = os.path.join(db_dir, db_id, f"{db_id}.sqlite")
 
@@ -243,8 +253,8 @@ def calculate_metrics(results_csv):
 
 if __name__ == "__main__":
     dataset_file = "Datasets/bird/dev.json"
-    model_path = "Models/Yi-Coder-9B-Chat-Q8_0.gguf"
-    output_csv = "cot-yi.csv"
+    model_path = "Models/qwen2.5-coder-7b-instruct-q8_0.gguf"
+    output_csv = "cot-qwen.csv"
 
     analyse(dataset_file, model_path, output_csv)
     calculate_metrics(output_csv)
