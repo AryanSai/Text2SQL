@@ -197,7 +197,7 @@ def analyse(dataset_file, model_path, output_csv):
     with open(dataset_file, "r", encoding="utf-8") as file:
         dataset = json.load(file)
 
-    data = [entry for entry in dataset if entry['difficulty'] == 'challenging']
+    # data = [entry for entry in dataset if entry['difficulty'] == 'challenging']
     # data = [entry for entry in dataset if entry['difficulty'] == 'moderate']
     # data = [entry for entry in dataset if entry['difficulty'] == 'simple']
     
@@ -206,7 +206,7 @@ def analyse(dataset_file, model_path, output_csv):
 
     results = []
 
-    for entry in data:
+    for entry in dataset:
         question = entry['question']
         ground_truth_sql = entry['query']
         db_id = entry['db_id']
@@ -238,7 +238,7 @@ def analyse(dataset_file, model_path, output_csv):
 
         results.append({
             "Question": question,
-            "Difficulty": entry["difficulty"],
+            "difficulty": entry["difficulty"],
             "Ground Truth SQL": ground_truth_sql,
             "Basic Predicted SQL": basic_predicted_sql,
             "Advanced Predicted SQL": advanced_predicted_sql,
@@ -258,13 +258,37 @@ def calculate_metrics(results_csv):
     """
     df = pd.read_csv(results_csv)
     total_questions = len(df)
+    categories = df['difficulty'].unique()
+    metrics = []
+    
+    for category in categories:
+        print("Metrics Summary of " + category)
+        subset = df[df['difficulty'] == category]
+        total = len(subset)
+        
+        ex_basic_correct = subset["EX Basic"].sum()
+        ex_advanced_correct = subset["EX Advanced"].sum()
 
+        ex_basic_percentage = (ex_basic_correct / total) * 100 if total else 0
+        ex_advanced_percentage = (ex_advanced_correct / total) * 100 if total else 0
+
+        metrics = {
+            "Total Questions": total,
+            "EX Basic Count": ex_basic_correct,
+            "EX Advanced Count": ex_advanced_correct,
+            "EX Basic (%)": ex_basic_percentage,
+            "EX Advanced (%)": ex_advanced_percentage
+        }
+
+        print("\n" + "-" * 80)
+        print("Metrics Summary:")
+        print(pd.DataFrame([metrics]))
+        print("-" * 80)
+    
     ex_basic_correct = df["EX Basic"].sum()
     ex_advanced_correct = df["EX Advanced"].sum()
-
     ex_basic_percentage = (ex_basic_correct / total_questions) * 100 if total_questions else 0
     ex_advanced_percentage = (ex_advanced_correct / total_questions) * 100 if total_questions else 0
-
     metrics = {
         "Total Questions": total_questions,
         "EX Basic Count": ex_basic_correct,
@@ -272,18 +296,15 @@ def calculate_metrics(results_csv):
         "EX Basic (%)": ex_basic_percentage,
         "EX Advanced (%)": ex_advanced_percentage
     }
-
     print("\n" + "-" * 80)
     print("Metrics Summary:")
     print(pd.DataFrame([metrics]))
-    print("-" * 80)
-
-    return metrics
+    print("-" * 80) 
 
 if __name__ == "__main__":
     dataset_file = "Datasets/bird/dev.json"
-    model_path = "Models/Codestral-22B-v0.1-Q8_0.gguf"
-    output_csv = "BigBird-Codestral.csv"
+    model_path = "Models/qwen2.5-coder-7b-instruct-q8_0.gguf"
+    output_csv = "SoQ-Qwen.csv"
 
     analyse(dataset_file, model_path, output_csv)
     calculate_metrics(output_csv)
