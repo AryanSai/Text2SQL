@@ -27,7 +27,7 @@ def execute_sql(predicted_sql, ground_truth_sql, db_path):
         print(f"[SQL Execution Error] {e}")
         return 0
 
-def build_basic_prompt(question, schema, evidence):
+def build_basic_prompt(question, schema):
     """
     Builds the simple (basic) prompt string for SQL generation.
     """
@@ -42,13 +42,12 @@ def build_basic_prompt(question, schema, evidence):
     prompt = (
         f"{template}\n\n"
         f"Database Schema:\n{schema}\n\n"
-        f"External Knowledge:\n{evidence}\n\n"
         f"Question: {question}\n\nAnswer:"
     )
 
     return prompt
 
-def build_advanced_prompt(question, schema, evidence):
+def build_advanced_prompt(question, schema):
     """
     Builds the advanced prompt string that generates step-by-step sub-questions for decomposition.
     """
@@ -135,7 +134,6 @@ def build_advanced_prompt(question, schema, evidence):
         f"{template}\n\n"
         "Now, perform the same decomposition on the following example.\n\n"
         f"Database Schema:\n{schema}\n\n"
-        f"External Knowledge:\n{evidence}\n\n"
         f"Question:\n{question}\n\n"
     )
 
@@ -155,7 +153,11 @@ def model_predict(llm, prompt, extract_sql=False):
         )
 
     response = output['choices'][0]['text']
-
+    
+    # print("="*30)
+    # print(response)
+    # print("="*30)
+        
     if extract_sql:
         # Extract SQL query from response
         match = re.search(r"SELECT .*", response, re.DOTALL | re.IGNORECASE)
@@ -192,17 +194,17 @@ def analyse(dataset_file, model_path, output_csv):
     Runs analysis on a dataset by predicting SQL queries using both basic and advanced prompts.
     Evaluates execution accuracy for both. Saves results to a CSV.
     """
-    db_dir = "Datasets/bird/databases"
+    db_dir = "Datasets/spider/database"
 
     with open(dataset_file, "r", encoding="utf-8") as file:
         dataset = json.load(file)
 
-    # data = [entry for entry in dataset if entry['difficulty'] == 'challenging']
-    # data = [entry for entry in dataset if entry['difficulty'] == 'moderate']
-    # data = [entry for entry in dataset if entry['difficulty'] == 'simple']
+    # data = [entry for entry in dataset if entry['hardness'] == 'challenging']
+    # data = [entry for entry in dataset if entry['hardness'] == 'moderate']
+    # data = [entry for entry in dataset if entry['hardness'] == 'simple']
     
     with suppress_stdout_stderr():
-        llm = Llama(model_path=model_path, n_ctx=4096, n_gpu_layers=-1, device=1)
+        llm = Llama(model_path=model_path, n_ctx=4096, n_gpu_layers=-1, device=0)
 
     results = []
 
@@ -210,14 +212,13 @@ def analyse(dataset_file, model_path, output_csv):
         question = entry['question']
         ground_truth_sql = entry['query']
         db_id = entry['db_id']
-        evidence = entry['evidence']
 
         schema = get_schema(db_dir, db_id)
         schema_str = json.dumps(schema, indent=2)
 
         # Generate prompts
-        basic_prompt = build_basic_prompt(question, schema_str, evidence)
-        advanced_prompt = build_advanced_prompt(question, schema_str, evidence)
+        basic_prompt = build_basic_prompt(question, schema_str)
+        advanced_prompt = build_advanced_prompt(question, schema_str)
 
         # Get predictions
         basic_predicted_sql = model_predict(llm, basic_prompt, extract_sql=True)
@@ -233,17 +234,17 @@ def analyse(dataset_file, model_path, output_csv):
         print(f"Question: {question}")
         print(f"[Basic Prompt] Predicted SQL: {basic_predicted_sql}")
         print(f"[Basic Prompt] Execution Match: {'Yes' if basic_ex_result else 'No'}")
-        print(f"[Advanced Prompt] Predicted SQL: {advanced_predicted_sql}")
-        print(f"[Advanced Prompt] Execution Match: {'Yes' if advanced_ex_result else 'No'}")
+        print(f"[SoQ Prompt] Predicted SQL: {advanced_predicted_sql}")
+        print(f"[SoQ Prompt] Execution Match: {'Yes' if advanced_ex_result else 'No'}")
 
         results.append({
             "Question": question,
-            "difficulty": entry["difficulty"],
+            "hardness": entry["hardness"],
             "Ground Truth SQL": ground_truth_sql,
             "Basic Predicted SQL": basic_predicted_sql,
-            "Advanced Predicted SQL": advanced_predicted_sql,
-            "EX Basic": basic_ex_result,
-            "EX Advanced": advanced_ex_result
+            "SoQ Predicted SQL": advanced_predicted_sql,
+            "EX": basic_ex_result,
+            "EX SoQ": advanced_ex_result
         })
 
     results_df = pd.DataFrame(results)
@@ -258,26 +259,26 @@ def calculate_metrics(results_csv):
     """
     df = pd.read_csv(results_csv)
     total_questions = len(df)
-    categories = df['difficulty'].unique()
+    categories = df['hardness'].unique()
     metrics = []
     
     for category in categories:
         print("Metrics Summary of " + category)
-        subset = df[df['difficulty'] == category]
+        subset = df[df['hardness'] == category]
         total = len(subset)
         
-        ex_basic_correct = subset["EX Basic"].sum()
-        ex_advanced_correct = subset["EX Advanced"].sum()
+        ex_basic_correct = subset["EX"].sum()
+        ex_advanced_correct = subset["EX SoQ"].sum()
 
         ex_basic_percentage = (ex_basic_correct / total) * 100 if total else 0
         ex_advanced_percentage = (ex_advanced_correct / total) * 100 if total else 0
 
         metrics = {
             "Total Questions": total,
-            "EX Basic Count": ex_basic_correct,
-            "EX Advanced Count": ex_advanced_correct,
-            "EX Basic (%)": ex_basic_percentage,
-            "EX Advanced (%)": ex_advanced_percentage
+            "EX Count": ex_basic_correct,
+            "EX SoQ Count": ex_advanced_correct,
+            "EX (%)": ex_basic_percentage,
+            "EX SoQ (%)": ex_advanced_percentage
         }
 
         print("\n" + "-" * 80)
@@ -285,16 +286,16 @@ def calculate_metrics(results_csv):
         print(pd.DataFrame([metrics]))
         print("-" * 80)
     
-    ex_basic_correct = df["EX Basic"].sum()
-    ex_advanced_correct = df["EX Advanced"].sum()
+    ex_basic_correct = df["EX"].sum()
+    ex_advanced_correct = df["EX SoQ"].sum()
     ex_basic_percentage = (ex_basic_correct / total_questions) * 100 if total_questions else 0
     ex_advanced_percentage = (ex_advanced_correct / total_questions) * 100 if total_questions else 0
     metrics = {
         "Total Questions": total_questions,
-        "EX Basic Count": ex_basic_correct,
-        "EX Advanced Count": ex_advanced_correct,
-        "EX Basic (%)": ex_basic_percentage,
-        "EX Advanced (%)": ex_advanced_percentage
+        "EX Count": ex_basic_correct,
+        "EX SoQ Count": ex_advanced_correct,
+        "EX (%)": ex_basic_percentage,
+        "EX SoQ (%)": ex_advanced_percentage
     }
     print("\n" + "-" * 80)
     print("Metrics Summary:")
@@ -302,9 +303,9 @@ def calculate_metrics(results_csv):
     print("-" * 80) 
 
 if __name__ == "__main__":
-    dataset_file = "Datasets/bird/dev.json"
-    model_path = "Models/Codestral-22B-v0.1-Q8_0.gguf"
-    output_csv = "SoQ-Yi.csv"
+    dataset_file = "Datasets/spider/dev_with_hardness.json"
+    model_path = "Models/codegemma-7b-Q8_0.gguf"
+    output_csv = "Spider-SoQ-codegemma.csv"
 
     analyse(dataset_file, model_path, output_csv)
     calculate_metrics(output_csv)
